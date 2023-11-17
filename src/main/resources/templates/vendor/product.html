@@ -17,7 +17,7 @@
 				<div class="container-fluid px-4">			
 					<h1 class="mt-4">Quản lý sản phẩm</h1>
 					<div class="breadcrumb mb-4">
-						<a th:href="@{/seller/add-product}" class="btn btn-success">
+						<a th:href="@{/shop/add-product}" class="btn btn-success">
 							Thêm sản phẩm
 						</a>
 						<table class="table mt-5">
@@ -45,8 +45,8 @@
 									</td>	
 									<td class="text-center" th:text="${product.category.name}"></td>
 									<td class="text-center">
-										<a th:href="@{/seller/edit-product/{id}(id=${product.id})}" class="btn btn-success">Sửa</a>
-										<a th:href="@{/seller/delete-product/{id}(id=${product.id})}" onclick="return confirm('Bạn có chắc chắn không?')" class="btn btn-danger">Xóa</a>
+										<a th:href="@{/shop/edit-product/{id}(id=${product.id})}" class="btn btn-success">Sửa</a>
+										<a th:href="@{/shop/delete-product/{id}(id=${product.id})}" onclick="return confirm('Bạn có chắc chắn không?')" class="btn btn-danger">Xóa</a>
 									 </td>							
 								</tr>
 							</tbody>

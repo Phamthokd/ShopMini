@@ -14,6 +14,6 @@ public class SHome {
 	
 	@RequestMapping("/")
 	public String sellerHome() {
-		return "vendor/home1";
+		return "vendor/home";
 	}
 }

@@ -259,9 +259,9 @@
 										<li class="menu-item-has-children" sec:authorize="isAuthenticated()"><a
 												href="#">Tài khoản</a></li>
 										<li class="menu-item-has-children" sec:authorize="isAnonymous()"><a
-												href="/logon">Đăng nhập</a></li>
-										<li class="menu-item-has-children" sec:authorize="hasAuthority('VENDOR')">
-											<a th:href="@{/seller}">Bán hàng</a>
+												href="/login">Đăng nhập</a></li>
+										<li class="menu-item-has-children" sec:authorize="hasAuthority('SHOP')">
+											<a th:href="@{/shop}">Bán hàng</a>
 										</li>
 										<li class="menu-item-has-children" sec:authorize="hasAuthority('ADMIN')">
 											<a th:href="@{/admin}">Quản trị</a>

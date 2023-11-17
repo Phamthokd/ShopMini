@@ -26,10 +26,10 @@ public class SercurityConfig {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {		
 		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((auth)->auth
-				.requestMatchers("/*").permitAll()				
+//				.requestMatchers("/*").permitAll()				
 				.requestMatchers("/shop/**").hasAuthority("SHOP")
 				.requestMatchers("/admin/**").hasAuthority("ADMIN")
-				.anyRequest().authenticated())
+				.anyRequest().permitAll())
 		.formLogin(login -> login.loginPage("/login").loginProcessingUrl("/login")
 				.usernameParameter("username").passwordParameter("password")	
 				.defaultSuccessUrl("/",true))

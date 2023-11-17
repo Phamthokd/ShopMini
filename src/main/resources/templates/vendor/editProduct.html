@@ -18,7 +18,7 @@
 					<h1 class="mt-4">Sửa sản phẩm</h1>
 					<div class="box box-primary mt-2">
 						<form role="form" method="post" enctype="multipart/form-data"
-						th:action="@{/seller/edit-product}" th:object="${productObj} ">
+						th:action="@{/shop/edit-product}" th:object="${productObj} ">
 						<input type="hidden" class="form-control mt-1" th:field="*{id}">
 						<input type="hidden" class="form-control mt-1" th:field="*{image1}">
 						<input type="hidden" class="form-control mt-1" th:field="*{image2}">
