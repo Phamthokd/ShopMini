@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="vendor/fragments/head :: head">
+</head>
+
+<body class="sb-nav-fixed">
+    <!-- nav -->
+    <div th:replace="admin/fragments/nav :: navVendor"></div>
+    <!-- nav -->
+    <div id="layoutSidenav">
+        <!-- sidebar -->
+        <div th:replace="admin/fragments/sidebar :: sidebarVendor"></div>
+         <!-- sidebar -->
+        
+          
+         <!-- Content -->
+        <div id="layoutSidenav_content" style="background: azure;">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Trang chủ</h1>
+                    <main class="container mt-5 mb-5">
+                        <h2 style="margin-bottom:40px;">Thông tin chung</h2>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="card mb-2" style="width: 100%;">
+                                    <div class="card-body" style="background: #83C75D;">
+                                        <h5 class="card-title text-center">
+                                            <a href="" class="text-decoration-none text-white">Sản phẩm</a>
+                                        </h5>
+
+                                        <h5 class="h1 text-center">
+                                            27
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <div class="card mb-2" style="width: 100%;">
+                                    <div class="card-body" style="background: #CC3300;">
+                                        <h5 class="card-title text-center">
+                                            <a href="" class="text-decoration-none text-white">Đơn hàng</a>
+                                        </h5>
+                                        <h5 class="h1 text-center">
+                                            27
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                        </div>
+                        <div class="row pt-4">
+                            <h2>Thống kê</h2>
+                            <div class="col-sm-3">
+                                <div class="card mb-2" style="width: 100%;">
+                                    <div class="card-body" style="background: rgb(51,102,204);">
+                                        <h5 class="card-title text-center">
+                                            <a href="" class="text-decoration-none text-white"><i
+                                                    class="fa-solid fa-box"></i>Thống kê</a>
+                                        </h5>
+                                        <h5 class="h1 text-center">
+                                            27
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card mb-2" style="width: 100%;">
+                                    <div class="card-body" style="background: #109618;">
+                                        <h5 class="card-title text-center">
+                                            <a href="" class="text-decoration-none text-white"><i
+                                                    class="fa-solid fa-cart-shopping"></i>Liên hệ quản trị</a>
+                                        </h5>
+                                        <h5 class="h1 text-center">
+                                            27
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+
+
+                </div>
+            </main>
+
+        </div>
+        <!-- Content -->
+    </div>
+
+    <div th:replace="admin/fragments/script :: script"></div>
+
+</body>
+
+</html>

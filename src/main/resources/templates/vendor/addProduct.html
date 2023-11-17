@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="vendor/fragments/head :: head">
+</head>
+
+<body class="sb-nav-fixed">
+	<!-- nav -->
+	<div th:replace="vendor/fragments/nav :: navVendor"></div>
+	<!-- nav -->
+	<div id="layoutSidenav">
+		<!-- sidebar -->
+		<div th:replace="vendor/fragments/sidebar :: sidebarVendor"></div>
+		<!-- sidebar -->
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Thêm sản phẩm</h1>					
+					<div class="box box-primary mt-2">
+						<form role="form" method="post" enctype="multipart/form-data" th:action="@{/seller/add-product}"
+							th:object="${productObj} ">
+							<div class="box-body">
+								<div class="form-group">
+									<label for="productName">Tên thể loại</label>
+									<input type="text" class="form-control mt-1" id="productName" th:field="*{name}">
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productPrice">Giá</label>
+									<input type="text" class="form-control mt-1" id="productPrice" th:field="*{price}">
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productDiscount">Giảm giá</label>
+									<input type="text" class="form-control mt-1" id="productDiscount"
+										th:field="*{discount}">
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productShortDescription">Miêu tả ngắn</label>
+									<textarea id="editor"></textarea>
+									<input type="hidden" id="shortDescriptionHidden" name="shortDescription" >
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productShortDescription">Miêu tả</label>
+									<textarea id="editor1"></textarea>
+									<input type="hidden" id="descriptionHidden" name="description">
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productQuantity">số lượng</label>
+									<input type="text" class="form-control mt-1" id="productQuantity"
+										th:field="*{quantity}">
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productImage1">Ảnh chính</label>
+									<input type="file" class="form-control mt-1" id="productImage1" name="fileImgage1">
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productImage2">Ảnh phụ 1</label>
+									<input type="file" class="form-control mt-1" id="productImage2" name="fileImgage2">
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productImage3">Ảnh phụ 2</label>
+									<input type="file" class="form-control mt-1" id="productImage3" name="fileImgage3">
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productImage4">Ảnh phụ 3</label>
+									<input type="file" class="form-control mt-1" id="productImage4" name="fileImgage4">
+								</div>
+								<br>
+								<div class="form-group">
+									<label for="productCategory">Danh mục</label>
+									<input type="text" class="form-control mt-1" id="productCategory"
+										name="categoryInput">
+								</div>
+
+							</div>
+			
+							<div class="box-footer mt-2">
+								<button type="submit" class="btn btn-primary">Thêm</button>
+							</div>
+							
+						</form>
+						
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<script th:src="@{/vendor/js/category.js}"></script>
+
+	<div th:replace="vendor/fragments/script :: script"></div>
+
+	<script th:src="@{/vendor/js/books.js}"></script>
+	<script th:src="@{/vendor/ckeditor/ckeditor.js}"></script>
+	<!-- Script CKEditor -->
+	<script>
+		ClassicEditor.create(document.querySelector('#editor'))
+			.then(editor => {
+				// Đặt giá trị cho CKEditor
+				editor.model.document.on('change:data', () => {
+					document.querySelector('#shortDescriptionHidden').value = editor.getData();
+				});
+			})
+			.catch(error => {
+				console.error(error);
+			});
+		ClassicEditor.create(document.querySelector('#editor1'))
+			.then(editor => {
+				editor.model.document.on('change:data', () => {
+					document.querySelector('#descriptionHidden').value = editor.getData();
+				});
+			})
+			.catch(error => {
+				console.error(error);
+			});
+	</script>
+</body>
+
+</html>

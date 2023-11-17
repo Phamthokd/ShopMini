@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="web/fragments/head :: head"></head>
+
+<body>
+
+    <!--header area start-->
+    <div th:replace="web/fragments/header :: header2"></div>
+    <!--header area end-->
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li>Tài khoản</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!-- my account start  -->
+    <section class="main_content_area">
+        <div class="container">
+            <div class="account_dashboard">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <!-- Nav tabs -->
+                        <div class="dashboard_tab_button">
+                            <ul role="tablist" class="nav flex-column dashboard-list">
+                                <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Thống kê</a></li>
+                                <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Đơn hàng</a></li>
+                                <li><a href="#address" data-bs-toggle="tab" class="nav-link">Địa chỉ</a></li>
+                                <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Sửa thông tin</a>
+                                </li>
+                                <li><a href="login.html" class="nav-link">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                        <!-- Tab panes -->
+                        <div class="tab-content dashboard_content">
+                            <div class="tab-pane fade show active" id="dashboard">
+                                <h3>Thống kê </h3>                         
+                            </div>
+                            <div class="tab-pane fade" id="orders">
+                                <h3>Orders</h3>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Đơn hàng</th>
+                                                <th>Ngày</th>
+                                                <th>Trạng thái</th>
+                                                <th>Tổng</th>
+                                                <th>Xem</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>May 10, 2018</td>
+                                                <td><span class="success">Completed</span></td>
+                                                <td>$25.00 for 1 item </td>
+                                                <td><a href="cart.html" class="view">view</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>May 10, 2018</td>
+                                                <td>Processing</td>
+                                                <td>$17.00 for 1 item </td>
+                                                <td><a href="cart.html" class="view">view</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="address">
+                                <p>Đây sẽ là địa chỉ mặc định giao hàng</p>
+                                <h4 class="billing-address">Billing address</h4>
+                                <a href="#" class="view">Sửa</a>
+                                <p><strong>Bobby Jackson</strong></p>
+                                <address>
+                                    <span><strong>Địa chỉ:</strong> Seattle</span>,
+                                    <br>
+                                    <span><strong>SDT:</strong> USA</span>
+                                </address>
+                            </div>
+                            <div class="tab-pane fade" id="account-details">
+                                <h3>Thông tin</h3>
+                                <div class="login">
+                                    <div class="login_form_container">
+                                        <div class="account_login_form">
+                                            <form action="#">
+                                                <div class="input-radio">
+                                                    <span class="custom-radio"><input type="radio" value="1"
+                                                            name="id_gender"> Mr.</span>
+                                                    <span class="custom-radio"><input type="radio" value="1"
+                                                            name="id_gender"> Mrs.</span>
+                                                </div> <br>
+                                                <label>Họ</label>
+                                                <input type="text" name="first-name">
+                                                <label>Tên</label>
+                                                <input type="text" name="last-name">
+                                                <label>Email</label>
+                                                <input type="text" name="email-name">
+                                                <label>Password</label>
+                                                <input type="password" name="user-password">
+                                                <label>Birthdate</label>
+                                                <input type="text" placeholder="MM/DD/YYYY" value="" name="birthday">
+                                                <span class="example">
+                                                    (E.g.: 05/31/1970)
+                                                </span>
+                                                <br>
+                                                <div class="save_button primary_btn default_button">
+                                                    <button type="submit">Lưu</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- my account end   -->
+
+    <!--footer area start-->
+    <footer th:replace="web/fragments/footer :: footer"></footer>
+    <!--footer area end-->
+
+
+    <!-- JS
+============================================ -->
+    <div th:replace="web/fragments/script :: script"></div>
+    <!-- JS
+============================================ -->
+
+
+</body>
+
+</html>

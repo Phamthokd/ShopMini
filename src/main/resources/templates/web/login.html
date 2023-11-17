@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:replace="web/fragments/head :: head"></head>
+
+<body>
+    <!--header area start-->
+    <div th:replace="web/fragments/header :: header2"></div>
+    <!--header area end-->
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="">Trang chủ</a></li>
+                            <li>Đăng nhập</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!-- customer login start -->
+    <div class="customer_login">
+        <div class="container">
+            <div class="row">
+                <!--login area start-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="account_form">
+                        <h2>Đăng nhập</h2>
+                        <form th:action="@{/login}" method="post">
+                            <p>
+                                <label>Tên người dùng<span>*</span></label>
+                                <input type="text" name="username">
+                            </p>
+                            <p>
+                                <label>Mật khẩu<span>*</span></label>
+                                <input type="password" name="password">
+                            </p>
+                            <div class="login_submit">
+                                <a href="#">Quên mật khẩu</a>
+                                <label for="remember">
+                                    <input id="remember" type="checkbox">
+                                    Lưu tài khoản
+                                </label>
+                                <button type="submit">Đăng nhập</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--login area start-->
+
+                <!--register area start-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="account_form register">
+                        <h2>Đăng ký</h2>
+                        <form action="#">
+                            <p>
+                                <label>Nhập email<span>*</span></label>
+                                <input type="text">
+                            </p>
+                            <p>
+                                <label>Nhập mật khẩu<span>*</span></label>
+                                <input type="password">
+                            </p>
+                            <div class="login_submit">
+                                <button type="submit">Đăng ký</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--register area end-->
+            </div>
+        </div>
+    </div>
+    <!-- customer login end -->
+
+    <!--footer area start-->
+    <footer th:replace="web/fragments/footer :: footer"></footer>
+    <!--footer area end-->
+
+
+    <!-- JS
+============================================ -->
+    <div th:replace="web/fragments/script :: script"></div>
+</body>
+
+</html>

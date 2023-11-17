@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="web/fragments/head :: head"></head>
+
+<body>
+
+	<div th:replace="web/fragments/header :: header1"></div>
+
+	<!--slider area start-->
+
+
+
+	<section class="slider_section slider_s_three">
+		<div class="slider_area owl-carousel">
+			<div class="single_slider d-flex align-items-center"
+				th:data-bgimg="@{/assets/img/slider/mau-banner-online-tre-em.jpg}">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="slider_content slider_c_three">
+								<h1>Uy tín - Chất lượng
+								</h1>
+								<h2>Mọi thứ bạn cần</h2>
+								<p>Mua cả thế giới trong tầm tay bạn chỉ cần vài thao tác click chuột</p>
+								<a href="#">+ Mua ngay </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="single_slider d-flex align-items-center"
+				th:data-bgimg="@{/assets/img/slider/mau-banner-tinh-te.jpg}">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="slider_content slider_c_three">
+								<h1>Uy tín - Chất lượng</h1>
+								<h2>Mọi thứ bạn cần</h2>
+								<p>Mua cả thế giới trong tầm tay bạn chỉ cần vài thao tác click chuột</p>
+								<a href="#">+ mua ngay </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--slider area end-->
+
+	<!--categories product area start-->
+	<div class="categories_product_aera mb-95">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="categories_container categories_column6 owl-carousel">
+					<div class="col-lg-2">
+						<div class="single_categories">
+							<div class="categories_product_thumb">
+								<a href="shop.html"><img th:src="@{/assets/img/s-product/category1.jpg}" alt=""></a>
+							</div>
+							<div class="categories_product_text">
+								<h3>
+									<a href="#">Thời trang nam</a>
+								</h3>
+								<span>/ 13 items</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div class="single_categories">
+							<div class="categories_product_thumb">
+								<a href="shop.html"><img th:src="@{/assets/img/s-product/category1.jpg}" alt=""></a>
+							</div>
+							<div class="categories_product_text">
+								<h3>
+									<a href="#">Thời trang nam</a>
+								</h3>
+								<span>/ 13 items</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div class="single_categories">
+							<div class="categories_product_thumb">
+								<a href="shop.html"><img th:src="@{/assets/img/s-product/category1.jpg}" alt=""></a>
+							</div>
+							<div class="categories_product_text">
+								<h3>
+									<a href="#">Thời trang nam</a>
+								</h3>
+								<span>/ 13 items</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div class="single_categories">
+							<div class="categories_product_thumb">
+								<a href="shop.html"><img th:src="@{/assets/img/s-product/category1.jpg}" alt=""></a>
+							</div>
+							<div class="categories_product_text">
+								<h3>
+									<a href="#">Thời trang nam</a>
+								</h3>
+								<span>/ 13 items</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div class="single_categories">
+							<div class="categories_product_thumb">
+								<a href="shop.html"><img th:src="@{/assets/img/s-product/category1.jpg}" alt=""></a>
+							</div>
+							<div class="categories_product_text">
+								<h3>
+									<a href="#">Thời trang nam</a>
+								</h3>
+								<span>/ 13 items</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div class="single_categories">
+							<div class="categories_product_thumb">
+								<a href="shop.html"><img th:src="@{/assets/img/s-product/category1.jpg}" alt=""></a>
+							</div>
+							<div class="categories_product_text">
+								<h3>
+									<a href="#">Thời trang nam</a>
+								</h3>
+								<span>/ 13 items</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2">
+						<div class="single_categories">
+							<div class="categories_product_thumb">
+								<a href="shop.html"><img th:src="@{/assets/img/s-product/category1.jpg}" alt=""></a>
+							</div>
+							<div class="categories_product_text">
+								<h3>
+									<a href="#">Thời trang nam</a>
+								</h3>
+								<span>/ 13 items</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--categories product area end-->
+
+	<!--banner static area start-->
+	<div class="product_banner_static mb-95">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-4 col-md-5">
+					<div class="product_banner_left">
+						<div class="product_carousel product_column1 owl-carousel">
+							<article class="single_product">
+								<figure>
+									<div class="product_thumb">
+										<a class="primary_img" th:href="@{/web/product-details}"><img
+												th:src="@{/assets/img/product/product4.jpg}" alt=""></a> <a
+											class="secondary_img" th:href="@{/web/product-details}"><img
+												th:src="@{/assets/img/product/product5.jpg}" alt=""></a>
+										<div class="label_product">
+											<span class="label_sale">-15%</span>
+										</div>
+										<div class="action_links">
+											<ul>
+												<li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
+															class="icon-heart icons"></i></a></li>
+												<li class="compare"><a href="#" title="Add to Compare"><i
+															class="icon-refresh icons"></i></a></li>
+												<li class="quick_button"><a href="#" data-bs-toggle="modal"
+														data-bs-target="#modal_box" title="quick view"> <i
+															class="icon-magnifier-add icons"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<figcaption class="product_content">
+										<div class="product_content_inner">
+											<h4 class="product_name">
+												<a th:href="@{/web/product-details}">Juicy Couture Tricot Logo</a>
+											</h4>
+											<div class="price_box">
+												<span class="old_price">$156.00</span> <span
+													class="current_price">$48.00</span>
+											</div>
+											<div class="add_to_cart">
+												<a th:href="@{/web/cart}">+ Add to cart</a>
+											</div>
+										</div>
+										<div class="product_timing">
+											<div data-countdown="2022/12/15"></div>
+										</div>
+									</figcaption>
+								</figure>
+							</article>
+							<article class="single_product">
+								<figure>
+									<div class="product_thumb">
+										<a class="primary_img" th:href="@{/web/product-details}"><img
+												th:src="@{/assets/img/product/product4.jpg}" alt=""></a> <a
+											class="secondary_img" th:href="@{/web/product-details}"><img
+												th:src="@{/assets/img/product/product5.jpg}" alt=""></a>
+										<div class="label_product">
+											<span class="label_sale">-15%</span>
+										</div>
+										<div class="action_links">
+											<ul>
+												<li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
+															class="icon-heart icons"></i></a></li>
+												<li class="compare"><a href="#" title="Add to Compare"><i
+															class="icon-refresh icons"></i></a></li>
+												<li class="quick_button"><a href="#" data-bs-toggle="modal"
+														data-bs-target="#modal_box" title="quick view"> <i
+															class="icon-magnifier-add icons"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<figcaption class="product_content">
+										<div class="product_content_inner">
+											<h4 class="product_name">
+												<a th:href="@{/web/product-details}">Juicy Couture Tricot Logo</a>
+											</h4>
+											<div class="price_box">
+												<span class="old_price">$156.00</span> <span
+													class="current_price">$48.00</span>
+											</div>
+											<div class="add_to_cart">
+												<a th:href="@{/web/cart}">+ Add to cart</a>
+											</div>
+										</div>
+										<div class="product_timing">
+											<div data-countdown="2022/12/15"></div>
+										</div>
+									</figcaption>
+								</figure>
+							</article>
+							<article class="single_product">
+								<figure>
+									<div class="product_thumb">
+										<a class="primary_img" th:href="@{/web/product-details}"><img
+												th:src="@{/assets/img/product/product4.jpg}" alt=""></a> <a
+											class="secondary_img" th:href="@{/web/product-details}"><img
+												th:src="@{/assets/img/product/product5.jpg}" alt=""></a>
+										<div class="label_product">
+											<span class="label_sale">-15%</span>
+										</div>
+										<div class="action_links">
+											<ul>
+												<li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
+															class="icon-heart icons"></i></a></li>
+												<li class="compare"><a href="#" title="Add to Compare"><i
+															class="icon-refresh icons"></i></a></li>
+												<li class="quick_button"><a href="#" data-bs-toggle="modal"
+														data-bs-target="#modal_box" title="quick view"> <i
+															class="icon-magnifier-add icons"></i></a></li>
+											</ul>
+										</div>
+									</div>
+									<figcaption class="product_content">
+										<div class="product_content_inner">
+											<h4 class="product_name">
+												<a th:href="@{/web/product-details}">Juicy Couture Tricot Logo</a>
+											</h4>
+											<div class="price_box">
+												<span class="old_price">$156.00</span> <span
+													class="current_price">$48.00</span>
+											</div>
+											<div class="add_to_cart">
+												<a th:href="@{/web/cart}">+ Add to cart</a>
+											</div>
+										</div>
+										<div class="product_timing">
+											<div data-countdown="2022/12/15"></div>
+										</div>
+									</figcaption>
+								</figure>
+							</article>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-7">
+					<div class="banner_static_right2">
+						<div class="banner_static_content">
+							<h3>Hàng chính hãng 100%</h3>
+							<h2>
+								Giày snacker
+							</h2>
+							<a href="shop.html">+ Mua ngay</a>
+						</div>
+						<div class="banner_static_thumb2">
+							<a href="shop.html"><img th:src="@{/assets/img/bg/banner12.jpg}" alt=""></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--banner static area end-->
+
+	<!--product area start-->
+	<div class="product_area  mb-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="product_header">
+						<div class="section_title">
+							<h2>Gợi ý hôm nay</h2>
+						</div>
+						<div class="product_tab_btn">
+							<ul class="nav" role="tablist">
+								<li><a class="active" data-bs-toggle="tab" href="#makeup" role="tab"
+										aria-controls="makeup" aria-selected="true">
+										Tab1 </a></li>
+								<li><a data-bs-toggle="tab" href="#skin" role="tab" aria-controls="skin"
+										aria-selected="false"> Tab2 </a></li>
+								<li><a data-bs-toggle="tab" href="#health" role="tab" aria-controls="health"
+										aria-selected="false"> Tab3 </a>
+								</li>
+								<li><a data-bs-toggle="tab" href="#nailart" role="tab" aria-controls="nailart"
+										aria-selected="false"> Tab4 </a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="product_container">
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="makeup" role="tabpanel">
+						<div class="row">
+							<div class="product_carousel product_column4 owl-carousel">
+								<div class="col-lg-3" th:each="product : ${product}">
+									<div class="product_items">
+										<article class="single_product">
+											<figure>
+												<div class="product_thumb">
+													<a class="primary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image1}}" alt="ảnh bìa">
+													</a> <a class="secondary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh bìa">
+													</a>
+													<!--<div class="label_product">
+														<span class="label_sale">-15%</span>
+													</div>-->
+													<div class="action_links">
+														<ul>
+															<li class="wishlist"><a href="wishlist.html"
+																	title="Add to Wishlist"><i
+																		class="icon-heart icons"></i></a></li>
+															<li class="compare"><a href="#" title="Add to Compare"><i
+																		class="icon-refresh icons"></i></a></li>
+															<li class="quick_button"><a href="#" data-bs-toggle="modal"
+																	data-bs-target="#modal_box" title="quick view"> <i
+																		class="icon-magnifier-add icons"></i></a></li>
+														</ul>
+													</div>
+												</div>
+												<figcaption class="product_content">
+													<h4 class="product_name">
+														<a href="@{/product-details}" th:text="${product.name}"></a>
+													</h4>
+													<div class="price_box">
+														<span class="old_price" th:text="${product.price}"></span>
+														<span class="current_price"
+															th:text="${product.discount}"></span>
+													</div>
+													<div class="add_to_cart">
+														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+													</div>
+												</figcaption>
+											</figure>
+										</article>
+										<article class="single_product">
+											<figure>
+												<div class="product_thumb">
+													<a class="primary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image1}}" alt="ảnh bìa">
+													</a> <a class="secondary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh bìa">
+													</a>
+													<!--<div class="label_product">
+														<span class="label_sale">-15%</span>
+													</div>-->
+													<div class="action_links">
+														<ul>
+															<li class="wishlist"><a href="wishlist.html"
+																	title="Add to Wishlist"><i
+																		class="icon-heart icons"></i></a></li>
+															<li class="compare"><a href="#" title="Add to Compare"><i
+																		class="icon-refresh icons"></i></a></li>
+															<li class="quick_button"><a href="#" data-bs-toggle="modal"
+																	data-bs-target="#modal_box" title="quick view"> <i
+																		class="icon-magnifier-add icons"></i></a></li>
+														</ul>
+													</div>
+												</div>
+												<figcaption class="product_content">
+													<h4 class="product_name">
+														<a href="@{/product-details}" th:text="${product.name}"></a>
+													</h4>
+													<div class="price_box">
+														<span class="old_price" th:text="${product.price}"></span>
+														<span class="current_price"
+															th:text="${product.discount}"></span>
+													</div>
+													<div class="add_to_cart">
+														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+													</div>
+												</figcaption>
+											</figure>
+										</article>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="skin" role="tabpanel">
+						<div class="row">
+							<div class="product_carousel product_column4 owl-carousel">
+								<div class="col-lg-3" th:each="product : ${product}">
+									<div class="product_items">
+										<article class="single_product">
+											<figure>
+												<div class="product_thumb">
+													<a class="primary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image1}}" alt="ảnh bìa">
+													</a> <a class="secondary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh bìa">
+													</a>
+													<!--<div class="label_product">
+														<span class="label_sale">-15%</span>
+													</div>-->
+													<div class="action_links">
+														<ul>
+															<li class="wishlist"><a href="wishlist.html"
+																	title="Add to Wishlist"><i
+																		class="icon-heart icons"></i></a></li>
+															<li class="compare"><a href="#" title="Add to Compare"><i
+																		class="icon-refresh icons"></i></a></li>
+															<li class="quick_button"><a href="#" data-bs-toggle="modal"
+																	data-bs-target="#modal_box" title="quick view"> <i
+																		class="icon-magnifier-add icons"></i></a></li>
+														</ul>
+													</div>
+												</div>
+												<figcaption class="product_content">
+													<h4 class="product_name">
+														<a href="@{/product-details}" th:text="${product.name}"></a>
+													</h4>
+													<div class="price_box">
+														<span class="old_price" th:text="${product.price}"></span>
+														<span class="current_price"
+															th:text="${product.discount}"></span>
+													</div>
+													<div class="add_to_cart">
+														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+													</div>
+												</figcaption>
+											</figure>
+										</article>
+										<article class="single_product">
+											<figure>
+												<div class="product_thumb">
+													<a class="primary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image1}}" alt="ảnh bìa">
+													</a> <a class="secondary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh bìa">
+													</a>
+													<!--<div class="label_product">
+														<span class="label_sale">-15%</span>
+													</div>-->
+													<div class="action_links">
+														<ul>
+															<li class="wishlist"><a href="wishlist.html"
+																	title="Add to Wishlist"><i
+																		class="icon-heart icons"></i></a></li>
+															<li class="compare"><a href="#" title="Add to Compare"><i
+																		class="icon-refresh icons"></i></a></li>
+															<li class="quick_button"><a href="#" data-bs-toggle="modal"
+																	data-bs-target="#modal_box" title="quick view"> <i
+																		class="icon-magnifier-add icons"></i></a></li>
+														</ul>
+													</div>
+												</div>
+												<figcaption class="product_content">
+													<h4 class="product_name">
+														<a href="@{/product-details}" th:text="${product.name}"></a>
+													</h4>
+													<div class="price_box">
+														<span class="old_price" th:text="${product.price}"></span>
+														<span class="current_price"
+															th:text="${product.discount}"></span>
+													</div>
+													<div class="add_to_cart">
+														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+													</div>
+												</figcaption>
+											</figure>
+										</article>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="health" role="tabpanel">
+						<div class="row">
+							<div class="product_carousel product_column4 owl-carousel">
+								<div class="col-lg-3" th:each="product : ${product}">
+									<div class="product_items">
+										<article class="single_product">
+											<figure>
+												<div class="product_thumb">
+													<a class="primary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image1}}" alt="ảnh bìa">
+													</a> <a class="secondary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh bìa">
+													</a>
+													<!--<div class="label_product">
+														<span class="label_sale">-15%</span>
+													</div>-->
+													<div class="action_links">
+														<ul>
+															<li class="wishlist"><a href="wishlist.html"
+																	title="Add to Wishlist"><i
+																		class="icon-heart icons"></i></a></li>
+															<li class="compare"><a href="#" title="Add to Compare"><i
+																		class="icon-refresh icons"></i></a></li>
+															<li class="quick_button"><a href="#" data-bs-toggle="modal"
+																	data-bs-target="#modal_box" title="quick view"> <i
+																		class="icon-magnifier-add icons"></i></a></li>
+														</ul>
+													</div>
+												</div>
+												<figcaption class="product_content">
+													<h4 class="product_name">
+														<a href="@{/product-details}" th:text="${product.name}"></a>
+													</h4>
+													<div class="price_box">
+														<span class="old_price" th:text="${product.price}"></span>
+														<span class="current_price"
+															th:text="${product.discount}"></span>
+													</div>
+													<div class="add_to_cart">
+														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+													</div>
+												</figcaption>
+											</figure>
+										</article>
+										<article class="single_product">
+											<figure>
+												<div class="product_thumb">
+													<a class="primary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image1}}" alt="ảnh bìa">
+													</a> <a class="secondary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh bìa">
+													</a>
+													<!--<div class="label_product">
+														<span class="label_sale">-15%</span>
+													</div>-->
+													<div class="action_links">
+														<ul>
+															<li class="wishlist"><a href="wishlist.html"
+																	title="Add to Wishlist"><i
+																		class="icon-heart icons"></i></a></li>
+															<li class="compare"><a href="#" title="Add to Compare"><i
+																		class="icon-refresh icons"></i></a></li>
+															<li class="quick_button"><a href="#" data-bs-toggle="modal"
+																	data-bs-target="#modal_box" title="quick view"> <i
+																		class="icon-magnifier-add icons"></i></a></li>
+														</ul>
+													</div>
+												</div>
+												<figcaption class="product_content">
+													<h4 class="product_name">
+														<a href="@{/product-details}" th:text="${product.name}"></a>
+													</h4>
+													<div class="price_box">
+														<span class="old_price" th:text="${product.price}"></span>
+														<span class="current_price"
+															th:text="${product.discount}"></span>
+													</div>
+													<div class="add_to_cart">
+														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+													</div>
+												</figcaption>
+											</figure>
+										</article>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="nailart" role="tabpanel">
+						<div class="row">
+							<div class="product_carousel product_column4 owl-carousel">
+								<div class="col-lg-3" th:each="product : ${product}">
+									<div class="product_items">
+										<article class="single_product">
+											<figure>
+												<div class="product_thumb">
+													<a class="primary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image1}}" alt="ảnh bìa">
+													</a> <a class="secondary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh bìa">
+													</a>
+													<!--<div class="label_product">
+														<span class="label_sale">-15%</span>
+													</div>-->
+													<div class="action_links">
+														<ul>
+															<li class="wishlist"><a href="wishlist.html"
+																	title="Add to Wishlist"><i
+																		class="icon-heart icons"></i></a></li>
+															<li class="compare"><a href="#" title="Add to Compare"><i
+																		class="icon-refresh icons"></i></a></li>
+															<li class="quick_button"><a href="#" data-bs-toggle="modal"
+																	data-bs-target="#modal_box" title="quick view"> <i
+																		class="icon-magnifier-add icons"></i></a></li>
+														</ul>
+													</div>
+												</div>
+												<figcaption class="product_content">
+													<h4 class="product_name">
+														<a href="@{/product-details}" th:text="${product.name}"></a>
+													</h4>
+													<div class="price_box">
+														<span class="old_price" th:text="${product.price}"></span>
+														<span class="current_price"
+															th:text="${product.discount}"></span>
+													</div>
+													<div class="add_to_cart">
+														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+													</div>
+												</figcaption>
+											</figure>
+										</article>
+										<article class="single_product">
+											<figure>
+												<div class="product_thumb">
+													<a class="primary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image1}}" alt="ảnh bìa">
+													</a> <a class="secondary_img"
+														th:href="@{/product-details/{id}(id=${product.id})}">
+														<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh bìa">
+													</a>
+													<!--<div class="label_product">
+														<span class="label_sale">-15%</span>
+													</div>-->
+													<div class="action_links">
+														<ul>
+															<li class="wishlist"><a href="wishlist.html"
+																	title="Add to Wishlist"><i
+																		class="icon-heart icons"></i></a></li>
+															<li class="compare"><a href="#" title="Add to Compare"><i
+																		class="icon-refresh icons"></i></a></li>
+															<li class="quick_button"><a href="#" data-bs-toggle="modal"
+																	data-bs-target="#modal_box" title="quick view"> <i
+																		class="icon-magnifier-add icons"></i></a></li>
+														</ul>
+													</div>
+												</div>
+												<figcaption class="product_content">
+													<h4 class="product_name">
+														<a href="@{/product-details}" th:text="${product.name}"></a>
+													</h4>
+													<div class="price_box">
+														<span class="old_price" th:text="${product.price}"></span>
+														<span class="current_price"
+															th:text="${product.discount}"></span>
+													</div>
+													<div class="add_to_cart">
+														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+													</div>
+												</figcaption>
+											</figure>
+										</article>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--product area end-->
+
+	<!--product area start-->
+	<div class="product_area  mb-100">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section_title">
+						<h2>Tìm kiếm hàng đầu</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="product_carousel product_column4 owl-carousel">
+					<div class="col-lg-3" th:each="products : ${product}">
+						<article class="single_product">
+							<figure>
+								<div class="product_thumb">
+									<a class="primary_img" th:href="@{/product-details/{id}(id=${products.id})}">
+										<img th:src="@{'/uploads/'+${products.image1}}" alt="ảnh bìa">
+									</a> <a class="secondary_img" th:href="@{/product-details/{id}(id=${products.id})}">
+										<img th:src="@{'/uploads/'+${products.image2}}" alt="ảnh bìa">
+									</a>
+									<!--<div class="label_product">
+														<span class="label_sale">-15%</span>
+													</div>-->
+									<div class="action_links">
+										<ul>
+											<li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
+														class="icon-heart icons"></i></a></li>
+											<li class="compare"><a href="#" title="Add to Compare"><i
+														class="icon-refresh icons"></i></a></li>
+											<li class="quick_button"><a href="#" data-bs-toggle="modal"
+													data-bs-target="#modal_box" title="quick view"> <i
+														class="icon-magnifier-add icons"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								<figcaption class="product_content">
+									<h4 class="product_name">
+										<a href="@{/product-details}" th:text="${products.name}"></a>
+									</h4>
+									<div class="price_box">
+										<span class="old_price" th:text="${products.price}"></span>
+										<span class="current_price" th:text="${products.discount}"></span>
+									</div>
+									<div class="add_to_cart">
+										<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+									</div>
+								</figcaption>
+							</figure>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--product area end-->
+
+
+
+	<!--footer area start-->
+	<footer th:replace="web/fragments/footer :: footer"></footer>
+	<!--footer area end-->
+
+	<!-- modal area start-->
+	<div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"><i class="ion-android-close"></i></span>
+				</button>
+				<div class="modal_body">
+					<div class="container">
+						<div class="row" th:each="product : ${product}">
+							<div class="col-lg-5 col-md-5 col-sm-12">
+								<div class="modal_tab">
+									<div class="tab-content product-details-large">
+										<div class="tab-pane fade show active" id="tab1" role="tabpanel">
+											<div class="modal_tab_img">
+												<a href="#"><img th:src="@{'/uploads/'+${product.image1}}" width="150px"
+														height="150px" alt="ảnh bìa"></a>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="tab2" role="tabpanel">
+											<div class="modal_tab_img">
+												<a href="#"><img th:src="@{'/uploads/'+${product.image2}}" width="150px"
+														height="150px" alt="ảnh bìa"></a>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="tab3" role="tabpanel">
+											<div class="modal_tab_img">
+												<a href="#"><img th:src="@{'/uploads/'+${product.image3}}" width="150px"
+														height="150px" alt="ảnh bìa"></a>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="tab4" role="tabpanel">
+											<div class="modal_tab_img">
+												<a href="#"><img th:src="@{'/uploads/'+${product.image4}}" width="150px"
+														height="150px" alt="ảnh bìa"></a>
+											</div>
+										</div>
+									</div>
+									<div class="modal_tab_button">
+										<ul class="nav product_navactive owl-carousel" role="tablist">
+											<li><a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab"
+													aria-controls="tab1" aria-selected="false"><img
+														th:src="@{'/uploads/'+${product.image4}}" width="150px"
+														height="150px" alt="ảnh bìa"></a></li>
+											<li><a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab"
+													aria-controls="tab2" aria-selected="false"><img
+														th:src="@{'/uploads/'+${product.image3}}" width="150px"
+														height="150px" alt="ảnh bìa"></a></li>
+											<li><a class="nav-link button_three" data-bs-toggle="tab" href="#tab3"
+													role="tab" aria-controls="tab3" aria-selected="false"><img
+														th:src="@{'/uploads/'+${product.image2}}" width="150px"
+														height="150px" alt="ảnh bìa"></a></li>
+											<li><a class="nav-link" data-bs-toggle="tab" href="#tab4" role="tab"
+													aria-controls="tab4" aria-selected="false"><img
+														th:src="@{'/uploads/'+${product.image1}}" width="150px"
+														height="150px" alt="ảnh bìa"></a></li>
+
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-7 col-md-7 col-sm-12">
+								<div class="modal_right">
+									<div class="modal_title mb-10">
+										<h2 th:text="${product.name}"></h2>
+									</div>
+									<div class="modal_price mb-10">
+										<span class="new_price" th:text="${product.discount}"></span> <span
+											class="old_price" th:text="${product.price}"></span>
+									</div>
+									<div class="modal_description mb-15" th:utext="${product.shortDescription}">
+
+									</div>
+									<div class="variants_selects">
+										<div class="variants_size">
+											<h2>Số lượng</h2>
+											<input type="text" th:value="${product.quantity}">
+										</div>
+
+										<div class="modal_add_to_cart mt-5">
+											<h4>Đặt hàng</h4>
+											<form action="#">
+												<input min="1" max="100" step="2" value="1" type="number">
+												<button type="submit">Thêm vào giỏ hàng</button>
+											</form>
+										</div>
+									</div>
+									<div class="modal_social">
+										<h2>Chia sẻ sản phẩm</h2>
+										<ul>
+											<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+											<li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+											<li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+											<li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a>
+											</li>
+											<li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal area end-->
+
+	<!-- JS
+============================================ -->
+	<div th:replace="web/fragments/script :: script"></div>
+	<!-- JS
+============================================ -->
+
+
+
+</body>
+
+</html>

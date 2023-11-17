@@ -1,0 +1,32 @@
+<div th:fragment="sidebarVendor" id="layoutSidenav_nav">
+	<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+		<div class="sb-sidenav-menu">
+			<div class="nav">
+				<a class="nav-link" th:href="@{/admin/}">
+					<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+					Trang chủ
+				</a>
+				<a class="nav-link" th:href="@{/admin/customer}">
+					<div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+					Thông tin khách
+				</a>
+				<a class="nav-link " th:href="@{/admin/order}">
+					<div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+					Quản lý bên bán hàng
+				</a>
+				<a class="nav-link " th:href="@{/admin/order}">
+					<div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+					Xem hóa đơn
+				</a>
+				<a class="nav-link " th:href="@{/admin/statistical}">
+					<div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+					Thống kê
+				</a>
+				<a class="nav-link " th:href="@{/admin/edit}">
+					<div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+					Sửa thông tin
+				</a>
+			</div>
+		</div>
+	</nav>
+</div>

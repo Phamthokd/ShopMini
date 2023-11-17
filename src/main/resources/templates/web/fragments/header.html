@@ -1,0 +1,545 @@
+<!--header area start-->
+<div th:fragment="header1">
+	<!--offcanvas menu area start-->
+	<div class="off_canvars_overlay"></div>
+	<div class="offcanvas_menu">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="canvas_open">
+						<a href="javascript:void(0)"><i class="icon-menu"></i></a>
+					</div>
+					<div class="offcanvas_menu_wrapper">
+						<div class="canvas_close">
+							<a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+						</div>
+						<div class="header_account_area">
+							<div class="header_account_list search_list">
+								<a href="javascript:void(0)"><i class="icon-magnifier icons"></i></a>
+								<div class="dropdown_search">
+									<form action="#">
+										<input placeholder="Search entire store here ..." type="text">
+										<button type="submit">
+											<i class="icon-magnifier icons"></i>
+										</button>
+									</form>
+								</div>
+							</div>
+							<div class="header_account_list  mini_cart_wrapper">
+								<a href="javascript:void(0)"><i class="icon-bag icons"></i>
+									<span class="cart_itemtext">Giỏ hàng</span> <span
+										class="cart_itemtotal">59.00đ</span> <span class="item_count">2</span>
+								</a>
+								<!--mini cart-->
+								<div class="mini_cart">
+									<div class="cart_gallery">
+										<div class="cart_item">
+											<div class="cart_img">
+												<a href="#"><img th:src="@{/assets/img/s-product/product.jpg}"
+														alt=""></a>
+											</div>
+											<div class="cart_info">
+												<a href="#">Juicy Couture Tricot</a>
+												<p>
+													1 x <span> 30.00đ </span>
+												</p>
+											</div>
+											<div class="cart_remove">
+												<a href="#"><i class="ion-ios-close-outline"></i></a>
+											</div>
+										</div>
+										<div class="cart_item">
+											<div class="cart_img">
+												<a href="#"><img th:src="@{/assets/img/s-product/product2.jpg}"
+														alt=""></a>
+											</div>
+											<div class="cart_info">
+												<a href="#">Juicy Couture Juicy</a>
+												<p>
+													1 x <span> 29.00đ </span>
+												</p>
+											</div>
+											<div class="cart_remove">
+												<a href="#"><i class="ion-ios-close-outline"></i></a>
+											</div>
+										</div>
+									</div>
+									<div class="mini_cart_table">
+										<div class="cart_table_border">
+											<div class="cart_total">
+												<span>Tổng phụ:</span> <span class="price">$125.00</span>
+											</div>
+											<div class="cart_total mt-10">
+												<span>Tổng:</span> <span class="price">$125.00</span>
+											</div>
+										</div>
+									</div>
+									<div class="mini_cart_footer">
+										<div class="cart_button">
+											<a th:href="@{/cart}"><i class="fa fa-shopping-cart"></i>
+												Xem giỏ hàng</a>
+										</div>
+										<div class="cart_button">
+											<a th:href="@{/checkout.html}"><i class="fa fa-sign-in"></i>
+												Thanh toán</a>
+										</div>
+
+									</div>
+								</div>
+								<!--mini cart end-->
+							</div>
+						</div>
+
+						<div id="menu" class="text-left ">
+							<ul class="offcanvas_main_menu">
+								<li class="menu-item-has-children active"><a th:href="@{/}">Trang chủ</a>
+								<li class="menu-item-has-children"><a href="#">Cửa hàng</a>
+									<ul class="sub-menu">
+										<li class="menu-item-has-children"><a href="#">Thời trang nam</a>
+											<ul class="sub-menu">
+												<li><a href="#">Giày</a></li>
+												<li><a href="#">Áo sơ mi</a></li>
+											</ul>
+										</li>
+										<li class="menu-item-has-children"><a href="#">Thời trang nữ</a>
+											<ul class="sub-menu">
+												<li><a href="#">Son môi</a></li>
+												<li><a href="#">Giày dép nữ</a></li>
+											</ul>
+										</li>
+										<li class="menu-item-has-children"><a href="#">Sách, truyện</a>
+											<ul class="sub-menu">
+												<li><a href="#">Truyện ngôn tình</a></li>
+												<li><a href="#">Truyện trinh thám</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="menu-item-has-children"><a href="#">Tài khoản</a></li>
+								<li class="menu-item-has-children"><a href="#">Về chúng tôi</a></li>
+								<li class="menu-item-has-children"><a href="#">Liên lạc</a></li>
+							</ul>
+						</div>
+						<div class="offcanvas_footer">
+							<span><a href="#"><i class="fa fa-envelope-o"></i>
+									demo@example.com</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--offcanvas menu area end-->
+
+	<header>
+		<div class="main_header header_transparent">
+			<div class="header_middle header_middle3">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-4">
+							<div class="search_box3">
+								<div class="header_account_list search_list">
+									<a href="javascript:void(0)"><i class="icon-magnifier icons"></i></a>
+									<div class="dropdown_search">
+										<form action="#">
+											<input placeholder="Search entire store here ..." type="text">
+											<button type="submit">
+												<i class="icon-magnifier icons"></i>
+											</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="logo">
+								<a th:href="@{/}"><img th:src="@{/assets/img/logo/logo.png}" alt="logo"></a>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="mini_cart_wrapper3">
+								<div class="header_account_list  mini_cart_wrapper">
+									<a href="javascript:void(0)"><i class="icon-bag icons"></i>
+										<span class="cart_itemtext">Giỏ hàng:</span> <span
+											class="cart_itemtotal">$59.00</span> <span class="item_count">2</span>
+									</a>
+									<!--mini cart-->
+									<div class="mini_cart">
+										<div class="cart_gallery">
+											<div class="cart_item">
+												<div class="cart_img">
+													<a href=""><img src="" alt=""></a>
+												</div>
+												<div class="cart_info">
+													<a href="#">Juicy Couture Tricot</a>
+													<p>
+														1 x <span> $30.00 </span>
+													</p>
+												</div>
+												<div class="cart_remove">
+													<a href="#"><i class="ion-ios-close-outline"></i></a>
+												</div>
+											</div>
+											<div class="cart_item">
+												<div class="cart_img">
+													<a href="#"><img src="" alt=""></a>
+												</div>
+												<div class="cart_info">
+													<a href="#">Juicy Couture Juicy</a>
+													<p>
+														1 x <span> $29.00 </span>
+													</p>
+												</div>
+												<div class="cart_remove">
+													<a href="#"><i class="ion-ios-close-outline"></i></a>
+												</div>
+											</div>
+										</div>
+										<div class="mini_cart_table">
+											<div class="cart_table_border">
+												<div class="cart_total mt-10">
+													<span>Tổng:</span> <span class="price">$125.00</span>
+												</div>
+											</div>
+										</div>
+										<div class="mini_cart_footer">
+											<div class="cart_button">
+												<a th:href="@{/cart}"><i class="fa fa-shopping-cart"></i>
+													Xem giỏ hàng</a>
+											</div>
+											<div class="cart_button">
+												<a href="#"><i class="fa fa-sign-in"></i>
+													Thanh toán</a>
+											</div>
+
+										</div>
+									</div>
+									<!--mini cart end-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="header_bottom sticky-header">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-10 offset-lg-1">
+							<!--main menu start-->
+							<div class="main_menu menu_three menu_position">
+								<nav>
+									<ul>
+										<li><a class="active" th:href="@{/}">Trang chủ</a></li>
+										<li class="mega_items"><a href="#">Cửa hàng<i class="fa fa-angle-down"></i></a>
+											<div class="mega_menu">
+												<ul class="mega_menu_inner">
+													<li><a href="#">Thời trang nam</a>
+														<ul>
+															<li><a href="#">Áo sơ mi</a></li>
+															<li><a href="#">Giày nam</a></li>
+														</ul>
+													</li>
+													<li><a href="#">Thời trang nữ</a>
+														<ul>
+															<li><a href="#">Son môi</a></li>
+															<li><a href="#">Son môi</a></li>
+														</ul>
+													</li>
+													<li><a href="#">Sách, truyện</a>
+														<ul>
+															<li><a href="#">Truyện ngụ ngôn</a></li>
+															<li><a href="#">Truyện ngụ ngôn</a></li>
+														</ul>
+													</li>
+												</ul>
+											</div>
+										</li>
+										<li><a href="#">Đơn hàng</a></li>
+										<li><a href="#">Liên hệ</a></li>
+										<li class="menu-item-has-children" sec:authorize="isAuthenticated()"><a
+												href="#">Tài khoản</a></li>
+										<li class="menu-item-has-children" sec:authorize="isAnonymous()"><a
+												href="/logon">Đăng nhập</a></li>
+										<li class="menu-item-has-children" sec:authorize="hasAuthority('VENDOR')">
+											<a th:href="@{/seller}">Bán hàng</a>
+										</li>
+										<li class="menu-item-has-children" sec:authorize="hasAuthority('ADMIN')">
+											<a th:href="@{/admin}">Quản trị</a>
+										</li>
+									</ul>
+								</nav>
+							</div>
+							<!--main menu end-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--header area end-->
+</div>
+
+<div th:fragment="header2">
+	<!--header area start-->
+
+	<!--offcanvas menu area start-->
+	<div class="off_canvars_overlay"></div>
+	<div class="offcanvas_menu">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="canvas_open">
+						<a href="javascript:void(0)"><i class="icon-menu"></i></a>
+					</div>
+					<div class="offcanvas_menu_wrapper">
+						<div class="canvas_close">
+							<a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+						</div>
+						<div class="header_account_area">
+							<div class="header_account_list search_list">
+								<a href="javascript:void(0)"><i class="icon-magnifier icons"></i></a>
+								<div class="dropdown_search">
+									<form action="#">
+										<input placeholder="Search entire store here ..." type="text">
+										<button type="submit">
+											<i class="icon-magnifier icons"></i>
+										</button>
+									</form>
+								</div>
+							</div>
+							<div class="header_account_list  mini_cart_wrapper">
+								<a href="javascript:void(0)"><i class="icon-bag icons"></i>
+									<span class="cart_itemtext">Giỏ hàng</span> <span
+										class="cart_itemtotal">59.00đ</span> <span class="item_count">2</span>
+								</a>
+								<!--mini cart-->
+								<div class="mini_cart">
+									<div class="cart_gallery">
+										<div class="cart_item">
+											<div class="cart_img">
+												<a href="#"><img th:src="@{/assets/img/s-product/product.jpg}"
+														alt=""></a>
+											</div>
+											<div class="cart_info">
+												<a href="#">Juicy Couture Tricot</a>
+												<p>
+													1 x <span> 30.00đ </span>
+												</p>
+											</div>
+											<div class="cart_remove">
+												<a href="#"><i class="ion-ios-close-outline"></i></a>
+											</div>
+										</div>
+										<div class="cart_item">
+											<div class="cart_img">
+												<a href="#"><img th:src="@{/assets/img/s-product/product2.jpg}"
+														alt=""></a>
+											</div>
+											<div class="cart_info">
+												<a href="#">Juicy Couture Juicy</a>
+												<p>
+													1 x <span> 29.00đ </span>
+												</p>
+											</div>
+											<div class="cart_remove">
+												<a href="#"><i class="ion-ios-close-outline"></i></a>
+											</div>
+										</div>
+									</div>
+									<div class="mini_cart_table">
+										<div class="cart_table_border">
+											<div class="cart_total">
+												<span>Tổng phụ:</span> <span class="price">$125.00</span>
+											</div>
+											<div class="cart_total mt-10">
+												<span>Tổng:</span> <span class="price">$125.00</span>
+											</div>
+										</div>
+									</div>
+									<div class="mini_cart_footer">
+										<div class="cart_button">
+											<a th:href="@{/cart}"><i class="fa fa-shopping-cart"></i>
+												Xem giỏ hàng</a>
+										</div>
+										<div class="cart_button">
+											<a th:href="@{/checkout.html}"><i class="fa fa-sign-in"></i>
+												Thanh toán</a>
+										</div>
+
+									</div>
+								</div>
+								<!--mini cart end-->
+							</div>
+						</div>
+
+						<div id="menu" class="text-left ">
+							<ul class="offcanvas_main_menu">
+								<li class="menu-item-has-children active"><a th:href="@{/}">Trang chủ</a>
+								<li class="menu-item-has-children"><a href="#">Cửa hàng</a>
+									<ul class="sub-menu">
+										<li class="menu-item-has-children"><a href="#">Thời trang nam</a>
+											<ul class="sub-menu">
+												<li><a href="#">Giày</a></li>
+												<li><a href="#">Áo sơ mi</a></li>
+											</ul>
+										</li>
+										<li class="menu-item-has-children"><a href="#">Thời trang nữ</a>
+											<ul class="sub-menu">
+												<li><a href="#">Son môi</a></li>
+												<li><a href="#">Giày dép nữ</a></li>
+											</ul>
+										</li>
+										<li class="menu-item-has-children"><a href="#">Sách, truyện</a>
+											<ul class="sub-menu">
+												<li><a href="#">Truyện ngôn tình</a></li>
+												<li><a href="#">Truyện trinh thám</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="menu-item-has-children"><a href="#">Tài khoản</a></li>
+								<li class="menu-item-has-children"><a href="#">Về chúng tôi</a></li>
+								<li class="menu-item-has-children"><a href="#">Liên lạc</a></li>
+							</ul>
+						</div>
+						<div class="offcanvas_footer">
+							<span><a href="#"><i class="fa fa-envelope-o"></i>
+									demo@example.com</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--offcanvas menu area end-->
+
+	<header>
+		<div class="main_header">
+			<div class="header_middle sticky-header">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-2">
+							<div class="logo">
+								<a th:href="@{/}"><img th:src="@{/assets/img/logo/logo.png}" alt="logo"></a>
+							</div>
+
+						</div>
+						<div class="col-lg-10">
+							<div class="header_right_info menu_position">
+								<!--main menu start-->
+								<div class="main_menu">
+									<nav>
+										<ul>
+											<li><a class="active" th:href="@{/}">Trang chủ</a></li>
+											<li class="mega_items"><a href="#">Cửa hàng<i
+														class="fa fa-angle-down"></i></a>
+												<div class="mega_menu">
+													<ul class="mega_menu_inner">
+														<li><a href="#">Thời trang nam</a>
+															<ul>
+																<li><a href="#">Áo sơ mi</a></li>
+																<li><a href="#">Giày nam</a></li>
+															</ul>
+														</li>
+														<li><a href="#">Thời trang nữ</a>
+															<ul>
+																<li><a href="#">Son môi</a></li>
+																<li><a href="#">Son môi</a></li>
+															</ul>
+														</li>
+														<li><a href="#">Sách, truyện</a>
+															<ul>
+																<li><a href="#">Truyện ngụ ngôn</a></li>
+																<li><a href="#">Truyện ngụ ngôn</a></li>
+															</ul>
+														</li>
+													</ul>
+												</div>
+											</li>
+											<li><a href="#">Đơn hàng</a></li>
+											<li><a href="#">Liên hệ</a></li>
+											<li class="menu-item-has-children"><a href="#">Tài khoản</a></li>
+										</ul>
+									</nav>
+								</div>
+								<!--main menu end-->
+								<div class="header_account_area">
+									<div class="header_account_list search_list">
+										<a href="javascript:void(0)"><i class="icon-magnifier icons"></i></a>
+										<div class="dropdown_search">
+											<form action="#">
+												<input placeholder="Nhập sản phẩm..." type="text">
+												<button type="submit">
+													<i class="icon-magnifier icons"></i>
+												</button>
+											</form>
+										</div>
+									</div>
+									<div class="header_account_list  mini_cart_wrapper">
+										<a href="javascript:void(0)"><i class="icon-bag icons"></i>
+											<span class="cart_itemtext">Giỏ hàng:</span> <span
+												class="cart_itemtotal">$59.00</span> <span class="item_count">2</span>
+										</a>
+										<!--mini cart-->
+										<div class="mini_cart">
+											<div class="cart_gallery">
+												<div class="cart_item">
+													<div class="cart_img">
+														<a href=""><img src="" alt=""></a>
+													</div>
+													<div class="cart_info">
+														<a href="#">Juicy Couture Tricot</a>
+														<p>
+															1 x <span> $30.00 </span>
+														</p>
+													</div>
+													<div class="cart_remove">
+														<a href="#"><i class="ion-ios-close-outline"></i></a>
+													</div>
+												</div>
+												<div class="cart_item">
+													<div class="cart_img">
+														<a href="#"><img src="" alt=""></a>
+													</div>
+													<div class="cart_info">
+														<a href="#">Juicy Couture Juicy</a>
+														<p>
+															1 x <span> $29.00 </span>
+														</p>
+													</div>
+													<div class="cart_remove">
+														<a href="#"><i class="ion-ios-close-outline"></i></a>
+													</div>
+												</div>
+											</div>
+											<div class="mini_cart_table">
+												<div class="cart_table_border">
+													<div class="cart_total mt-10">
+														<span>Tổng:</span> <span class="price">$125.00</span>
+													</div>
+												</div>
+											</div>
+											<div class="mini_cart_footer">
+												<div class="cart_button">
+													<a th:href="@{/cart}"><i class="fa fa-shopping-cart"></i>
+														Xem giỏ hàng</a>
+												</div>
+												<div class="cart_button">
+													<a href="#"><i class="fa fa-sign-in"></i>
+														Thanh toán</a>
+												</div>
+
+											</div>
+										</div>
+										<!--mini cart end-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--header area end-->
+</div>
