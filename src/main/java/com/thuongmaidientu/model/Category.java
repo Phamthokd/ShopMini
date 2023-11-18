@@ -21,6 +21,7 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
 	private String name;
+	private String image1;
 	
 //	@OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
 //	private Set<Product> products;

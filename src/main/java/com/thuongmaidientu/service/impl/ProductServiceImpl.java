@@ -1,4 +1,4 @@
-package com.thuongmaidientu.service;
+package com.thuongmaidientu.service.impl;
 
 import java.util.List;
 
@@ -10,6 +10,9 @@ import com.thuongmaidientu.model.Category;
 import com.thuongmaidientu.model.Product;
 import com.thuongmaidientu.model.User;
 import com.thuongmaidientu.repository.ProductRepository;
+import com.thuongmaidientu.service.CategoryService;
+import com.thuongmaidientu.service.ProductService;
+import com.thuongmaidientu.service.StorageService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -85,7 +88,6 @@ public class ProductServiceImpl implements ProductService {
 
 			Category categoryNew = new Category();
 			categoryNew.setName(categoryInput);
-
 			product.setCategory(categoryService.create(categoryNew));
 		} else {
 			product.setCategory(category);
@@ -133,6 +135,11 @@ public class ProductServiceImpl implements ProductService {
 		}
 		
 		
+	}
+
+	@Override
+	public List<Product> findByCategory(Category category) {
+		return productRepository.findByCategory(category);
 	}
 
 }

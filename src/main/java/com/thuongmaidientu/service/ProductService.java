@@ -32,4 +32,5 @@ public interface ProductService {
 			String description,
 			String shortDescription,
 			Product product);
+	List<Product> findByCategory(Category category);
 }

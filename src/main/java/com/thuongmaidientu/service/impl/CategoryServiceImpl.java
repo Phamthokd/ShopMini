@@ -1,4 +1,4 @@
-package com.thuongmaidientu.service;
+package com.thuongmaidientu.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.thuongmaidientu.model.Category;
 import com.thuongmaidientu.repository.CategoryRepository;
+import com.thuongmaidientu.service.CategoryService;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -28,20 +29,12 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public Category findById(Long id) {
-
 		return this.categoryRepository.findById(id).get();
 	}
 
 	@Override
-	public Boolean update(Category category) {
-		try {
-			this.categoryRepository.save(category);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return false;
+	public Category update(Category category) {	
+		return	this.categoryRepository.save(category);
 	}
 
 	@Override

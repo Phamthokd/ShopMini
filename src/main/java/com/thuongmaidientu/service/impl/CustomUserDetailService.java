@@ -1,4 +1,4 @@
-package com.thuongmaidientu.service;
+package com.thuongmaidientu.service.impl;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.thuongmaidientu.model.CustomUserDetails;
 import com.thuongmaidientu.model.User;
 import com.thuongmaidientu.model.UserRole;
+import com.thuongmaidientu.service.UserService;
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 	@Autowired

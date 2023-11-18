@@ -51,7 +51,7 @@
 									<a href="#" class="elevatezoom-gallery active" data-update=""
 										th:data-image="@{'/uploads/'+${product.image2}}"
 										th:data-zoom-image="@{'/uploads/'+${product.image2}}">
-										<img th:src="@{'/uploads/'+${product.image2}}" alt="zo-th-1" />
+										<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh sản phẩm" />
 									</a>
 								</li>
 								<li>
@@ -110,7 +110,10 @@
 
 							</div>
 							<div class="product_meta">
-								<span>Danh mục: <a href="#" th:text="${product.category.name}"></a></span>
+								<span>Seller: <a th:href="@{/seller/{id}(id=${product.userProduct.id})}" th:text="${product.userProduct.userName}"></a></span>
+							</div>
+							<div class="product_meta">
+								<span>Danh mục: <a th:href="@{/category/{id}(id=${product.category.id})}" th:text="${product.category.name}"></a></span>
 							</div>
 
 						</form>
@@ -163,7 +166,7 @@
 							</div>
 							<div class="tab-pane fade" id="reviews" role="tabpanel">
 								<div class="reviews_wrapper">
-									<h2>1 review for Donec eu furniture</h2>
+									<h2>1 luợt đánh giá</h2>
 									<div class="reviews_comment_box">
 										<div class="comment_thmb">
 											<img src="assets/img/blog/comment2.jpg" alt="">
@@ -186,7 +189,7 @@
 
 									</div>
 									<div class="comment_title">
-										<h2>Add a review </h2>
+										<h2>Thêm đánh giá </h2>
 										<p>Your email address will not be published. Required fields are marked </p>
 									</div>
 									<div class="product_ratting mb-10">
@@ -250,20 +253,18 @@
 									</a> <a class="secondary_img" th:href="@{/product-details/{id}(id=${products.id})}">
 										<img th:src="@{'/uploads/'+${products.image2}}" alt="ảnh bìa">
 									</a>
-									<!--<div class="label_product">
-														<span class="label_sale">-15%</span>
-													</div>-->
-									<div class="action_links">
+									
+									<!--<div class="action_links">
 										<ul>
 											<li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
 														class="icon-heart icons"></i></a></li>
 											<li class="compare"><a href="#" title="Add to Compare"><i
 														class="icon-refresh icons"></i></a></li>
-											<li class="quick_button"><a href="#" data-bs-toggle="modal"
-													data-bs-target="#modal_box" title="quick view"> <i
+											<li class="quick_button"><a href="#" data-bs-toggle="2"
+													data-bs-target="#2" title="quick view"> <i
 														class="icon-magnifier-add icons"></i></a></li>
 										</ul>
-									</div>
+									</div>-->
 								</div>
 								<figcaption class="product_content">
 									<h4 class="product_name">
@@ -310,7 +311,7 @@
 									<!--<div class="label_product">
 														<span class="label_sale">-15%</span>
 													</div>-->
-									<div class="action_links">
+									<!--<div class="action_links">
 										<ul>
 											<li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i
 														class="icon-heart icons"></i></a></li>
@@ -320,7 +321,7 @@
 													data-bs-target="#modal_box" title="quick view"> <i
 														class="icon-magnifier-add icons"></i></a></li>
 										</ul>
-									</div>
+									</div>-->
 								</div>
 								<figcaption class="product_content">
 									<h4 class="product_name">
@@ -348,7 +349,7 @@
 	<!--footer area end-->
 
 	<!-- modal area start-->
-	<div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
+	<!--<div class="modal fade" id="2" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -469,7 +470,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 	<!-- modal area end-->
 
 
