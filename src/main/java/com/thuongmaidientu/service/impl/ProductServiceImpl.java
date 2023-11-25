@@ -22,16 +22,15 @@ import com.thuongmaidientu.service.StorageService;
 public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductRepository productRepository;
-	
-	@Autowired 
+
+	@Autowired
 	private StorageService storageService;
-	
-	@Autowired 
+
+	@Autowired
 	private CategoryService categoryService;
-	
 
 	@Override
-	public List<Product> getAll() {			
+	public List<Product> getAll() {
 		return this.productRepository.findAll();
 	}
 
@@ -63,12 +62,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> findByUserProduct(User userProduct) {		
+	public List<Product> findByUserProduct(User userProduct) {
 		return this.productRepository.findByUserProduct(userProduct);
 	}
 
 	@Override
-	public void processFile(MultipartFile file1, MultipartFile file2, MultipartFile file3, MultipartFile file4,String description, String shortDescription,Product product) {
+	public void processFile(MultipartFile file1, MultipartFile file2, MultipartFile file3, MultipartFile file4,
+			String description, String shortDescription, Product product) {
 		this.storageService.store(file1);
 		this.storageService.store(file2);
 		this.storageService.store(file3);
@@ -80,14 +80,14 @@ public class ProductServiceImpl implements ProductService {
 		product.setImage1(fileName1);
 		product.setImage2(fileName2);
 		product.setImage3(fileName3);
-		product.setImage4(fileName4);	
-		
+		product.setImage4(fileName4);
+
 		product.setDescription(description);
 		product.setShortDescription(shortDescription);
 	}
 
 	@Override
-	public void processCategory(Category category,String categoryInput,Product product) {
+	public void processCategory(Category category, String categoryInput, Product product) {
 		if (category == null) {
 
 			Category categoryNew = new Category();
@@ -96,13 +96,13 @@ public class ProductServiceImpl implements ProductService {
 		} else {
 			product.setCategory(category);
 		}
-		
+
 	}
 
 	@Override
 	public void processFileEdit(MultipartFile file1, MultipartFile file2, MultipartFile file3, MultipartFile file4,
 			String description, String shortDescription, Product product) {
-		
+
 		String fileName1 = file1.getOriginalFilename();
 		String fileName2 = file2.getOriginalFilename();
 		String fileName3 = file3.getOriginalFilename();
@@ -131,14 +131,13 @@ public class ProductServiceImpl implements ProductService {
 			product.setImage4(fileName4);
 		}
 
-		if(description.trim().length()!=0||description!=null) {
+		if (description.trim().length() != 0 || description != null) {
 			product.setDescription(description);
 		}
-		if(shortDescription.trim().length()!=0 || shortDescription!=null) {
+		if (shortDescription.trim().length() != 0 || shortDescription != null) {
 			product.setShortDescription(shortDescription);
 		}
-		
-		
+
 	}
 
 	@Override
@@ -161,16 +160,45 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Page<Product> searchProducts(String keyword, Integer pageNo) {
-		List list = searchProducts(keyword);
-		
+		List<Product> list = searchProducts(keyword);
+
 		Pageable pageable = PageRequest.of(pageNo - 1, 3);
-		
+
 		Integer start = (int) pageable.getOffset();
-		
-		Integer end = (int) ((pageable.getOffset()+pageable.getPageSize() > list.size()) ? list.size() : pageable.getOffset() + pageable.getPageSize());
+
+		Integer end = (int) ((pageable.getOffset() + pageable.getPageSize() > list.size()) ? list.size()
+				: pageable.getOffset() + pageable.getPageSize());
 		list = list.subList(start, end);
-		
+
 		return new PageImpl<>(list, pageable, this.searchProducts(keyword).size());
+	}
+
+	@Override
+	public Page<Product> findByCategory(Category category, Integer pageNo) {
+		List<Product> list = findByCategory(category);
+
+		Pageable pageable = PageRequest.of(pageNo - 1, 3);
+		Integer start = (int) pageable.getOffset();
+
+		Integer end = (int) ((pageable.getOffset() + pageable.getPageSize() > list.size()) ? list.size()
+				: pageable.getOffset() + pageable.getPageSize());
+		list = list.subList(start, end);
+
+		return new PageImpl<>(list, pageable, this.findByCategory(category).size());
+	}
+
+	@Override
+	public Page<Product> findByUserProduct(User userProduct, Integer pageNo) {
+		List<Product> list = findByUserProduct(userProduct);
+
+		Pageable pageable = PageRequest.of(pageNo - 1, 3);
+		Integer start = (int) pageable.getOffset();
+
+		Integer end = (int) ((pageable.getOffset() + pageable.getPageSize() > list.size()) ? list.size()
+				: pageable.getOffset() + pageable.getPageSize());
+		list = list.subList(start, end);
+
+		return new PageImpl<>(list, pageable, this.findByUserProduct(userProduct).size());
 	}
 
 }

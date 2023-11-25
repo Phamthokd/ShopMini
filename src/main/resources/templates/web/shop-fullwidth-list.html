@@ -46,19 +46,7 @@
 							<button data-role="grid_list" type="button" class="active btn-list" data-bs-toggle="tooltip"
 								title="List"></button>
 						</div>
-						<!--<div class=" niceselect_option">
-							<form class="select_option" action="#">
-								<select name="orderby" id="short">
 
-									<option selected value="1">Sort by average rating</option>
-									<option value="2">Sort by popularity</option>
-									<option value="3">Sort by newness</option>
-									<option value="4">Sort by price: low to high</option>
-									<option value="5">Sort by price: high to low</option>
-									<option value="6">Product Name: Z</option>
-								</select>
-							</form>
-						</div>-->
 						<div class="page_amount">
 							<p>Showing 1–12 of 21 results</p>
 						</div>
@@ -77,8 +65,10 @@
 									<h4 class="product_name"><a th:href="@{/product-details}"
 											th:text="${product.name}"></a></h4>
 									<div class="price_box">
-										<span class="old_price" th:text="${product.price}"></span>
-										<span class="current_price" th:text="${product.discount}"></span>
+										<span class="old_price"
+											th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+										<span class="current_price"
+											th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 									</div>
 									<div class="add_to_cart">
 										<a th:href="@{/cart}">Thêm vào giỏ hàng</a>
@@ -88,8 +78,10 @@
 									<h4 class="product_name"><a th:href="@{/web/product-details}"
 											th:text="${product.name}"></a></h4>
 									<div class="price_box">
-										<span class="old_price" th:text="${product.price}"></span>
-										<span class="current_price" th:text="${product.discount}"></span>
+										<span class="old_price"
+											th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+										<span class="current_price"
+											th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 									</div>
 									<div class="product_desc" th:utext="${product.shortDescription}">
 
@@ -101,14 +93,21 @@
 									</div>
 								</div>
 							</div>
-						</div>                   
+						</div>
 					</div>
 					<div class="shop_toolbar t_bottom">
 						<div class="pagination">
 							<ul>
-								<li th:if="${currentPage>1}" ><a th:href="@{${keyword != null && keyword != ''? '?keyword='+keyword+'&':'?'}+ 'pageNo='+${currentPage - 1}}"><<</a></li>
-								<li th:each="i : ${#numbers.sequence(1,totalPage)}" th:classappend="${currentPage == i ? 'active' : ''}"><a th:href="@{${keyword != null && keyword != ''? '?keyword='+keyword+'&':'?'}+'pageNo='+${i}}" th:text="${i}"></a></li>
-								<li th:if="${currentPage<totalPage}"><a th:href="@{${keyword != null && keyword != ''? '?keyword='+keyword+'&':'?'}+'pageNo='+${currentPage + 1}}">>></a></li>
+								<li th:if="${currentPage>1}"><a
+										th:href="@{${keyword != null && keyword != ''? '?keyword='+keyword+'&':'?'}+ 'pageNo='+${currentPage - 1}}"><<</a>
+								</li>
+								<li th:each="i : ${#numbers.sequence(1,totalPage)}"
+									th:classappend="${currentPage == i ? 'active' : ''}"><a
+										th:href="@{${keyword != null && keyword != ''? '?keyword='+keyword+'&':'?'}+'pageNo='+${i}}"
+										th:text="${i}"></a></li>
+								<li th:if="${currentPage<totalPage}"><a
+										th:href="@{${keyword != null && keyword != ''? '?keyword='+keyword+'&':'?'}+'pageNo='+${currentPage + 1}}">>></a>
+								</li>
 							</ul>
 						</div>
 					</div>

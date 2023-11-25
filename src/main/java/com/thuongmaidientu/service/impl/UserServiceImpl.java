@@ -26,12 +26,6 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findById(id).get();
 	}
 
-//	@Override
-//	public List<User> findUsersByRoleShop(String roleName) {
-//		
-//		return userRepository.findUsersByRoleShop(roleName);
-//	}
-
 	@Override
 	public boolean delete(Long id) {
 		try {
@@ -41,6 +35,12 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public List<User> findByRole(String role) {
+		// TODO Auto-generated method stub
+		return userRepository.findByRole(role);
 	}
 
 }

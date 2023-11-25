@@ -15,7 +15,7 @@ public interface ProductService {
 	Product update(Product product);
 	Boolean delete(Long id);
 	Product findById(Long id);
-	List<Product> findByUserProduct(User userProduct);
+	
 	void processFile(
 			MultipartFile file1,
 			MultipartFile file2, 
@@ -33,9 +33,11 @@ public interface ProductService {
 			String description,
 			String shortDescription,
 			Product product);
+	List<Product> findByUserProduct(User userProduct);
 	List<Product> findByCategory(Category category);
 	List<Product> searchProducts(String keyword);
 	Page<Product> getAll(Integer pageNo);
 	Page<Product> searchProducts(String keyword,Integer pageNo);
-	
+	Page<Product> findByCategory(Category category,Integer pageNo);
+	Page<Product> findByUserProduct(User userProduct,Integer pageNo);
 }

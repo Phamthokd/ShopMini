@@ -9,7 +9,7 @@ public interface UserService {
 	
 	User findById(Long id);
 	
-//	List<User> findUsersByRoleShop(String roleName);
+	List<User> findByRole(String role);
 
 	boolean delete(Long id);
 }

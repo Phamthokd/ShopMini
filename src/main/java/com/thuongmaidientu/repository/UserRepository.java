@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	 //@Query("SELECT u FROM User u WHERE u.id IN (SELECT ur.userId FROM UserRole ur WHERE ur.roleId IN (SELECT r.id FROM Role r WHERE r.name = %?1%))")
 	
+	List<User> findByRole(String role);
+	
 }

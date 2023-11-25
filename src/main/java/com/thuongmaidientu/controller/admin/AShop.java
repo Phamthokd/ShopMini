@@ -20,8 +20,8 @@ public class AShop {
 	
 	@GetMapping("/seller")
 	public String shopHome(Model model) {
-//		List<User> shop = userService.findUsersByRoleShop("SHOP");
-//		model.addAttribute("shop", shop);
+		List<User> shop = userService.findByRole("SHOP");
+		model.addAttribute("shop", shop);
 		return "admin/shop";
 	}
 	

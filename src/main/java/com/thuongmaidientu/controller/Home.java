@@ -27,13 +27,9 @@ public class Home {
 	private UserService userService;
 	
 	@GetMapping("")
-	public String home(Model model,@Param("keyword") String keyword) {
+	public String home(Model model) {
 		List<Category> categories = categoryService.getAll();
-		
-		/*
-		 * if(keyword != null) { categories =
-		 * this.categoryService.searchCategories(keyword); }
-		 */
+				
 		
 		List<Product> product = productService.getAll();
 		List<Product> product1 = productService.findByCategory(categoryService.findByName("Thời trang nam"));
@@ -62,12 +58,6 @@ public class Home {
 		return "web/product-details";
 	}
 	
-	/*
-	 * @RequestMapping("/get-detail-product/{id}") private String
-	 * getDetailProduct(Model model, @PathVariable("id") Long id) { Product product
-	 * = productService.findById(id); model.addAttribute("product", product); return
-	 * "web/modal-product-detail"; }
-	 */
 	@RequestMapping("/category")
 	private String category(Model model,@Param("keyword") String keyword,@RequestParam(name = "pageNo",defaultValue = "1") Integer pageNo) {	
 		Page<Product> product = productService.getAll(pageNo);
@@ -84,8 +74,16 @@ public class Home {
 	}
 	
 	@RequestMapping("/category/{id}")
-	private String categoryId(Model model,@PathVariable("id") Long id) {	
-		List<Product> product = productService.findByCategory(categoryService.findById(id));
+	private String categoryId(Model model,@PathVariable("id") Long id,@RequestParam(name = "pageNo",defaultValue = "1") Integer pageNo) {	
+		Page<Product> product = productService.getAll(pageNo);
+		
+		if(id != null) {
+			product = productService.findByCategory(categoryService.findById(id), pageNo);
+		}
+		
+		model.addAttribute("totalPage", product.getTotalPages());
+		model.addAttribute("currentPage", pageNo);
+		
 		model.addAttribute("product", product);
 		return "web/shop-fullwidth-list";
 	}
@@ -93,8 +91,15 @@ public class Home {
 	
 	
 	@RequestMapping("/seller/{id}")
-	private String seller(Model model,@PathVariable("id") Long id) {	
-		List<Product> product = productService.findByUserProduct(userService.findById(id));
+	private String seller(Model model,@PathVariable("id") Long id,@RequestParam(name = "pageNo",defaultValue = "1") Integer pageNo) {
+		Page<Product> product = productService.getAll(pageNo);
+		if(id != null) {
+			product = productService.findByUserProduct(userService.findById(id), pageNo);
+		}
+		
+		model.addAttribute("totalPage", product.getTotalPages());
+		model.addAttribute("currentPage", pageNo);
+		
 		model.addAttribute("product", product);
 		return "web/shop-fullwidth-list";
 	}
