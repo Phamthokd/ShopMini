@@ -48,4 +48,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return this.categoryRepository.findByName(name);
 	}
 
+	@Override
+	public List<Category> searchCategories(String keyword) {
+		// TODO Auto-generated method stub
+		return categoryRepository.searchCategories(keyword);
+	}
+
 }

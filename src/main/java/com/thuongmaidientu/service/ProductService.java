@@ -2,6 +2,7 @@ package com.thuongmaidientu.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.thuongmaidientu.model.Category;
@@ -33,4 +34,8 @@ public interface ProductService {
 			String shortDescription,
 			Product product);
 	List<Product> findByCategory(Category category);
+	List<Product> searchProducts(String keyword);
+	Page<Product> getAll(Integer pageNo);
+	Page<Product> searchProducts(String keyword,Integer pageNo);
+	
 }

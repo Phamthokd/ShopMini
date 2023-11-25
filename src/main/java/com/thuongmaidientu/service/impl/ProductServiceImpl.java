@@ -3,6 +3,10 @@ package com.thuongmaidientu.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -140,6 +144,33 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> findByCategory(Category category) {
 		return productRepository.findByCategory(category);
+	}
+
+	@Override
+	public List<Product> searchProducts(String keyword) {
+		// TODO Auto-generated method stub
+		return productRepository.searchProducts(keyword);
+	}
+
+	@Override
+	public Page<Product> getAll(Integer pageNo) {
+		// TODO Auto-generated method stub
+		Pageable pageable = PageRequest.of(pageNo - 1, 3);
+		return this.productRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Product> searchProducts(String keyword, Integer pageNo) {
+		List list = searchProducts(keyword);
+		
+		Pageable pageable = PageRequest.of(pageNo - 1, 3);
+		
+		Integer start = (int) pageable.getOffset();
+		
+		Integer end = (int) ((pageable.getOffset()+pageable.getPageSize() > list.size()) ? list.size() : pageable.getOffset() + pageable.getPageSize());
+		list = list.subList(start, end);
+		
+		return new PageImpl<>(list, pageable, this.searchProducts(keyword).size());
 	}
 
 }

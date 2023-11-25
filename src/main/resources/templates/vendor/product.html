@@ -25,8 +25,8 @@
 								<tr>
 									<th class="text-center">ID</th>
 									<th class="text-center">Tên sản phẩm</th>
-									<th class="text-center">Giá sản phẩm</th>
-									<th class="text-center">Giá giảm</th>
+									<th class="text-center">Giá cũ</th>
+									<th class="text-center">Giá hiện tại</th>
 									<th class="text-center">Số lượng</th>
 									<th class="text-center">Ảnh chính</th>
 									<th class="text-center">Thể loại</th>	
@@ -37,8 +37,13 @@
 								<tr th:each = "product : ${product}">
 									<th class="text-center" th:text="${product.id}"></th>
 									<td class="text-center" th:text="${product.name}"></td>	
-									<td class="text-center" th:text="${product.price}"></td>	
-									<td class="text-center" th:text="${product.discount}"></td>	
+									<td class="text-center">
+										<span th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+										<!--<span th:text="${#numbers.formatCurrency(product.price, 'VND')}"></span>-->
+									</td>	
+									<td class="text-center">
+										<span th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+									</td>	
 									<td class="text-center" th:text="${product.quantity}"></td>	
 									<td class="text-center">
 										<img th:src="@{'/uploads/'+${product.image1}}" width="150px" alt="ảnh bìa">								

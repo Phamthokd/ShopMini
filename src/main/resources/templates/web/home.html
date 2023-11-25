@@ -245,9 +245,9 @@
 														<a href="@{/product-details}" th:text="${product.name}"></a>
 													</h4>
 													<div class="price_box">
-														<span class="old_price" th:text="${product.price}"></span>
+														<span class="old_price" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>			
 														<span class="current_price"
-															th:text="${product.discount}"></span>
+															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
@@ -271,9 +271,9 @@
 														<a href="@{/product-details}" th:text="${product.name}"></a>
 													</h4>
 													<div class="price_box">
-														<span class="old_price" th:text="${product.price}"></span>
+														<span class="old_price" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>			
 														<span class="current_price"
-															th:text="${product.discount}"></span>
+															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
@@ -307,9 +307,9 @@
 														<a href="@{/product-details}" th:text="${product.name}"></a>
 													</h4>
 													<div class="price_box">
-														<span class="old_price" th:text="${product.price}"></span>
+														<span class="old_price" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>			
 														<span class="current_price"
-															th:text="${product.discount}"></span>
+															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
@@ -333,9 +333,9 @@
 														<a href="@{/product-details}" th:text="${product.name}"></a>
 													</h4>
 													<div class="price_box">
-														<span class="old_price" th:text="${product.price}"></span>
+														<span class="old_price" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>			
 														<span class="current_price"
-															th:text="${product.discount}"></span>
+															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
@@ -370,9 +370,9 @@
 														<a href="@{/product-details}" th:text="${product.name}"></a>
 													</h4>
 													<div class="price_box">
-														<span class="old_price" th:text="${product.price}"></span>
+														<span class="old_price" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>			
 														<span class="current_price"
-															th:text="${product.discount}"></span>
+															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
@@ -397,9 +397,9 @@
 														<a href="@{/product-details}" th:text="${product.name}"></a>
 													</h4>
 													<div class="price_box">
-														<span class="old_price" th:text="${product.price}"></span>
+														<span class="old_price" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>			
 														<span class="current_price"
-															th:text="${product.discount}"></span>
+															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
@@ -434,9 +434,9 @@
 														<a href="@{/product-details}" th:text="${product.name}"></a>
 													</h4>
 													<div class="price_box">
-														<span class="old_price" th:text="${product.price}"></span>
+														<span class="old_price" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>			
 														<span class="current_price"
-															th:text="${product.discount}"></span>
+															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
@@ -461,9 +461,9 @@
 														<a href="@{/product-details}" th:text="${product.name}"></a>
 													</h4>
 													<div class="price_box">
-														<span class="old_price" th:text="${product.price}"></span>
+														<span class="old_price" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>			
 														<span class="current_price"
-															th:text="${product.discount}"></span>
+															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
@@ -494,14 +494,14 @@
 			</div>
 			<div class="row">
 				<div class="product_carousel product_column4 owl-carousel">
-					<div class="col-lg-3" th:each="products : ${product}">
+					<div class="col-lg-3" th:each="product : ${product}">
 						<article class="single_product">
 							<figure>
 								<div class="product_thumb">
-									<a class="primary_img" th:href="@{/product-details/{id}(id=${products.id})}">
-										<img th:src="@{'/uploads/'+${products.image1}}" alt="ảnh bìa">
-									</a> <a class="secondary_img" th:href="@{/product-details/{id}(id=${products.id})}">
-										<img th:src="@{'/uploads/'+${products.image2}}" alt="ảnh bìa">
+									<a class="primary_img" th:href="@{/product-details/{id}(id=${product.id})}">
+										<img th:src="@{'/uploads/'+${product.image1}}" alt="ảnh bìa">
+									</a> <a class="secondary_img" th:href="@{/product-details/{id}(id=${product.id})}">
+										<img th:src="@{'/uploads/'+${product.image2}}" alt="ảnh bìa">
 									</a>
 									<!--<div class="label_product">
 														<span class="label_sale">-15%</span>
@@ -520,12 +520,14 @@
 								</div>
 								<figcaption class="product_content">
 									<h4 class="product_name">
-										<a href="@{/product-details}" th:text="${products.name}"></a>
+										<a href="@{/product-details}" th:text="${product.name}"></a>
 									</h4>
+									
 									<div class="price_box">
-										<span class="old_price" th:text="${products.price}"></span>
-										<span class="current_price" th:text="${products.discount}"></span>
-									</div>
+														<span class="old_price" th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>			
+														<span class="current_price"
+															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+													</div>
 									<div class="add_to_cart">
 										<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
 									</div>

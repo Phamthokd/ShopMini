@@ -3,11 +3,14 @@ package com.thuongmaidientu.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.thuongmaidientu.model.Category;
 import com.thuongmaidientu.model.Product;
@@ -24,8 +27,13 @@ public class Home {
 	private UserService userService;
 	
 	@GetMapping("")
-	public String home(Model model) {
+	public String home(Model model,@Param("keyword") String keyword) {
 		List<Category> categories = categoryService.getAll();
+		
+		/*
+		 * if(keyword != null) { categories =
+		 * this.categoryService.searchCategories(keyword); }
+		 */
 		
 		List<Product> product = productService.getAll();
 		List<Product> product1 = productService.findByCategory(categoryService.findByName("Thời trang nam"));
@@ -39,14 +47,18 @@ public class Home {
 		model.addAttribute("product2", product2);
 		model.addAttribute("product3", product3);
 		model.addAttribute("product4", product4);
+		
+		
 		return "web/home";
 	}
 	@RequestMapping("/product-details/{id}")
 	private String productDetails(Model model, @PathVariable("id") Long id) {
+		
 		Product product = productService.findById(id);
 		List<Product> listProducts = productService.getAll();
 		model.addAttribute("product", product);
 		model.addAttribute("listProduct", listProducts);
+		
 		return "web/product-details";
 	}
 	
@@ -57,8 +69,16 @@ public class Home {
 	 * "web/modal-product-detail"; }
 	 */
 	@RequestMapping("/category")
-	private String category(Model model) {	
-		List<Product> product = productService.getAll();
+	private String category(Model model,@Param("keyword") String keyword,@RequestParam(name = "pageNo",defaultValue = "1") Integer pageNo) {	
+		Page<Product> product = productService.getAll(pageNo);
+		
+		if(keyword != null) {
+			product = productService.searchProducts(keyword,pageNo);
+		}
+		
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("totalPage", product.getTotalPages());
+		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("product", product);
 		return "web/shop-fullwidth-list";
 	}

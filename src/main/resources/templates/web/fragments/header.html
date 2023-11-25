@@ -17,8 +17,8 @@
 							<div class="header_account_list search_list">
 								<a href="javascript:void(0)"><i class="icon-magnifier icons"></i></a>
 								<div class="dropdown_search">
-									<form action="#">
-										<input placeholder="Search entire store here ..." type="text">
+									<form th:action="@{/category}">
+										<input name="keyword" placeholder="Nhập từ khóa..." type="text">
 										<button type="submit">
 											<i class="icon-magnifier icons"></i>
 										</button>
@@ -141,8 +141,8 @@
 								<div class="header_account_list search_list">
 									<a href="javascript:void(0)"><i class="icon-magnifier icons"></i></a>
 									<div class="dropdown_search">
-										<form action="#">
-											<input placeholder="Search entire store here ..." type="text">
+										<form th:action="@{/category}">
+											<input name="keyword" placeholder="Nhập từ khóa ..." type="text">
 											<button type="submit">
 												<i class="icon-magnifier icons"></i>
 											</button>
@@ -300,8 +300,8 @@
 							<div class="header_account_list search_list">
 								<a href="javascript:void(0)"><i class="icon-magnifier icons"></i></a>
 								<div class="dropdown_search">
-									<form action="#">
-										<input placeholder="Search entire store here ..." type="text">
+									<form th:action="@{/category}">
+										<input name="keyword" placeholder="Nhập từ khóa ..." type="text">
 										<button type="submit">
 											<i class="icon-magnifier icons"></i>
 										</button>
@@ -477,8 +477,8 @@
 									<div class="header_account_list search_list">
 										<a href="javascript:void(0)"><i class="icon-magnifier icons"></i></a>
 										<div class="dropdown_search">
-											<form action="#">
-												<input placeholder="Nhập sản phẩm..." type="text">
+											<form th:action="@{/category}">
+												<input name="keyword" placeholder="Nhập từ khóa..." type="text">
 												<button type="submit">
 													<i class="icon-magnifier icons"></i>
 												</button>
