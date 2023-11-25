@@ -30,8 +30,10 @@ public class User {
 	private String password;
 	private String address;
 	private String phone;
-	private String avatar;
+	private String avatar;	
+	private String role;
 	
-	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-	private Set<UserRole> userRoles;
+	private String status;
+//	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+//	private Set<UserRole> userRoles;
 }

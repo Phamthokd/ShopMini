@@ -30,18 +30,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="customer : ${customer}">
-									<th class="text-center" th:text="${customer.id}" ></th>
-									<td class="text-center" th:text="${customer.userName}"></td>									
-									<td class="text-center" th:text="${customer.address}"></td>	
-									<td class="text-center" th:text="${customer.email}"></td>	
-									<td class="text-center" th:text="${customer.phone}"></td>
-									<td class="text-center" th:text="${customer.status}"></td>
+								<tr th:each="shop : ${shop}">
+									<th class="text-center" th:text="${shop.id}" ></th>
+									<td class="text-center" th:text="${shop.userName}"></td>									
+									<td class="text-center" th:text="${shop.address}"></td>	
+									<td class="text-center" th:text="${shop.email}"></td>	
+									<td class="text-center" th:text="${shop.phone}"></td>
+									<td class="text-center" th:text="${shop.status}"></td>
 									<td class="text-center">
 										<a href="" class="btn btn-success">Khóa</a>
-										<a href="" class="btn btn-danger">Xóa</a>
-									 </td>	
-																							
+										<a th:href="@{/admin/delete-shop/{id}(id=${shop.id})}" onclick="return confirm('Bạn có chắc chắn không?')" class="btn btn-danger">Xóa</a>
+									 </td>															
 								</tr>
 							</tbody>
 						</table>

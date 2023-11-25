@@ -261,10 +261,10 @@
 												href="#">Tài khoản</a></li>
 										<li class="menu-item-has-children" sec:authorize="isAnonymous()"><a
 												href="/login">Đăng nhập</a></li>
-										<li class="menu-item-has-children" sec:authorize="hasAuthority('SHOP')">
+										<li class="menu-item-has-children" sec:authorize="hasRole('SHOP')">
 											<a th:href="@{/shop}">Bán hàng</a>
 										</li>
-										<li class="menu-item-has-children" sec:authorize="hasAuthority('ADMIN')">
+										<li class="menu-item-has-children" sec:authorize="hasRole('ADMIN')">
 											<a th:href="@{/admin}">Quản trị</a>
 										</li>
 									</ul>
@@ -463,10 +463,10 @@
 													href="#">Tài khoản</a></li>
 											<li class="menu-item-has-children" sec:authorize="isAnonymous()"><a
 													href="/login">Đăng nhập</a></li>
-											<li class="menu-item-has-children" sec:authorize="hasAuthority('SHOP')">
+											<li class="menu-item-has-children" sec:authorize="hasRole('SHOP')">
 												<a th:href="@{/shop}">Bán hàng</a>
 											</li>
-											<li class="menu-item-has-children" sec:authorize="hasAuthority('ADMIN')">
+											<li class="menu-item-has-children" sec:authorize="hasRole('ADMIN')">
 												<a th:href="@{/admin}">Quản trị</a>
 											</li>
 										</ul>

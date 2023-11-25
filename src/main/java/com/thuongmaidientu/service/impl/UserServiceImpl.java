@@ -1,5 +1,7 @@
 package com.thuongmaidientu.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,23 @@ public class UserServiceImpl implements UserService {
 	public User findById(Long id) {
 		
 		return userRepository.findById(id).get();
+	}
+
+//	@Override
+//	public List<User> findUsersByRoleShop(String roleName) {
+//		
+//		return userRepository.findUsersByRoleShop(roleName);
+//	}
+
+	@Override
+	public boolean delete(Long id) {
+		try {
+			this.userRepository.deleteById(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }
