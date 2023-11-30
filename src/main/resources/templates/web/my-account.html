@@ -5,145 +5,241 @@
 
 <body>
 
-    <!--header area start-->
-    <div th:replace="web/fragments/header :: header2"></div>
-    <!--header area end-->
+	<!--header area start-->
+	<div th:replace="web/fragments/header :: header2"></div>
+	<!--header area end-->
 
-    <!--breadcrumbs area start-->
-    <div class="breadcrumbs_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb_content">
-                        <ul>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li>Tài khoản</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--breadcrumbs area end-->
+	<!--breadcrumbs area start-->
+	<div class="breadcrumbs_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="breadcrumb_content">
+						<ul>
+							<li><a href="#">Trang chủ</a></li>
+							<li>Tài khoản</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--breadcrumbs area end-->
 
-    <!-- my account start  -->
-    <section class="main_content_area">
-        <div class="container">
-            <div class="account_dashboard">
-                <div class="row">
-                    <div class="col-sm-12 col-md-3 col-lg-3">
-                        <!-- Nav tabs -->
-                        <div class="dashboard_tab_button">
-                            <ul role="tablist" class="nav flex-column dashboard-list">
-                                <li><a href="#dashboard" data-bs-toggle="tab" class="nav-link active">Thống kê</a></li>
-                                <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Đơn hàng</a></li>
-                                <li><a href="#address" data-bs-toggle="tab" class="nav-link">Địa chỉ</a></li>
-                                <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Sửa thông tin</a>
-                                </li>
-                                <li><a href="login.html" class="nav-link">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-9 col-lg-9">
-                        <!-- Tab panes -->
-                        <div class="tab-content dashboard_content">
-                            <div class="tab-pane fade show active" id="dashboard">
-                                <h3>Thống kê </h3>                         
-                            </div>
-                            <div class="tab-pane fade" id="orders">
-                                <h3>Orders</h3>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Đơn hàng</th>
-                                                <th>Ngày</th>
-                                                <th>Trạng thái</th>
-                                                <th>Tổng</th>
-                                                <th>Xem</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>May 10, 2018</td>
-                                                <td><span class="success">Completed</span></td>
-                                                <td>$25.00 for 1 item </td>
-                                                <td><a href="cart.html" class="view">view</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>May 10, 2018</td>
-                                                <td>Processing</td>
-                                                <td>$17.00 for 1 item </td>
-                                                <td><a href="cart.html" class="view">view</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="address">
-                                <p>Đây sẽ là địa chỉ mặc định giao hàng</p>
-                                <h4 class="billing-address">Billing address</h4>
-                                <a href="#" class="view">Sửa</a>
-                                <p><strong>Bobby Jackson</strong></p>
-                                <address>
-                                    <span><strong>Địa chỉ:</strong> Seattle</span>,
-                                    <br>
-                                    <span><strong>SDT:</strong> USA</span>
-                                </address>
-                            </div>
-                            <div class="tab-pane fade" id="account-details">
-                                <h3>Thông tin</h3>
-                                <div class="login">
-                                    <div class="login_form_container">
-                                        <div class="account_login_form">
-                                            <form action="#">
-                                                <div class="input-radio">
-                                                    <span class="custom-radio"><input type="radio" value="1"
-                                                            name="id_gender"> Mr.</span>
-                                                    <span class="custom-radio"><input type="radio" value="1"
-                                                            name="id_gender"> Mrs.</span>
-                                                </div> <br>
-                                                <label>Họ</label>
-                                                <input type="text" name="first-name">
-                                                <label>Tên</label>
-                                                <input type="text" name="last-name">
-                                                <label>Email</label>
-                                                <input type="text" name="email-name">
-                                                <label>Password</label>
-                                                <input type="password" name="user-password">
-                                                <label>Birthdate</label>
-                                                <input type="text" placeholder="MM/DD/YYYY" value="" name="birthday">
-                                                <span class="example">
-                                                    (E.g.: 05/31/1970)
-                                                </span>
-                                                <br>
-                                                <div class="save_button primary_btn default_button">
-                                                    <button type="submit">Lưu</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- my account end   -->
+	<!-- my account start  -->
+	<section class="main_content_area">
+		<div class="container">
+			<div class="account_dashboard">
+				<div class="row">
+					<div class="col-sm-12 col-md-3 col-lg-3">
+						<!-- Nav tabs -->
+						<div class="dashboard_tab_button">
+							<ul role="tablist" class="nav flex-column dashboard-list">
+								<li><a href="#account-details" id="infor" data-bs-toggle="tab"
+										class="nav-link active">Sửa thông
+										tin</a>
+								</li>
+								<li> <a href="#orders" data-bs-toggle="tab" class="nav-link ">Đơn hàng</a></li>
+								<li> <a href="#password" data-bs-toggle="tab" id="changePass" class="nav-link ">Đổi mật
+										khẩu</a></li>
 
-    <!--footer area start-->
-    <footer th:replace="web/fragments/footer :: footer"></footer>
-    <!--footer area end-->
+								<li><a th:href="@{/login}" class="nav-link">Đăng xuất</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-9 col-lg-9">
+						<!-- Tab panes -->
+						<div class="tab-content dashboard_content">
 
+							<div class="tab-pane" id="password">
+								<div th:if="${message}"
+									th:class="${message == 'Đổi mật khẩu thành công'} ? 'alert alert-success' : 'alert alert-danger'"
+									th:text="${message}"></div>
+								<h3>Đổi mật khẩu</h3>
+								<hr>
+								<form class="form-horizontal" id="formChangePassword" role="form" method="post"
+									th:action="@{/edit-password}">
+									<div class="form-group">
+										<label class="col-md-3 control-label">Mật khẩu hiện tại</label>
+										<div class="col-md-8">
+											<input id="passwordInput" class="form-control" type="password"
+												name="password">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Mật khẩu mới</label>
+										<div class="col-md-8">
+											<input id="passwordNewInput" class="form-control" type="password"
+												name="passwordNew">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Nhập lại mật khẩu mới</label>
+										<div class="col-md-8">
+											<input id="confirmPasswordNewInput" class="form-control" type="password"
+												name="confirmPasswordNew">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label"></label>
+										<div class="col-md-8">
+											<button type="submit" class="btn btn-success ">Cập
+												nhật</button>
+										</div>
+									</div>
 
-    <!-- JS
+								</form>
+							</div>
+
+							<div class="tab-pane fade" id="orders">
+								<h3>Đơn hàng</h3>
+								<div class="table-responsive">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>Đơn hàng</th>
+												<th>Trạng thái</th>
+												<th>Tổng</th>
+												<th>Xem</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="order : ${listOrder}">
+												<td th:text="${order.id}"></td>
+												<td><span class="success" th:text="${order.status}">Completed</span>
+												</td>
+												<td th:text="${order.totalAmount}"> </td>
+												<td><a th:href="@{/order}" class="view">view</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="tab-pane fade show active" id="account-details">
+								<div class="container">
+									<h3>Sửa thông tin</h3>
+									<hr>
+									<form class="form-horizontal row" role="form" method="post"
+										enctype="multipart/form-data" th:action="@{/edit-account}">
+
+										<!-- left column -->
+										<div class="col-md-3">
+											<div class="text-center">
+												<img th:src="@{'/uploads/'+${user.avatar}}" class="avatar img-circle"
+													alt="avatar">
+												<h6>Avatar</h6>
+												<input type="file" class="form-control" name="avatar">
+											</div>
+										</div>
+
+										<!-- edit form column -->
+										<div class="col-md-9 personal-info">
+											<h4>Thông tin</h4>
+											<input type="hidden" class="form-control mt-1">
+
+											<div class=" form-group">
+												<label class="col-lg-3 control-label">Tên</label>
+												<div class="col-lg-8">
+													<input class="form-control" type="text" th:value="${user.name}"
+														name="name">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-lg-3 control-label">Địa chỉ</label>
+												<div class="col-lg-8">
+													<input class="form-control" type="text" th:value="${user.address}"
+														name="address">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-lg-3 control-label">Email</label>
+												<div class="col-lg-8">
+													<input class="form-control" type="email" th:value="${user.email}"
+														name="email" </div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-lg-3 control-label">Số điện thoại</label>
+													<div class="col-lg-8">
+														<input class="form-control" type="text" th:value="${user.phone}"
+															name="phone">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label"></label>
+													<div class="col-md-8">
+														<button type="submit" class="btn btn-success ">Cập
+															nhật</button>
+													</div>
+												</div>
+
+											</div>
+									</form>
+
+								</div>
+								<hr>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</section>
+	<!-- my account end   -->
+
+	<!--footer area start-->
+	<footer th:replace="web/fragments/footer :: footer"></footer>
+	<!--footer area end-->
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		document.addEventListener("DOMContentLoaded", function () {
+			var message = /*[[${message}]]*/ null;
+
+			if (message) {
+				var accountDetailsTab = document.getElementById('account-details');
+				accountDetailsTab.classList.remove('show', 'active');
+
+				var passwordTab = document.getElementById('password');
+				passwordTab.classList.add('show', 'active');
+
+				// Nếu bạn đang cố gắng thay đổi tab có id 'changePass', 'infor', bạn có thể thay đổi id này tương ứng
+				var changePassTab = document.getElementById('changePass');
+				changePassTab.classList.add('active');
+
+				var inforTab = document.getElementById('infor');
+				inforTab.classList.remove('active');
+			}
+
+			var form = document.getElementById('formChangePassword');
+
+			form.addEventListener('submit', function (event) {
+				if (!validateForm()) {
+					event.preventDefault();
+				}
+			});
+
+			function validateForm() {
+				var confirmPasswordNew = document.getElementById('confirmPasswordNewInput').value;
+				var passwordNew = document.getElementById('passwordNewInput').value;
+				var password = document.getElementById('passwordInput').value;
+
+				if (confirmPasswordNew === '' || passwordNew === '' || password === '') {
+					alert('Vui lòng nhập đầy đủ thông tin.');
+					return false;
+				}
+
+				return true;
+			}
+		});
+    /*]]>*/
+	</script>
+	<!-- JS
 ============================================ -->
-    <div th:replace="web/fragments/script :: script"></div>
-    <!-- JS
+	<div th:replace="web/fragments/script :: script"></div>
+	<!-- JS
 ============================================ -->
 
 

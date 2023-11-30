@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="web/fragments/head :: head"></head>
+
+<body>
+	<div th:replace="web/fragments/header :: header2"></div>
+
+	<!--breadcrumbs area start-->
+	<div class="breadcrumbs_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="breadcrumb_content">
+						<ul>
+							<li><a href="index.html">Trang chủ</a></li>
+							<li>Đơn hàng</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--breadcrumbs area end-->
+
+	<div class="container ">
+		<h1 class="mb-4">Đơn Hàng</h1>
+
+		<!-- Tabs -->
+		<ul class="nav nav-tabs" id="orderTabs">
+			
+			<li class="nav-item">
+				<a class="nav-link active" id="processing-tab" data-toggle="tab" href="#ordered">Đã nhận đơn hàng</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="shipped-tab" data-toggle="tab" href="#processing">Chuẩn bị hàng</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="delivered-tab" data-toggle="tab" href="#ship">Đang giao</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="canceled-tab" data-toggle="tab" href="#success">Đã giao</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="canceled-tab" data-toggle="tab" href="#canceled">Đã Hủy</a>
+			</li>
+		</ul>
+
+		<!-- Tab Content -->
+		<div class="tab-content mt-3">
+			
+			<div class="tab-pane fade show active" id="ordered">
+				<div class="shopping_cart_area">
+					<div class="container">
+						<form action="#">
+							<div class="row">
+								<div class="col-12">
+									<div class="table_desc">
+										<div class="cart_page table-responsive">
+											<table>
+												<thead>
+													<tr>
+														<th class="product_remove">Hủy</th>
+														<th class="product_thumb">Ảnh</th>
+														<th class="product_name">Sản phẩm</th>
+														<th class="product-price">Giá</th>
+														<th class="product_quantity">Số lượng</th>
+														
+													</tr>
+												</thead>
+												<tbody th:each="order : ${listOrders}">
+													<tr th:each="orderDetail : ${order.orderDetails}">
+														<td class="product_remove"><a
+																onclick="return confirm('Bạn có chắc chắn không?')"><i
+																	class="fa fa-trash-o"></i></a>
+														</td>
+														<td class="product_thumb"><a href="#"><img th:src="@{'/uploads/'+${orderDetail.product.image1}}" alt="ảnh bìa"></a>
+														</td>
+														<td class="product_name"><a href="#" th:text="${orderDetail.product.name}"></a>
+														</td>
+														<td class="product-price">
+															<span class="total"
+																th:text="${#numbers.formatDecimal(orderDetail.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+														</td>
+														<td class="product_quantity" th:text="${orderDetail.quantity}"> </td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="processing">
+				<div class="shopping_cart_area">
+					<div class="container">
+						<form action="#">
+							<div class="row">
+								<div class="col-12">
+									<div class="table_desc">
+										<div class="cart_page table-responsive">
+											<table>
+												<thead>
+													<tr>
+														<th class="product_remove">Hủy</th>
+														<th class="product_thumb">Ảnh</th>
+														<th class="product_name">Sản phẩm</th>
+														<th class="product-price">Giá</th>
+														<th class="product_quantity">Số lượng</th>
+														<th class="product_total">Tổng</th>
+													</tr>
+												</thead>
+												<tbody th:each="cart : ${listCart}">
+													<tr>
+														<td class="product_remove"><a
+																onclick="return confirm('Bạn có chắc chắn không?')"><i
+																	class="fa fa-trash-o"></i></a>
+														</td>
+														<td class="product_thumb"><a href="#"><img alt="ảnh bìa"></a>
+														</td>
+														<td class="product_name"><a href="#"></a>
+														</td>
+														<td class="product-price">
+
+														</td>
+														<td class="product_quantity"><label>Quantity</label> <input
+																min="1" max="100" type="number"></td>
+														<td class="product_total">
+
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="ship">
+				<div class="shopping_cart_area">
+					<div class="container">
+						<form action="#">
+							<div class="row">
+								<div class="col-12">
+									<div class="table_desc">
+										<div class="cart_page table-responsive">
+											<table>
+												<thead>
+													<tr>
+														<th class="product_remove">Hủy</th>
+														<th class="product_thumb">Ảnh</th>
+														<th class="product_name">Sản phẩm</th>
+														<th class="product-price">Giá</th>
+														<th class="product_quantity">Số lượng</th>
+														<th class="product_total">Tổng</th>
+													</tr>
+												</thead>
+												<tbody th:each="cart : ${listCart}">
+													<tr>
+														<td class="product_remove"><a
+																onclick="return confirm('Bạn có chắc chắn không?')"><i
+																	class="fa fa-trash-o"></i></a>
+														</td>
+														<td class="product_thumb"><a href="#"><img alt="ảnh bìa"></a>
+														</td>
+														<td class="product_name"><a href="#"></a>
+														</td>
+														<td class="product-price">
+
+														</td>
+														<td class="product_quantity"><label>Quantity</label> <input
+																min="1" max="100" type="number"></td>
+														<td class="product_total">
+
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="success">
+				<div class="shopping_cart_area">
+					<div class="container">
+						<form action="#">
+							<div class="row">
+								<div class="col-12">
+									<div class="table_desc">
+										<div class="cart_page table-responsive">
+											<table>
+												<thead>
+													<tr>
+														<th class="product_remove">Hủy</th>
+														<th class="product_thumb">Ảnh</th>
+														<th class="product_name">Sản phẩm</th>
+														<th class="product-price">Giá</th>
+														<th class="product_quantity">Số lượng</th>
+														<th class="product_total">Tổng</th>
+													</tr>
+												</thead>
+												<tbody th:each="cart : ${listCart}">
+													<tr>
+														<td class="product_remove"><a
+																onclick="return confirm('Bạn có chắc chắn không?')"><i
+																	class="fa fa-trash-o"></i></a>
+														</td>
+														<td class="product_thumb"><a href="#"><img alt="ảnh bìa"></a>
+														</td>
+														<td class="product_name"><a href="#"></a>
+														</td>
+														<td class="product-price">
+
+														</td>
+														<td class="product_quantity"><label>Quantity</label> <input
+																min="1" max="100" type="number"></td>
+														<td class="product_total">
+
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="cart_submit">
+								<button type="submit">Xác nhận đã nhận hàng</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="canceled">
+				<div class="shopping_cart_area">
+					<div class="container">
+						<form action="#">
+							<div class="row">
+								<div class="col-12">
+									<div class="table_desc">
+										<div class="cart_page table-responsive">
+											<table>
+												<thead>
+													<tr>
+														<th class="product_remove">Hủy</th>
+														<th class="product_thumb">Ảnh</th>
+														<th class="product_name">Sản phẩm</th>
+														<th class="product-price">Giá</th>
+														<th class="product_quantity">Số lượng</th>
+														<th class="product_total">Tổng</th>
+													</tr>
+												</thead>
+												<tbody th:each="cart : ${listCart}">
+													<tr>
+														<td class="product_remove"><a
+																onclick="return confirm('Bạn có chắc chắn không?')"><i
+																	class="fa fa-trash-o"></i></a>
+														</td>
+														<td class="product_thumb"><a href="#"><img alt="ảnh bìa"></a>
+														</td>
+														<td class="product_name"><a href="#"></a>
+														</td>
+														<td class="product-price">
+
+														</td>
+														<td class="product_quantity"><label>Quantity</label> <input
+																min="1" max="100" type="number"></td>
+														<td class="product_total">
+
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="cart_submit">
+								<button type="submit">Mua lại</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="web/fragments/footer :: footer"></footer>
+
+	<!-- Thêm link đến Bootstrap và jQuery JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<div th:replace="web/fragments/script :: script"></div>
+
+</body>
+
+
+</body>

@@ -94,23 +94,23 @@
 							<ul class="offcanvas_main_menu">
 								<li class="menu-item-has-children active"><a th:href="@{/}">Trang chủ</a>
 								<li class="menu-item-has-children"><a th:href="@{/category}">Gian hàng</a>
-									<ul class="sub-menu">
-										<li class="menu-item-has-children"><a href="#">Thời trang nam</a>
+										<ul class="sub-menu">
+										<li class="menu-item-has-children"><a href="#">Thời trang</a>
 											<ul class="sub-menu">
-												<li><a href="#">Giày</a></li>
-												<li><a href="#">Áo sơ mi</a></li>
+												<li><a href="#">Thời trang nam</a></li>
+												<li><a href="#">Thời trang nữ</a></li>
 											</ul>
 										</li>
-										<li class="menu-item-has-children"><a href="#">Thời trang nữ</a>
+										<li class="menu-item-has-children"><a href="#">Điện tử</a>
 											<ul class="sub-menu">
-												<li><a href="#">Son môi</a></li>
-												<li><a href="#">Giày dép nữ</a></li>
+												<li><a href="#">Điện thoại và phụ kiện</a></li>
+												<li><a href="#">Ti vi</a></li>
 											</ul>
 										</li>
-										<li class="menu-item-has-children"><a href="#">Sách, truyện</a>
+										<li class="menu-item-has-children"><a href="#">Đời sống</a>
 											<ul class="sub-menu">
-												<li><a href="#">Truyện ngôn tình</a></li>
-												<li><a href="#">Truyện trinh thám</a></li>
+												<li><a href="#">Sách</a></li>
+												<li><a href="#">Thiết bị gia dụng</a></li>
 											</ul>
 										</li>
 									</ul>
@@ -159,46 +159,73 @@
 						<div class="col-lg-4">
 							<div class="mini_cart_wrapper3">
 								<div class="header_account_list  mini_cart_wrapper">
-									<a href="javascript:void(0)"><i class="icon-bag icons"></i>
-										<span class="cart_itemtext">Giỏ hàng:</span> <span
-											class="cart_itemtotal">$59.00</span> <span class="item_count">2</span>
+									<a sec:authorize="isAuthenticated()" th:href="@{/cart}"><i
+											class="icon-bag icons"></i>
+										<span class="cart_itemtext">Giỏ hàng:</span>
+										<span class="cart_itemtotal">
+											<span
+												th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}">
+											</span>
+										</span>
+										<span class="item_count" th:text="${cartNO}"></span>
+									</a>
+
+									<a sec:authorize="isAnonymous()" th:href="@{/cart}"><i class="icon-bag icons"></i>
+										<span class="cart_itemtext">Giỏ hàng</span>
 									</a>
 									<!--mini cart-->
-									<div class="mini_cart">
-										<div class="cart_gallery">
+									<div sec:authorize="isAuthenticated()" class="mini_cart">
+										<div class="cart_gallery" th:each="cart : ${lastTwoCarts}">
 											<div class="cart_item">
 												<div class="cart_img">
-													<a href=""><img src="" alt=""></a>
+													<a href=""><img th:src="@{'/uploads/'+${cart.product.image1}}"
+															alt="ảnh bìa"></a>
 												</div>
 												<div class="cart_info">
-													<a href="#">Juicy Couture Tricot</a>
+													<a href="#" th:text="${cart.product.name}"></a>
 													<p>
-														1 x <span> $30.00 </span>
+														<span th:text="${cart.quantity} + ' X '"></span> <span
+															th:text="${#numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA')}">
+														</span>
 													</p>
 												</div>
 												<div class="cart_remove">
-													<a href="#"><i class="ion-ios-close-outline"></i></a>
-												</div>
-											</div>
-											<div class="cart_item">
-												<div class="cart_img">
-													<a href="#"><img src="" alt=""></a>
-												</div>
-												<div class="cart_info">
-													<a href="#">Juicy Couture Juicy</a>
-													<p>
-														1 x <span> $29.00 </span>
-													</p>
-												</div>
-												<div class="cart_remove">
-													<a href="#"><i class="ion-ios-close-outline"></i></a>
+													<a th:href="@{/delete-cart/{id}(id=${cart.id})}"><i
+															class="ion-ios-close-outline"></i></a>
 												</div>
 											</div>
 										</div>
 										<div class="mini_cart_table">
 											<div class="cart_table_border">
 												<div class="cart_total mt-10">
-													<span>Tổng:</span> <span class="price">$125.00</span>
+													<span>Tổng:</span> <span class="total"
+														th:text="${#numbers.formatDecimal(totalValue, 0, 'POINT', 0, 'COMMA')}"></span>
+												</div>
+											</div>
+										</div>
+										<div class="mini_cart_footer">
+											<div class="cart_button">
+												<a th:href="@{/cart}"><i class="fa fa-shopping-cart"></i>
+													Xem giỏ hàng</a>
+											</div>
+											<div class="cart_button">
+												<a href="#"><i class="fa fa-sign-in"></i>
+													Thanh toán</a>
+											</div>
+
+										</div>
+									</div>
+									<!--mini cart end-->
+
+									<!--mini cart-->
+									<div class="mini_cart" sec:authorize="isAnonymous()">
+										<div class="cart_gallery">
+
+										</div>
+										<div class="mini_cart_table">
+											<div class="cart_table_border">
+												<div class="cart_total mt-10">
+													<span>Tổng:</span> <span class="price">0</span>
 												</div>
 											</div>
 										</div>
@@ -234,31 +261,31 @@
 													class="fa fa-angle-down"></i></a>
 											<div class="mega_menu">
 												<ul class="mega_menu_inner">
-													<li><a href="#">Thời trang nam</a>
+													<li><a href="#">Thời trang</a>
 														<ul>
-															<li><a href="#">Áo sơ mi</a></li>
-															<li><a href="#">Giày nam</a></li>
+															<li><a href="#">Thời trang nam</a></li>
+															<li><a href="#">Thời trang nữ</a></li>
 														</ul>
 													</li>
-													<li><a href="#">Thời trang nữ</a>
+													<li><a href="#">Điện tử</a>
 														<ul>
-															<li><a href="#">Son môi</a></li>
-															<li><a href="#">Son môi</a></li>
+															<li><a href="#">Điện thoại và phụ kiện</a></li>
+															<li><a href="#">Ti vi</a></li>
 														</ul>
 													</li>
-													<li><a href="#">Sách, truyện</a>
+													<li><a href="#">Đời sống</a>
 														<ul>
-															<li><a href="#">Truyện ngụ ngôn</a></li>
-															<li><a href="#">Truyện ngụ ngôn</a></li>
+															<li><a href="#">Sách</a></li>
+															<li><a href="#">Thiết bị gia dụng</a></li>
 														</ul>
 													</li>
 												</ul>
 											</div>
 										</li>
-										<li><a href="#">Đơn hàng</a></li>
+										<li><a th:href="@{/order}">Đơn hàng</a></li>
 										<li><a href="#">Liên hệ</a></li>
 										<li class="menu-item-has-children" sec:authorize="isAuthenticated()"><a
-												href="#">Tài khoản</a></li>
+												th:href="@{/account}">Tài khoản</a></li>
 										<li class="menu-item-has-children" sec:authorize="isAnonymous()"><a
 												href="/login">Đăng nhập</a></li>
 										<li class="menu-item-has-children" sec:authorize="hasRole('SHOP')">
@@ -376,24 +403,24 @@
 						<div id="menu" class="text-left ">
 							<ul class="offcanvas_main_menu">
 								<li class="menu-item-has-children active"><a th:href="@{/}">Trang chủ</a>
-								<li class="menu-item-has-children"><a href="#">Cửa hàng</a>
+								<li class="menu-item-has-children"><a href="#">Gian hàng</a>
 									<ul class="sub-menu">
-										<li class="menu-item-has-children"><a href="#">Thời trang nam</a>
+										<li class="menu-item-has-children"><a href="#">Thời trang</a>
 											<ul class="sub-menu">
-												<li><a href="#">Giày</a></li>
-												<li><a href="#">Áo sơ mi</a></li>
+												<li><a href="#">Thời trang nam</a></li>
+												<li><a href="#">Thời trang nữ</a></li>
 											</ul>
 										</li>
-										<li class="menu-item-has-children"><a href="#">Thời trang nữ</a>
+										<li class="menu-item-has-children"><a href="#">Điện tử</a>
 											<ul class="sub-menu">
-												<li><a href="#">Son môi</a></li>
-												<li><a href="#">Giày dép nữ</a></li>
+												<li><a href="#">Điện thoại và phụ kiện</a></li>
+												<li><a href="#">Ti vi</a></li>
 											</ul>
 										</li>
-										<li class="menu-item-has-children"><a href="#">Sách, truyện</a>
+										<li class="menu-item-has-children"><a href="#">Đời sống</a>
 											<ul class="sub-menu">
-												<li><a href="#">Truyện ngôn tình</a></li>
-												<li><a href="#">Truyện trinh thám</a></li>
+												<li><a href="#">Sách</a></li>
+												<li><a href="#">Thiết bị gia dụng</a></li>
 											</ul>
 										</li>
 									</ul>
@@ -432,35 +459,35 @@
 									<nav>
 										<ul>
 											<li><a class="active" th:href="@{/}">Trang chủ</a></li>
-											<li class="mega_items"><a href="#">Gian hàng<i
+											<li class="mega_items"><a th:href="@{/category}">Gian hàng<i
 														class="fa fa-angle-down"></i></a>
 												<div class="mega_menu">
 													<ul class="mega_menu_inner">
-														<li><a href="#">Thời trang nam</a>
+														<li><a href="#">Thời trang</a>
 															<ul>
-																<li><a href="#">Áo sơ mi</a></li>
-																<li><a href="#">Giày nam</a></li>
+																<li><a href="#">Thời trang nam</a></li>
+																<li><a href="#">Thời trang nữ</a></li>
 															</ul>
 														</li>
-														<li><a href="#">Thời trang nữ</a>
+														<li><a href="#">Thiết bị điện tử</a>
 															<ul>
-																<li><a href="#">Son môi</a></li>
-																<li><a href="#">Son môi</a></li>
+																<li><a href="#">Điện thoại và phụ kiện</a></li>
+																<li><a href="#">Ti vi</a></li>
 															</ul>
 														</li>
-														<li><a href="#">Sách, truyện</a>
+														<li><a href="#">Đời sống</a>
 															<ul>
-																<li><a href="#">Truyện ngụ ngôn</a></li>
-																<li><a href="#">Truyện ngụ ngôn</a></li>
+																<li><a href="#">Sách</a></li>
+																<li><a href="#">Thiết bị gia dụng</a></li>
 															</ul>
 														</li>
 													</ul>
 												</div>
 											</li>
-											<li><a href="#">Đơn hàng</a></li>
+											<li><a th:href="@{/order}">Đơn hàng</a></li>
 											<li><a href="#">Liên hệ</a></li>
 											<li class="menu-item-has-children" sec:authorize="isAuthenticated()"><a
-													href="#">Tài khoản</a></li>
+													th:href="@{/account}">Tài khoản</a></li>
 											<li class="menu-item-has-children" sec:authorize="isAnonymous()"><a
 													href="/login">Đăng nhập</a></li>
 											<li class="menu-item-has-children" sec:authorize="hasRole('SHOP')">
@@ -486,46 +513,75 @@
 										</div>
 									</div>
 									<div class="header_account_list  mini_cart_wrapper">
-										<a href="javascript:void(0)"><i class="icon-bag icons"></i>
-											<span class="cart_itemtext">Giỏ hàng:</span> <span
-												class="cart_itemtotal">$59.00</span> <span class="item_count">2</span>
+										<a sec:authorize="isAuthenticated()" th:href="@{/cart}"><i
+												class="icon-bag icons"></i>
+											<span class="cart_itemtext">Giỏ hàng:</span>
+											<span class="cart_itemtotal">
+												<span
+													th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}">
+												</span>
+											</span>
+											<span class="item_count" th:text="${cartNO}"></span>
 										</a>
+
+										<a sec:authorize="isAnonymous()" th:href="@{/cart}"><i
+												class="icon-bag icons"></i>
+											<span class="cart_itemtext">Giỏ hàng</span>
+										</a>
+
 										<!--mini cart-->
-										<div class="mini_cart">
-											<div class="cart_gallery">
+										<div sec:authorize="isAuthenticated()" class="mini_cart">
+											<div class="cart_gallery" th:each="cart : ${lastTwoCarts}">
 												<div class="cart_item">
 													<div class="cart_img">
-														<a href=""><img src="" alt=""></a>
+														<a href=""><img th:src="@{'/uploads/'+${cart.product.image1}}"
+																alt="ảnh bìa"></a>
 													</div>
 													<div class="cart_info">
-														<a href="#">Juicy Couture Tricot</a>
+														<a href="#" th:text="${cart.product.name}"></a>
 														<p>
-															1 x <span> $30.00 </span>
+															<span th:text="${cart.quantity} + ' X '"></span> <span
+																th:text="${#numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA')}">
+															</span>
 														</p>
 													</div>
 													<div class="cart_remove">
-														<a href="#"><i class="ion-ios-close-outline"></i></a>
-													</div>
-												</div>
-												<div class="cart_item">
-													<div class="cart_img">
-														<a href="#"><img src="" alt=""></a>
-													</div>
-													<div class="cart_info">
-														<a href="#">Juicy Couture Juicy</a>
-														<p>
-															1 x <span> $29.00 </span>
-														</p>
-													</div>
-													<div class="cart_remove">
-														<a href="#"><i class="ion-ios-close-outline"></i></a>
+														<a th:href="@{/delete-cart/{id}(id=${cart.id})}"><i
+																class="ion-ios-close-outline"></i></a>
 													</div>
 												</div>
 											</div>
 											<div class="mini_cart_table">
 												<div class="cart_table_border">
 													<div class="cart_total mt-10">
-														<span>Tổng:</span> <span class="price">$125.00</span>
+														<span>Tổng:</span> <span class="total"
+															th:text="${#numbers.formatDecimal(totalValue, 0, 'POINT', 0, 'COMMA')}"></span>
+													</div>
+												</div>
+											</div>
+											<div class="mini_cart_footer">
+												<div class="cart_button">
+													<a th:href="@{/cart}"><i class="fa fa-shopping-cart"></i>
+														Xem giỏ hàng</a>
+												</div>
+												<div class="cart_button">
+													<a href="#"><i class="fa fa-sign-in"></i>
+														Thanh toán</a>
+												</div>
+
+											</div>
+										</div>
+										<!--mini cart end-->
+
+										<!--mini cart-->
+										<div class="mini_cart" sec:authorize="isAnonymous()">
+											<div class="cart_gallery">
+
+											</div>
+											<div class="mini_cart_table">
+												<div class="cart_table_border">
+													<div class="cart_total mt-10">
+														<span>Tổng:</span> <span class="price">0</span>
 													</div>
 												</div>
 											</div>

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.thuongmaidientu.model.Category;
+import com.thuongmaidientu.model.Order;
 import com.thuongmaidientu.model.Product;
 import com.thuongmaidientu.model.User;
 @Repository
@@ -18,4 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	@Query("SELECT p FROM Product p where name LiKE %?1%")
 	List<Product> searchProducts(String keyword);
+	
+	
 }

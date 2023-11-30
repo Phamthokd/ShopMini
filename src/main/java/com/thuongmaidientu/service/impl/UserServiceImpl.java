@@ -3,6 +3,7 @@ package com.thuongmaidientu.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.thuongmaidientu.model.User;
@@ -13,6 +14,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired 
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public User findByUserName(String userName) {
@@ -41,6 +45,28 @@ public class UserServiceImpl implements UserService {
 	public List<User> findByRole(String role) {
 		// TODO Auto-generated method stub
 		return userRepository.findByRole(role);
+	}
+
+	@Override
+	public User update(User user) {
+		
+		return userRepository.save(user);
+	}
+
+	@Override
+	public boolean checkCurrentPassword(User user, String currentPassword) {
+		
+		return passwordEncoder.matches(currentPassword, user.getPassword());
+	}
+
+	@Override
+	public void updatePassword(User user, String newPassword) {
+		
+		String encodedPassword = passwordEncoder.encode(newPassword);
+
+		user.setPassword(encodedPassword);
+		
+		userRepository.save(user);
 	}
 
 }
