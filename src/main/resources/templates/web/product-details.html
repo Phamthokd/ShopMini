@@ -107,8 +107,8 @@
 
 						<div class="product_variant quantity">
 							<label>Số lượng</label>
-							<input id="squantity" min="1" max="100" value="1" type="number">
-							<button id="add-cart" th:sid="${product.id}" class="button" >Thêm vào giỏ
+							<input id="quantity" min="1" max="100" value="1" type="number">
+							<button id="add-cart" th:sid="${product.id}" class="button">Thêm vào giỏ
 								hàng</button>
 						</div>
 						<div class="product_meta">
@@ -267,8 +267,6 @@
 									</a> <a class="secondary_img" th:href="@{/product-details/{id}(id=${products.id})}">
 										<img th:src="@{'/uploads/'+${products.image2}}" alt="ảnh bìa">
 									</a>
-
-
 								</div>
 								<figcaption class="product_content">
 									<h4 class="product_name">
@@ -279,7 +277,7 @@
 										<span class="current_price" th:text="${products.discount}"></span>
 									</div>
 									<div class="add_to_cart">
-										<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
+										<a href="#">+ thêm vào giỏ hàng</a>
 									</div>
 								</figcaption>
 							</figure>
@@ -386,31 +384,25 @@
 	
 	
 ============================================ -->
-	
+
 
 	<div th:replace="web/fragments/script :: script"></div>
 	<!-- JS
 ============================================ -->
-<script>
+	<script>
 		$(document).ready(function () {
-			$("#add-cart").on('click', function (e) {
+			$("#add-cart").on('click', function () {
 				const id = $(this).attr('sid');
-				const squantity = $('#squantity').val();
-
-				// Lấy CSRF token từ thẻ meta
-				const csrfToken = $("meta[name='_csrf']").attr("content");
-
+				const quantity = $('#quantity').val();
 				$.ajax({
-					url: "/add-cart/" + id,
-					method: "Post",
+					url: "/add-cart",
+					method: "POST",
 					data: {
-						squantity: squantity
-					},
-					headers: {
-						// Thêm CSRF token vào header của request
-						'X-CSRF-TOKEN': csrfToken
+						id: id,
+						quantity: quantity
 					},
 					success: function (dt) {
+					
 						if (dt === "CartEntryExists") {
 							$('#cartExistsModal').modal('show');
 						} else if (dt === "CartEntryAdded") {
@@ -421,12 +413,13 @@
 					},
 					error: function (dt) {
 						console.error("Error: Không thể kết nối đến server.");
+						
 					}
 				});
 			});
 		});
 	</script>
-	
+
 
 </body>
 

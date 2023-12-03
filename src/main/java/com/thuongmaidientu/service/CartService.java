@@ -16,9 +16,12 @@ public interface CartService {
 	Boolean delete(Long id);
 	Cart findById(Long id);	
 	List<Cart> findByUserAndStatus(User user, String status);
-	Cart processAddCart(Long id, int quantity, UserDetails userDetails,Cart cart);
-	Cart findByProductAndUser(Product product, User user);
+	Cart processAddCart(Long id, int quantity, User user,Cart cart);
+	
+	
+	Cart  findByProductAndUserAndStatus(Product product, User user, String status);
 	
 	void getCart(UserDetails userDetails,Model model);
 	
+//	Cart findCart(long productId, long userId);
 }

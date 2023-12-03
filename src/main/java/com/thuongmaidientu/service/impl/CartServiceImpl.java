@@ -62,9 +62,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public Cart processAddCart(Long id, int quantity, UserDetails userDetails,Cart cart) {
+	public Cart processAddCart(Long id, int quantity, User user,Cart cart) {
 		cart.setProduct(productService.findById(id));
-        cart.setUser(userService.findByUserName(userDetails.getUsername()));
+        cart.setUser(user);
         cart.setQuantity(quantity);
         cart.setTotal(quantity * productService.findById(id).getDiscount());
         cart.setStatus("Giỏ hàng");
@@ -73,9 +73,9 @@ public class CartServiceImpl implements CartService {
 
 
 	@Override
-	public Cart findByProductAndUser(Product product, User user) {
+	public Cart findByProductAndUserAndStatus(Product product, User user,String status) {
 		// TODO Auto-generated method stub
-		return cartRepository.findByProductAndUser(product, user);
+		return  cartRepository.findByProductAndUserAndStatus(product, user, status);
 	}
 
 	@Override
@@ -115,5 +115,11 @@ public class CartServiceImpl implements CartService {
 		model.addAttribute("cartNO", listCarts.size());
 		
 	}
+
+//	@Override
+//	public Cart findCart(long productId, long userId) {
+//		// TODO Auto-generated method stub
+//		return cartRepository.findCart(productId, userId);
+//	}
 
 }

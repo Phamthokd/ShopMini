@@ -416,58 +416,12 @@
 	</div>
 	<!--product area end-->
 
-
-
 	<!--footer area start-->
 	<footer th:replace="web/fragments/footer :: footer"></footer>
 	<!--footer area end-->
 
-	<!-- modal area start-->
-	<!--<div class="modal fade" id="modal_box1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"><i class="ion-android-close"></i></span>
-				</button>
-				<div class="modal_body" id="modal_show_product">
-					
-				</div>
-			</div>
-		</div>
-	</div>-->
-	<!-- modal area end-->
-
 	<!-- JS -->
 	<div th:replace="web/fragments/script :: script"></div>
-
-	<script>
-		$(document).ready(function () {
-			$("#addToCartLink").on("click", function (e) {
-				e.preventDefault();
-
-				var productId = $(this).data("product-id");
-
-				$.ajax({
-					url: "/add-cart/" + productId,
-					method: "post",
-					success: function (data) {
-						if (data === "CartEntryExists") {
-							$('#cartExistsModal').modal('show');
-						} else if (data === "CartEntryAdded") {
-							$('#cartAddedModal').modal('show');
-						} else {
-							console.error("Error: " + data);
-						}
-					},
-					error: function () {
-						console.error("Error: Không thể kết nối đến server.");
-					}
-				});
-			});
-		});
-	</script>
-
-
 
 </body>
 

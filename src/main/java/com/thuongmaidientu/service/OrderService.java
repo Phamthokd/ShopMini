@@ -11,4 +11,6 @@ public interface OrderService {
 	List<Order> findByUserAndStatus(User user, String status);
 	List<Order> findAll();
 	List<Order> findOrdersByProductSupplier(String username);
+	
+	
 }

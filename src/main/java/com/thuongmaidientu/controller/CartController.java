@@ -7,20 +7,22 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.thuongmaidientu.model.Cart;
 import com.thuongmaidientu.model.Product;
 import com.thuongmaidientu.model.User;
 import com.thuongmaidientu.service.CartService;
+import com.thuongmaidientu.service.OrderDetailsService;
 import com.thuongmaidientu.service.ProductService;
 import com.thuongmaidientu.service.UserService;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:8080")
 public class CartController {
 	@Autowired
 	private CartService cartService;
@@ -28,6 +30,8 @@ public class CartController {
 	private UserService userService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private OrderDetailsService orderDetailsService;
 	
 	@GetMapping("/cart")
 	public String CartIndex(@AuthenticationPrincipal UserDetails userDetails,Model model) {
@@ -37,38 +41,81 @@ public class CartController {
 		
 	}
 	
-	@PostMapping("/add-cart/{id}")
+	
+	@PostMapping("/add-cart")
 	public ResponseEntity<String> addCart(
-	    @PathVariable("id") Long id,
-	    @RequestParam("squantity") int squantity,
+	    @RequestParam("quantity") int quantity,
+	    @RequestParam("id") Long id,
 	    @AuthenticationPrincipal UserDetails userDetails) {		
 		try {
 	        User user = userService.findByUserName(userDetails.getUsername());
+	       
 	        Product product = productService.findById(id);
-	        Cart existingCart = cartService.findByProductAndUser(product, user);
+	        
+	        Cart cartCheck = cartService.findByProductAndUserAndStatus(product, user,"Giỏ hàng");
 
-	        if (existingCart != null && "Giỏ hàng".equals(existingCart.getStatus())) {
-	            // Bản ghi đã tồn tại, trả về một thông báo        	
-	            return new ResponseEntity<>("CartEntryExists", HttpStatus.OK);
-	        } else {
-	            Cart cart = new Cart();
-	            cart = cartService.processAddCart(id, squantity, userDetails, cart);
-	            this.cartService.create(cart);
-	            return new ResponseEntity<>("CartEntryAdded", HttpStatus.OK);
-	        } 	  
-	    } catch (Exception e) {	        
-	    	 return new ResponseEntity<>("Error", HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
+	        	if (cartCheck != null && "Giỏ hàng".equals(cartCheck.getStatus())) {
+		            // Bản ghi đã tồn tại, trả về một thông báo        	
+		            return new ResponseEntity<>("CartEntryExists", HttpStatus.OK);
+		        } else {
+		            Cart cart = new Cart();
+		            cart = cartService.processAddCart(id, quantity, user, cart);
+		            this.cartService.create(cart);
+		            return new ResponseEntity<>("CartEntryAdded", HttpStatus.OK);
+		        } 	  
+	 
+		    } catch (Exception e) {	        
+		    	 return new ResponseEntity<>("Error", HttpStatus.INTERNAL_SERVER_ERROR);
+		    }
+		
 	}
 	
-	@RequestMapping("/delete-cart/{id}")
-	public String deleteCart(@PathVariable("id") Long id ) {		
+	@PostMapping("/buy-again")
+	public String buyAgain(
+	    @RequestParam("quantity") int quantity,
+	    @RequestParam("id") Long id,
+	    @RequestParam("idOrderDetail") Long idOrderDetail,
+	    @AuthenticationPrincipal UserDetails userDetails) {		
+		try {
+	        User user = userService.findByUserName(userDetails.getUsername());
+	       
+	        Product product = productService.findById(id);
+	        
+	        Cart cartCheck = cartService.findByProductAndUserAndStatus(product, user,"Giỏ hàng");
+
+	        	if (cartCheck != null && "Giỏ hàng".equals(cartCheck.getStatus())) {	            
+	        		cartCheck.setQuantity(cartCheck.getQuantity() + quantity);	
+	        		cartCheck.setTotal(cartCheck.getProduct().getDiscount() * cartCheck.getQuantity());
+	        		cartService.update(cartCheck);    
+	        		if(orderDetailsService.delete(idOrderDetail)) {
+		            	return "redirect:/cart";
+		            }
+	        		return "redirect:/order";
+		        } else {
+		            Cart cart = new Cart();
+		            cart = cartService.processAddCart(id, quantity, user, cart);
+		            this.cartService.create(cart);
+		            if(orderDetailsService.delete(idOrderDetail)) {
+		            	return "redirect:/cart";
+		            }	
+		            return "redirect:/order";
+		        } 	  
+	 
+		    } catch (Exception e) {	        
+		    	return "redirect:/cartError";
+		    }
+		
+	}
+	
+	@GetMapping("/delete-cart/{id}")
+	public String deleteCart(@PathVariable("id") Long id) {
 		if(this.cartService.delete(id)) {
 			return "redirect:/cart";
 		}else {
 			return "redirect:/cart";
 		}	
 	}
+
 	
 	
 	

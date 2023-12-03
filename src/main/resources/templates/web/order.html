@@ -24,22 +24,22 @@
 	<!--breadcrumbs area end-->
 
 	<div class="container ">
-		<h1 class="mb-4">Đơn Hàng</h1>
+		<h3 class="mb-4">Đơn Hàng</h3>
 
 		<!-- Tabs -->
 		<ul class="nav nav-tabs" id="orderTabs">
-			
+
 			<li class="nav-item">
-				<a class="nav-link active" id="processing-tab" data-toggle="tab" href="#ordered">Đã nhận đơn hàng</a>
+				<a class="nav-link active" id="ordered-tab" data-toggle="tab" href="#ordered">Đơn hàng</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="shipped-tab" data-toggle="tab" href="#processing">Chuẩn bị hàng</a>
+				<a class="nav-link" id="processing-tab" data-toggle="tab" href="#processing">Chuẩn bị hàng</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="delivered-tab" data-toggle="tab" href="#ship">Đang giao</a>
+				<a class="nav-link" id="shipping-tab" data-toggle="tab" href="#shipping">Đang giao</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="canceled-tab" data-toggle="tab" href="#success">Đã giao</a>
+				<a class="nav-link" id="success-tab" data-toggle="tab" href="#success">Đã giao</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" id="canceled-tab" data-toggle="tab" href="#canceled">Đã Hủy</a>
@@ -48,7 +48,7 @@
 
 		<!-- Tab Content -->
 		<div class="tab-content mt-3">
-			
+
 			<div class="tab-pane fade show active" id="ordered">
 				<div class="shopping_cart_area">
 					<div class="container">
@@ -65,24 +65,31 @@
 														<th class="product_name">Sản phẩm</th>
 														<th class="product-price">Giá</th>
 														<th class="product_quantity">Số lượng</th>
-														
+														<th class="product_total">Tổng</th>
 													</tr>
 												</thead>
-												<tbody th:each="order : ${listOrders}">
-													<tr th:each="orderDetail : ${order.orderDetails}">
-														<td class="product_remove"><a
+												<tbody th:each="order : ${ordersList}">
+													<tr>
+														<td class="product_remove cancel"><a th:sid="${order.id}"
 																onclick="return confirm('Bạn có chắc chắn không?')"><i
 																	class="fa fa-trash-o"></i></a>
 														</td>
-														<td class="product_thumb"><a href="#"><img th:src="@{'/uploads/'+${orderDetail.product.image1}}" alt="ảnh bìa"></a>
+														<td class="product_thumb"><a href="#"><img
+																	th:src="@{'/uploads/'+${order.product.image1}}"
+																	alt="ảnh bìa"></a>
 														</td>
-														<td class="product_name"><a href="#" th:text="${orderDetail.product.name}"></a>
+														<td class="product_name"><a href="#"
+																th:text="${order.product.name}"></a>
 														</td>
 														<td class="product-price">
 															<span class="total"
-																th:text="${#numbers.formatDecimal(orderDetail.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 														</td>
-														<td class="product_quantity" th:text="${orderDetail.quantity}"> </td>
+														<td class="product_quantity" th:text="${order.quantity}"> </td>
+														<td class="product_total">
+															<span class="total"
+																th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
+														</td>
 													</tr>
 												</tbody>
 											</table>
@@ -90,11 +97,12 @@
 									</div>
 								</div>
 							</div>
-							
+
 						</form>
 					</div>
 				</div>
 			</div>
+
 			<div class="tab-pane fade" id="processing">
 				<div class="shopping_cart_area">
 					<div class="container">
@@ -106,7 +114,7 @@
 											<table>
 												<thead>
 													<tr>
-														<th class="product_remove">Hủy</th>
+
 														<th class="product_thumb">Ảnh</th>
 														<th class="product_name">Sản phẩm</th>
 														<th class="product-price">Giá</th>
@@ -114,23 +122,23 @@
 														<th class="product_total">Tổng</th>
 													</tr>
 												</thead>
-												<tbody th:each="cart : ${listCart}">
+												<tbody th:each="order : ${orderProccessing}">
 													<tr>
-														<td class="product_remove"><a
-																onclick="return confirm('Bạn có chắc chắn không?')"><i
-																	class="fa fa-trash-o"></i></a>
+														<td class="product_thumb"><a href="#"><img
+																	th:src="@{'/uploads/'+${order.product.image1}}"
+																	alt="ảnh bìa"></a>
 														</td>
-														<td class="product_thumb"><a href="#"><img alt="ảnh bìa"></a>
-														</td>
-														<td class="product_name"><a href="#"></a>
+														<td class="product_name"><a href="#"
+																th:text="${order.product.name}"></a>
 														</td>
 														<td class="product-price">
-
+															<span class="total"
+																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 														</td>
-														<td class="product_quantity"><label>Quantity</label> <input
-																min="1" max="100" type="number"></td>
+														<td class="product_quantity" th:text="${order.quantity}"> </td>
 														<td class="product_total">
-
+															<span class="total"
+																th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
 														</td>
 													</tr>
 												</tbody>
@@ -144,7 +152,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="tab-pane fade" id="ship">
+
+			<div class="tab-pane fade" id="shipping">
 				<div class="shopping_cart_area">
 					<div class="container">
 						<form action="#">
@@ -155,7 +164,7 @@
 											<table>
 												<thead>
 													<tr>
-														<th class="product_remove">Hủy</th>
+
 														<th class="product_thumb">Ảnh</th>
 														<th class="product_name">Sản phẩm</th>
 														<th class="product-price">Giá</th>
@@ -163,23 +172,24 @@
 														<th class="product_total">Tổng</th>
 													</tr>
 												</thead>
-												<tbody th:each="cart : ${listCart}">
+												<tbody th:each="order : ${orderShipping}">
 													<tr>
-														<td class="product_remove"><a
-																onclick="return confirm('Bạn có chắc chắn không?')"><i
-																	class="fa fa-trash-o"></i></a>
+
+														<td class="product_thumb"><a href="#"><img
+																	th:src="@{'/uploads/'+${order.product.image1}}"
+																	alt="ảnh bìa"></a>
 														</td>
-														<td class="product_thumb"><a href="#"><img alt="ảnh bìa"></a>
-														</td>
-														<td class="product_name"><a href="#"></a>
+														<td class="product_name"><a href="#"
+																th:text="${order.product.name}"></a>
 														</td>
 														<td class="product-price">
-
+															<span class="total"
+																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 														</td>
-														<td class="product_quantity"><label>Quantity</label> <input
-																min="1" max="100" type="number"></td>
+														<td class="product_quantity" th:text="${order.quantity}"> </td>
 														<td class="product_total">
-
+															<span class="total"
+																th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
 														</td>
 													</tr>
 												</tbody>
@@ -193,108 +203,157 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="tab-pane fade" id="success">
 				<div class="shopping_cart_area">
 					<div class="container">
-						<form action="#">
-							<div class="row">
-								<div class="col-12">
-									<div class="table_desc">
-										<div class="cart_page table-responsive">
-											<table>
-												<thead>
+						<div class="row">
+							<div class="col-12">
+								<div class="table_desc">
+									<div class="cart_page table-responsive">
+										<table>
+											<thead>
+												<tr>
+													<th class="product_thumb">Ảnh</th>
+													<th class="product_name">Sản phẩm</th>
+													<th class="product-price">Giá</th>
+													<th class="product_quantity">Số lượng</th>
+													<th class="product_remove">Đơn hàng thành công</th>
+												</tr>
+											</thead>
+											<tbody th:each="order : ${orderConfirm}">
+												<form method="post"
+													th:action="@{/update-order/{id}(id=${order.id}, status=${order.status})}">
 													<tr>
-														<th class="product_remove">Hủy</th>
-														<th class="product_thumb">Ảnh</th>
-														<th class="product_name">Sản phẩm</th>
-														<th class="product-price">Giá</th>
-														<th class="product_quantity">Số lượng</th>
-														<th class="product_total">Tổng</th>
-													</tr>
-												</thead>
-												<tbody th:each="cart : ${listCart}">
-													<tr>
-														<td class="product_remove"><a
-																onclick="return confirm('Bạn có chắc chắn không?')"><i
-																	class="fa fa-trash-o"></i></a>
+														<td class="product_thumb"><a href="#"><img
+																	th:src="@{'/uploads/'+${order.product.image1}}"
+																	alt="ảnh bìa"></a>
 														</td>
-														<td class="product_thumb"><a href="#"><img alt="ảnh bìa"></a>
-														</td>
-														<td class="product_name"><a href="#"></a>
+														<td class="product_name"><a href="#"
+																th:text="${order.product.name}"></a>
 														</td>
 														<td class="product-price">
-
+															<span class="total"
+																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 														</td>
-														<td class="product_quantity"><label>Quantity</label> <input
-																min="1" max="100" type="number"></td>
-														<td class="product_total">
-
+														<td class="product_quantity" th:text="${order.quantity}"> </td>
+														<td class="product_remove">
+															<button type="submit" class="btn btn-success">Xác
+																nhận</button>
 														</td>
 													</tr>
-												</tbody>
-											</table>
-										</div>
+												</form>
+											</tbody>
+										</table>
 									</div>
 								</div>
 							</div>
-							<div class="cart_submit">
-								<button type="submit">Xác nhận đã nhận hàng</button>
-							</div>
-						</form>
+						</div>
+
+
 					</div>
 				</div>
 			</div>
+
 			<div class="tab-pane fade" id="canceled">
 				<div class="shopping_cart_area">
 					<div class="container">
-						<form action="#">
-							<div class="row">
-								<div class="col-12">
-									<div class="table_desc">
-										<div class="cart_page table-responsive">
-											<table>
-												<thead>
+
+						<div class="row">
+							<div class="col-12">
+								<div class="table_desc">
+									<div class="cart_page table-responsive">
+										<table>
+											<thead>
+												<tr>
+													<th class="product_thumb">Ảnh</th>
+													<th class="product_name">Sản phẩm</th>
+													<th class="product-price">Giá</th>
+													<th class="product_quantity">Số lượng</th>
+													<th class="product_total">Thực hiện</th>
+												</tr>
+											</thead>
+											<tbody th:each="order : ${orderCancelled}">
+												<form role="form" method="post" th:action="@{/buy-again}">
+													<input type="hidden" name="id" th:value="${order.product.id}" >
+													<input type="hidden" name="quantity" th:value="${order.quantity}" >
+													<input type="hidden" name="idOrderDetail" th:value="${order.id}" >
 													<tr>
-														<th class="product_remove">Hủy</th>
-														<th class="product_thumb">Ảnh</th>
-														<th class="product_name">Sản phẩm</th>
-														<th class="product-price">Giá</th>
-														<th class="product_quantity">Số lượng</th>
-														<th class="product_total">Tổng</th>
-													</tr>
-												</thead>
-												<tbody th:each="cart : ${listCart}">
-													<tr>
-														<td class="product_remove"><a
-																onclick="return confirm('Bạn có chắc chắn không?')"><i
-																	class="fa fa-trash-o"></i></a>
+														<td class="product_thumb"><a href="#"><img
+																	th:src="@{'/uploads/'+${order.product.image1}}"
+																	alt="ảnh bìa"></a>
 														</td>
-														<td class="product_thumb"><a href="#"><img alt="ảnh bìa"></a>
-														</td>
-														<td class="product_name"><a href="#"></a>
+														<td class="product_name"><a href="#"
+																th:text="${order.product.name}"></a>
 														</td>
 														<td class="product-price">
-
+															<span class="total"
+																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 														</td>
-														<td class="product_quantity"><label>Quantity</label> <input
-																min="1" max="100" type="number"></td>
-														<td class="product_total">
-
+														<td class="product_quantity" th:text="${order.quantity}"> </td>
+														<td class="product_remove">
+															<button type="submit" class="btn btn-success">Mua
+																lại</button>
 														</td>
 													</tr>
-												</tbody>
-											</table>
-										</div>
+												</form>
+											</tbody>
+										</table>
 									</div>
 								</div>
 							</div>
-							<div class="cart_submit">
-								<button type="submit">Mua lại</button>
-							</div>
-						</form>
+						</div>
+
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#success_tic">Open Modal</button>-->
+
+	<!-- Modal -->
+	<div id="success_tic" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<a class="close" href="#" data-dismiss="modal">&times;</a>
+				<div class="page-body">
+					<div class="head">
+						<h3 style="margin-top:5px;">Xác nhận đơn hàng thành công</h3>
+					</div>
+
+					<h1 style="text-align:center;">
+						<div class="checkmark-circle">
+							<div class="background"></div>
+							<div class="checkmark draw"></div>
+						</div>
+						<h1>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Modal cho trường hợp bản ghi đã tồn tại -->
+	<div class="modal" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel"
+		aria-hidden="true">
+		<!-- Nội dung modal -->
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="cartExistsModalLabel">Thông báo</h5>
+				</div>
+				<div class="modal-body">
+					Bạn đã hủy sản phẩm
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"><a href="?refresh=1">OK</a></button>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
@@ -306,6 +365,55 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 	<div th:replace="web/fragments/script :: script"></div>
+
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			$(".cancel").on('click', function () {
+				const id = $(this).find('a').attr('sid');
+				$.ajax({
+					url: "/cancel-order",
+					method: "POST",
+					data: {
+						id: id,
+					},
+					success: function (dt) {
+						if (dt === "cancelSuccess") {
+							$('#cancelModal').modal('show');
+						}
+					},
+					error: function (dt) {
+						alert(dt)
+					}
+				});
+			})
+
+
+
+			// Lấy giá trị của messageOrder từ model
+			var messageOrder = /*[[${messageOrder}]]*/ '';
+			// Nếu messageOrder không rỗng
+			if (messageOrder.trim() !== '') {
+
+				var ordered = document.getElementById('ordered');
+				ordered.classList.remove('show', 'active');
+
+				var success = document.getElementById('success');
+				success.classList.add('show', 'active');
+
+				var orderedTab = document.getElementById('ordered-tab');
+				orderedTab.classList.remove('active');
+
+				var successTab = document.getElementById('success-tab');
+				successTab.classList.add('active');
+				$('#success_tic').modal('show');
+			} else {
+				console.log("o");
+			}
+
+
+		}
+		);
+	</script>
 
 </body>
 

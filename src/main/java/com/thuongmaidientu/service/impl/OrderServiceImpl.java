@@ -53,7 +53,8 @@ public class OrderServiceImpl implements OrderService {
 			orderDetails.setOrder(order);
 			orderDetails.setProduct(product);
 			orderDetails.setQuantity(cart.getQuantity());
-			orderDetails.setUnitPrice(cart.getProduct().getDiscount());		
+			orderDetails.setUnitPrice(cart.getProduct().getDiscount());	
+			orderDetails.setStatus("Có đơn hàng");
 			cart.setStatus("Thanh toán");
 			orderDetailRepository.save(orderDetails);
 			

@@ -16,26 +16,29 @@
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">Cập nhật đơn hàng</h1>
+					<div th:if="${messageOrder}"
+						th:class="${messageOrder == 'Cập nhật thất bại'} ? 'alert alert-danger' : 'alert alert-success'"
+						th:text="${messageOrder}"></div>
 					<div class="breadcrumb mb-4">
 						<ul class="nav nav-tabs" id="orderTabs">
-
 							<li class="nav-item">
-								<a class="nav-link active" id="processing-tab" data-toggle="tab" href="#ordered">Đã nhận
+								<a class="nav-link active" id="ordered-tab" data-toggle="tab" href="#ordered">Có
 									đơn hàng</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="shipped-tab" data-toggle="tab" href="#processing">Chuẩn bị
+								<a class="nav-link" id="processing-tab" data-toggle="tab" href="#processing">Chuẩn bị
 									hàng</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="delivered-tab" data-toggle="tab" href="#ship">Đang giao</a>
+								<a class="nav-link" id="ship-tab" data-toggle="tab" href="#ship">Đang giao</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="canceled-tab" data-toggle="tab" href="#success">Đã giao</a>
+								<a class="nav-link" id="wait-tab" data-toggle="tab" href="#wait">Chờ xác nhận</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="canceled-tab" data-toggle="tab" href="#canceled">Đã Hủy</a>
+								<a class="nav-link" id="success-tab" data-toggle="tab" href="#success">Hoán tất</a>
 							</li>
+
 						</ul>
 						<div class="tab-content mt-3 container">
 							<div class="tab-pane fade show active" id="ordered">
@@ -48,237 +51,195 @@
 											<th class="text-center">Địa chỉ</th>
 											<th class="text-center">Sản phẩm</th>
 											<th class="text-center">Chú ý</th>
-											<th class="text-center">Tổng tiền</th>
+											<th class="text-center">Đơn giá</th>
 											<th class="text-center">Thực hiện</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr th:each="order : ${listOrders}">
-											<th class="text-center" th:text="${order.id}">1</th>
-											<td class="text-center">1</td>
-											<td class="text-center">1</td>
-											<td class="text-center"></td>
-											<td class="text-center">1</td>
-											<td class="text-center">1</td>
-											<td class="text-center">1</td>
-											<td class="text-center">
-												<a href="" class="btn btn-success">Cập nhật</a>
-											</td>
-										</tr>
+									<tbody th:each="order : ${listOrders}">
+										<form method="post"
+											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											<tr>
+												<th class="text-center" th:text="${order.order.id}">1</th>
+												<td class="text-center" th:text="${order.order.customerName}">1</td>
+												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.order.customerAddress}"></td>
+												<td class="text-center" th:text="${order.product.name}">1</td>
+												<td class="text-center" th:text="${order.order.note}">1</td>
+												<td class="text-center">
+													<span
+														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
+													X
+													<span th:text="${order.quantity}"></span>
+												</td>
+												<td class="text-center">
+													<button type="submit"
+														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
+														class="btn btn-success">Duyệt</button>
+												</td>
+											</tr>
+										</form>
 									</tbody>
 								</table>
 							</div>
 							<div class="tab-pane fade" id="processing">
-								<div class="shopping_cart_area">
-									<div class="container">
-										<form action="#">
-											<div class="row">
-												<div class="col-12">
-													<div class="table_desc">
-														<div class="cart_page table-responsive">
-															<table>
-																<thead>
-																	<tr>
-																		<th class="product_remove">Hủy</th>
-																		<th class="product_thumb">Ảnh</th>
-																		<th class="product_name">Sản phẩm</th>
-																		<th class="product-price">Giá</th>
-																		<th class="product_quantity">Số lượng</th>
-																		<th class="product_total">Tổng</th>
-																	</tr>
-																</thead>
-																<tbody th:each="cart : ${listCart}">
-																	<tr>
-																		<td class="product_remove"><a
-																				onclick="return confirm('Bạn có chắc chắn không?')"><i
-																					class="fa fa-trash-o"></i></a>
-																		</td>
-																		<td class="product_thumb"><a href="#"><img
-																					alt="ảnh bìa"></a>
-																		</td>
-																		<td class="product_name"><a href="#"></a>
-																		</td>
-																		<td class="product-price">
-
-																		</td>
-																		<td class="product_quantity">
-																			<label>Quantity</label> <input min="1"
-																				max="100" type="number">
-																		</td>
-																		<td class="product_total">
-
-																		</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-											</div>
-
+								<table class="table">
+									<thead class="thead-dark">
+										<tr>
+											<th class="text-center">ID đơn hàng</th>
+											<th class="text-center">Tên khách hàng</th>
+											<th class="text-center">SDT</th>
+											<th class="text-center">Địa chỉ</th>
+											<th class="text-center">Sản phẩm</th>
+											<th class="text-center">Chú ý</th>
+											<th class="text-center">Đơn giá</th>
+											<th class="text-center">Thực hiện</th>
+										</tr>
+									</thead>
+									<tbody th:each="order : ${listProcessing}">
+										<form method="post"
+											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											<tr>
+												<th class="text-center" th:text="${order.id}">1</th>
+												<td class="text-center" th:text="${order.order.customerName}">1</td>
+												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.order.customerAddress}"></td>
+												<td class="text-center" th:text="${order.product.name}">1</td>
+												<td class="text-center" th:text="${order.order.note}">1</td>
+												<td class="text-center">
+													<span
+														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
+													X
+													<span th:text="${order.quantity}"></span>
+												</td>
+												<td class="text-center">
+													<button type="submit"
+														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
+														class="btn btn-success">Duyệt</button>
+												</td>
+											</tr>
 										</form>
-									</div>
-								</div>
+									</tbody>
+								</table>
 							</div>
 							<div class="tab-pane fade" id="ship">
-								<div class="shopping_cart_area">
-									<div class="container">
-										<form action="#">
-											<div class="row">
-												<div class="col-12">
-													<div class="table_desc">
-														<div class="cart_page table-responsive">
-															<table>
-																<thead>
-																	<tr>
-																		<th class="product_remove">Hủy</th>
-																		<th class="product_thumb">Ảnh</th>
-																		<th class="product_name">Sản phẩm</th>
-																		<th class="product-price">Giá</th>
-																		<th class="product_quantity">Số lượng</th>
-																		<th class="product_total">Tổng</th>
-																	</tr>
-																</thead>
-																<tbody th:each="cart : ${listCart}">
-																	<tr>
-																		<td class="product_remove"><a
-																				onclick="return confirm('Bạn có chắc chắn không?')"><i
-																					class="fa fa-trash-o"></i></a>
-																		</td>
-																		<td class="product_thumb"><a href="#"><img
-																					alt="ảnh bìa"></a>
-																		</td>
-																		<td class="product_name"><a href="#"></a>
-																		</td>
-																		<td class="product-price">
-
-																		</td>
-																		<td class="product_quantity">
-																			<label>Quantity</label> <input min="1"
-																				max="100" type="number">
-																		</td>
-																		<td class="product_total">
-
-																		</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-											</div>
-
+								<table class="table">
+									<thead class="thead-dark">
+										<tr>
+											<th class="text-center">ID đơn hàng</th>
+											<th class="text-center">Tên khách hàng</th>
+											<th class="text-center">SDT</th>
+											<th class="text-center">Địa chỉ</th>
+											<th class="text-center">Sản phẩm</th>
+											<th class="text-center">Chú ý</th>
+											<th class="text-center">Đơn giá</th>
+											<th class="text-center">Thực hiện</th>
+										</tr>
+									</thead>
+									<tbody th:each="order : ${listShipping}">
+										<form method="post"
+											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											<tr>
+												<th class="text-center" th:text="${order.id}">1</th>
+												<td class="text-center" th:text="${order.order.customerName}">1</td>
+												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.order.customerAddress}"></td>
+												<td class="text-center" th:text="${order.product.name}">1</td>
+												<td class="text-center" th:text="${order.order.note}">1</td>
+												<td class="text-center">
+													<span
+														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
+													X
+													<span th:text="${order.quantity}"></span>
+												</td>
+												<td class="text-center">
+													<button type="submit"
+														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
+														class="btn btn-success">Duyệt</button>
+												</td>
+											</tr>
 										</form>
-									</div>
-								</div>
+									</tbody>
+								</table>
+							</div>
+							<div class="tab-pane fade" id="wait">
+								<table class="table">
+									<thead class="thead-dark">
+										<tr>
+											<th class="text-center">ID đơn hàng</th>
+											<th class="text-center">Tên khách hàng</th>
+											<th class="text-center">SDT</th>
+											<th class="text-center">Địa chỉ</th>
+											<th class="text-center">Sản phẩm</th>
+											<th class="text-center">Chú ý</th>
+											<th class="text-center">Đơn giá</th>
+											<th class="text-center">Thực hiện</th>
+										</tr>
+									</thead>
+									<tbody th:each="order : ${listShiped}">
+										<form method="post"
+											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											<tr>
+												<th class="text-center" th:text="${order.id}">1</th>
+												<td class="text-center" th:text="${order.order.customerName}">1</td>
+												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.order.customerAddress}"></td>
+												<td class="text-center" th:text="${order.product.name}">1</td>
+												<td class="text-center" th:text="${order.order.note}">1</td>
+												<td class="text-center">
+													<span
+														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
+													X
+													<span th:text="${order.quantity}"></span>
+												</td>
+												<td class="text-center">
+													<button type="submit"
+														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
+														class="btn btn-success" disabled>Chờ</button>
+												</td>
+											</tr>
+										</form>
+									</tbody>
+								</table>
 							</div>
 							<div class="tab-pane fade" id="success">
-								<div class="shopping_cart_area">
-									<div class="container">
-										<form action="#">
-											<div class="row">
-												<div class="col-12">
-													<div class="table_desc">
-														<div class="cart_page table-responsive">
-															<table>
-																<thead>
-																	<tr>
-																		<th class="product_remove">Hủy</th>
-																		<th class="product_thumb">Ảnh</th>
-																		<th class="product_name">Sản phẩm</th>
-																		<th class="product-price">Giá</th>
-																		<th class="product_quantity">Số lượng</th>
-																		<th class="product_total">Tổng</th>
-																	</tr>
-																</thead>
-																<tbody th:each="cart : ${listCart}">
-																	<tr>
-																		<td class="product_remove"><a
-																				onclick="return confirm('Bạn có chắc chắn không?')"><i
-																					class="fa fa-trash-o"></i></a>
-																		</td>
-																		<td class="product_thumb"><a href="#"><img
-																					alt="ảnh bìa"></a>
-																		</td>
-																		<td class="product_name"><a href="#"></a>
-																		</td>
-																		<td class="product-price">
-
-																		</td>
-																		<td class="product_quantity">
-																			<label>Quantity</label> <input min="1"
-																				max="100" type="number">
-																		</td>
-																		<td class="product_total">
-
-																		</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="cart_submit">
-												<button type="submit">Xác nhận đã nhận hàng</button>
-											</div>
+								<table class="table">
+									<thead class="thead-dark">
+										<tr>
+											<th class="text-center">ID đơn hàng</th>
+											<th class="text-center">Tên khách hàng</th>
+											<th class="text-center">SDT</th>
+											<th class="text-center">Địa chỉ</th>
+											<th class="text-center">Sản phẩm</th>
+											<th class="text-center">Chú ý</th>
+											<th class="text-center">Đơn giá</th>
+											<th class="text-center">Thực hiện</th>
+										</tr>
+									</thead>
+									<tbody th:each="order : ${listSuccess}">
+										<form method="post"
+											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											<tr>
+												<th class="text-center" th:text="${order.id}">1</th>
+												<td class="text-center" th:text="${order.order.customerName}">1</td>
+												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.order.customerAddress}"></td>
+												<td class="text-center" th:text="${order.product.name}">1</td>
+												<td class="text-center" th:text="${order.order.note}">1</td>
+												<td class="text-center">
+													<span
+														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
+													X
+													<span th:text="${order.quantity}"></span>
+												</td>
+												<td class="text-center">
+													<button type="submit"
+														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
+														class="btn btn-success">Xong</button>
+												</td>
+											</tr>
 										</form>
-									</div>
-								</div>
-							</div>
-							<div class="tab-pane fade" id="canceled">
-								<div class="shopping_cart_area">
-									<div class="container">
-										<form action="#">
-											<div class="row">
-												<div class="col-12">
-													<div class="table_desc">
-														<div class="cart_page table-responsive">
-															<table>
-																<thead>
-																	<tr>
-																		<th class="product_remove">Hủy</th>
-																		<th class="product_thumb">Ảnh</th>
-																		<th class="product_name">Sản phẩm</th>
-																		<th class="product-price">Giá</th>
-																		<th class="product_quantity">Số lượng</th>
-																		<th class="product_total">Tổng</th>
-																	</tr>
-																</thead>
-																<tbody th:each="cart : ${listCart}">
-																	<tr>
-																		<td class="product_remove"><a
-																				onclick="return confirm('Bạn có chắc chắn không?')"><i
-																					class="fa fa-trash-o"></i></a>
-																		</td>
-																		<td class="product_thumb"><a href="#"><img
-																					alt="ảnh bìa"></a>
-																		</td>
-																		<td class="product_name"><a href="#"></a>
-																		</td>
-																		<td class="product-price">
-
-																		</td>
-																		<td class="product_quantity">
-																			<label>Quantity</label> <input min="1"
-																				max="100" type="number">
-																		</td>
-																		<td class="product_total">
-
-																		</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="cart_submit">
-												<button type="submit">Mua lại</button>
-											</div>
-										</form>
-									</div>
-								</div>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -291,11 +252,55 @@
 
 	<div th:replace="vendor/fragments/script :: script"></div>
 
+
+
 	<script th:src="@{/vendor/js/books.js}"></script>
 	<!-- Thêm link đến Bootstrap và jQuery JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			// Lấy giá trị của messageOrder từ model
+			var messageOrder = /*[[${messageOrder}]]*/ '';
+
+			// Nếu messageOrder không rỗng
+			if (messageOrder.trim() !== '') {
+
+				if (messageOrder === "Tiến hành giao hàng") {
+
+					var ordered = document.getElementById('ordered');
+					ordered.classList.remove('show', 'active');
+
+					var processing = document.getElementById('processing');
+					processing.classList.add('show', 'active');
+
+					var orderedTab = document.getElementById('ordered-tab');
+					orderedTab.classList.remove('active');
+
+					var processingTab = document.getElementById('processing-tab');
+					processingTab.classList.add('active');
+
+
+				} else if (messageOrder === "Chờ xác nhận") {
+					var ordered = document.getElementById('ordered');
+					ordered.classList.remove('show', 'active');
+
+					var processing = document.getElementById('ship');
+					processing.classList.add('show', 'active');
+
+					var orderedTab = document.getElementById('ordered-tab');
+					orderedTab.classList.remove('active');
+
+					var processingTab = document.getElementById('ship-tab');
+					processingTab.classList.add('active');
+				}
+				// ... thêm các điều kiện cho các tab khác nếu cần
+			}
+		});
+	</script>
+
 </body>
 
 </html>
