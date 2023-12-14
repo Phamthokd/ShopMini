@@ -54,4 +54,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryRepository.searchCategories(keyword);
 	}
 
+	@Override
+	public List<Category> findFirst7ByOrderByIdAsc() {
+		// TODO Auto-generated method stub
+		return categoryRepository.findFirst7ByOrderByIdAsc();
+	}
+
 }

@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.thuongmaidientu.model.Order;
 import com.thuongmaidientu.model.OrderDetails;
 import com.thuongmaidientu.service.OrderDetailsService;
 import com.thuongmaidientu.service.OrderService;
+import com.thuongmaidientu.service.UserService;
 
 @Controller
 @RequestMapping("/shop")
@@ -27,58 +29,78 @@ public class SOrder {
 	@Autowired
 	private OrderDetailsService orderDetailsService;
 
+	@Autowired
+	private UserService userService;
+
 	@GetMapping("/order")
 	public String orderIndexShop(@AuthenticationPrincipal UserDetails userDetails, Model model) {
 		String username = userDetails.getUsername();
 
-		List<OrderDetails> listOrdered = orderDetailsService.findOrderDetailsByProductSupplierAndStatus(username,
-				"Có đơn hàng");
-		
-		List<OrderDetails> listProcessing = orderDetailsService.findOrderDetailsByProductSupplierAndStatus(username,
-				"Chuẩn bị hàng");
-		List<OrderDetails> listShipping = orderDetailsService.findOrderDetailsByProductSupplierAndStatus(username,
-				"Đang giao");
-		List<OrderDetails> listShiped = orderDetailsService.findOrderDetailsByProductSupplierAndStatus(username,
-				"Chờ xác nhận");
-		List<OrderDetails> listSuccess = orderDetailsService.findOrderDetailsByProductSupplierAndStatus(username,
-				"Hoàn thành");
+		List<Order> listOrder = orderService
+				.findOrdersWithDetailsInProcessingStatus(userService.findByUserName(username).getId(), "Có đơn hàng");
 
-		model.addAttribute("listOrders", listOrdered);	
+		List<Order> listProcessing = orderService
+				.findOrdersWithDetailsInProcessingStatus(userService.findByUserName(username).getId(), "Chuẩn bị hàng");
+
+		List<Order> listShipping = orderService
+				.findOrdersWithDetailsInProcessingStatus(userService.findByUserName(username).getId(), "Đang giao");
+		
+		List<Order> listShiped = orderService
+				.findOrdersWithDetailsInProcessingStatus(userService.findByUserName(username).getId(), "Chờ xác nhận");
+		
+		List<Order> listSuccess = orderService
+				.findOrdersWithDetailsInProcessingStatus(userService.findByUserName(username).getId(), "Hoàn thành");
+		
+		model.addAttribute("listOrder", listOrder);
 		model.addAttribute("listProcessing", listProcessing);
 		model.addAttribute("listShipping", listShipping);
 		model.addAttribute("listShiped", listShiped);
 		model.addAttribute("listSuccess", listSuccess);
 		
+		model.addAttribute("userName", username);
 		
+
 		return "/vendor/order";
 	}
 
+
 	@PostMapping("/update-order/{id}")
-	public String updateOrder(@PathVariable Long id, @RequestParam String status,
-			RedirectAttributes redirectAttributes) {
-		OrderDetails orderDetails = orderDetailsService.findById(id);
+	public String updateOrder(@PathVariable Long id, @RequestParam String status, RedirectAttributes redirectAttributes,
+			@AuthenticationPrincipal UserDetails userDetails) {
+		String username = userDetails.getUsername();
+		/* Order order = orderService.findById(id); */
+		List<OrderDetails> listOrderDetail = orderDetailsService.findOrderDetailsByOrderIdAndUserName(id, username);
 
-		if ("Có đơn hàng".equals(status)) {
-			orderDetails.setStatus("Chuẩn bị hàng");
+		if (status.equals("Có đơn hàng")) {
+			for (OrderDetails orderDetails : listOrderDetail) {
+				orderDetails.setStatus("Chuẩn bị hàng");
+				orderDetailsService.save(orderDetails);
+							
+			}
 			redirectAttributes.addFlashAttribute("messageOrder", "Đã chuẩn bị hàng");
-		} else if ("Chuẩn bị hàng".equals(status)) {
-			orderDetails.setStatus("Đang giao");
+			return "redirect:/shop/order";
+		} else if (status.equals("Chuẩn bị hàng")) {
+			for (OrderDetails orderDetails : listOrderDetail) {
+				orderDetails.setStatus("Đang giao");
+				orderDetailsService.save(orderDetails);				
+			}
 			redirectAttributes.addFlashAttribute("messageOrder", "Tiến hành giao hàng");
-		} else if ("Đang giao".equals(status)) {
-			orderDetails.setStatus("Chờ xác nhận");
+			return "redirect:/shop/order";
+		} else if (status.equals("Đang giao")) {
+			for (OrderDetails orderDetails : listOrderDetail) {
+				orderDetails.setStatus("Chờ xác nhận");
+				orderDetailsService.save(orderDetails);				
+			}
 			redirectAttributes.addFlashAttribute("messageOrder", "Chờ xác nhận");
-		}else if ("Hoàn thành".equals(status)) {
-			orderDetails.setStatus("Đơn hàng thành công");
+			return "redirect:/shop/order";
+		} else if (status.equals("Hoàn thành")) {
+			for (OrderDetails orderDetails : listOrderDetail) {
+				orderDetails.setStatus("Đơn hàng thành công");
+				orderDetailsService.save(orderDetails);			
+			}		
 			redirectAttributes.addFlashAttribute("messageOrder", "Đơn hàng thành công");
-		}
-
-		orderDetails = orderDetailsService.save(orderDetails);
-
-		if (orderDetails == null) {
-			redirectAttributes.addFlashAttribute("messageOrder", "Cập nhật thất bại");
 			return "redirect:/shop/order";
 		}
-
-		return "redirect:/shop/order";
+		return "redirect:/shop/order/error";
 	}
 }

@@ -18,4 +18,11 @@ public interface UserService {
 	boolean checkCurrentPassword(User user, String currentPassword);
 	
 	void updatePassword(User user, String newPassword);
+	
+	long countByRole(String role);
+	
+	List<Object[]> findTop5SellersByOrderCount() ;
+	
+	User create(User user);
+	 
 }

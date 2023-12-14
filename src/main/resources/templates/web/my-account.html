@@ -43,7 +43,7 @@
 								<li> <a href="#password" data-bs-toggle="tab" id="changePass" class="nav-link ">Đổi mật
 										khẩu</a></li>
 
-								<li><a th:href="@{/login}" class="nav-link">Đăng xuất</a></li>
+								<li><a th:href="@{/process-logout}" class="nav-link">Đăng xuất</a></li>
 							</ul>
 						</div>
 					</div>
@@ -98,7 +98,7 @@
 										<thead>
 											<tr>
 												<th>Đơn hàng</th>
-												<th>Trạng thái</th>
+												<!--<th>Trạng thái</th>-->
 												<th>Tổng</th>
 												<th>Xem</th>
 											</tr>
@@ -106,9 +106,12 @@
 										<tbody>
 											<tr th:each="order : ${listOrder}">
 												<td th:text="${order.id}"></td>
-												<td><span class="success" th:text="${order.status}">Completed</span>
+												<!--<td><span class="success" th:text="${order.status}">Completed</span>-->
 												</td>
-												<td th:text="${order.totalAmount}"> </td>
+												<td>
+													<span class="current_price"
+															th:text="${#numbers.formatDecimal(order.totalAmount, 0, 'POINT', 0, 'COMMA')}"></span>
+												</td>
 												<td><a th:href="@{/order}" class="view">view</a></td>
 											</tr>
 										</tbody>

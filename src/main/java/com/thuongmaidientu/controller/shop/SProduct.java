@@ -70,6 +70,9 @@ public class SProduct {
 		String username = userDetails.getUsername();
 		User user = this.userService.findByUserName(username);
 		product.setUserProduct(user);
+		product.setNumberOfViews(0);
+		product.setNumberOfOrder(0);
+		product.setStatus("Đang bán");
 				
 		if (productService.create(product) != null) {
 			return "redirect:/shop/product";
@@ -104,6 +107,7 @@ public class SProduct {
 		User user = this.userService.findByUserName(username);
 		product.setUserProduct(user);
 		
+		
 		if (productService.update(product) != null) {
 			return "redirect:/shop/product";
 		} else {
@@ -120,5 +124,19 @@ public class SProduct {
 			return "redirect:/shop/product";
 		}	
 	}
+	
+	@GetMapping("/edit-status/{id}")
+    public String editStatus(@PathVariable Long id, @RequestParam("status") String status) {       
+        Product product = productService.findById(id);
+
+        if (status.equals("Đang bán")) {          
+            product.setStatus("Dừng bán");  
+            productService.create(product);
+        }else if (status.equals("Dừng bán")) {
+        	product.setStatus("Đang bán");  
+            productService.create(product);
+		}  
+        return "redirect:/shop/product";
+    }
 
 }

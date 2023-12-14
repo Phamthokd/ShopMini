@@ -142,7 +142,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> findByCategory(Category category) {
-		return productRepository.findByCategory(category);
+		return productRepository.findByCategoryAndStatus(category, "Đang bán");
 	}
 
 	@Override
@@ -200,5 +200,53 @@ public class ProductServiceImpl implements ProductService {
 
 		return new PageImpl<>(list, pageable, this.findByUserProduct(userProduct).size());
 	}
+
+	@Override
+	public Long countProduct() {
+		// TODO Auto-generated method stub
+		return productRepository.count();
+	}
+
+	@Override
+	public List<Product> findAllByOrderByNumberOfViewsDesc() {
+		return productRepository.findAllByStatusOrderByNumberOfViewsDesc("Đang bán");
+	}
+
+	@Override
+	public List<Product> findByUserProductAndStatus(User userProduct, String status) {
+		return productRepository.findByUserProductAndStatus(userProduct, status);
+	}
+
+	
+	@Override
+	public List<Object[]> findTop3ProductsWithRevenueByUser(User user) {
+		
+		return productRepository.findTop3ProductsWithRevenueByUser(user, PageRequest.of(0, 3));
+		
+	}
+
+	
+
+	@Override
+	public List<Object[]> findRevenueAndDatesByUser(User user) {
+		// TODO Auto-generated method stub
+		return productRepository.findRevenueAndDatesByUser(user);
+	}
+
+	@Override
+	public List<Object[]> findTop3ProductsWithRevenueByUserASC(User user) {
+		// TODO Auto-generated method stub
+		return productRepository.findTop3ProductsWithRevenueByUserASC(user, PageRequest.of(0, 3));
+	}
+
+	@Override
+	public Long countProduct(User user) {
+		// TODO Auto-generated method stub
+		return productRepository.countProduct(user);
+	}
+
+	
+
+	
 
 }

@@ -13,4 +13,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
 	@Query("SELECT c FROM Category c where name LiKE %?1%")
 	List<Category> searchCategories(String keyword);
+	
+	List<Category> findFirst7ByOrderByIdAsc();
 }

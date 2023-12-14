@@ -55,44 +55,51 @@
 						<form action="#">
 							<div class="row">
 								<div class="col-12">
-									<div class="table_desc">
-										<div class="cart_page table-responsive">
-											<table>
-												<thead>
-													<tr>
-														<th class="product_remove">Hủy</th>
-														<th class="product_thumb">Ảnh</th>
-														<th class="product_name">Sản phẩm</th>
-														<th class="product-price">Giá</th>
-														<th class="product_quantity">Số lượng</th>
-														<th class="product_total">Tổng</th>
-													</tr>
-												</thead>
-												<tbody th:each="order : ${ordersList}">
-													<tr>
-														<td class="product_remove cancel"><a th:sid="${order.id}"
-																onclick="return confirm('Bạn có chắc chắn không?')"><i
-																	class="fa fa-trash-o"></i></a>
-														</td>
-														<td class="product_thumb"><a href="#"><img
-																	th:src="@{'/uploads/'+${order.product.image1}}"
-																	alt="ảnh bìa"></a>
-														</td>
-														<td class="product_name"><a href="#"
-																th:text="${order.product.name}"></a>
-														</td>
-														<td class="product-price">
-															<span class="total"
-																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
-														</td>
-														<td class="product_quantity" th:text="${order.quantity}"> </td>
-														<td class="product_total">
-															<span class="total"
-																th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
-														</td>
-													</tr>
-												</tbody>
-											</table>
+									<div th:if="${#lists.isEmpty(ordersList)}" class="text-center">
+										<div class="alert alert-info" role="alert">
+											<h4 class="text-warning">Thông báo: Danh sách đang trống.</h4>
+										</div>
+									</div>
+									<div th:unless="${#lists.isEmpty(ordersList)}">
+										<div class="table_desc">
+											<div class="cart_page table-responsive">
+												<table>
+													<thead>
+														<tr>
+															<th class="product_remove">Hủy</th>
+															<th class="product_thumb">Ảnh</th>
+															<th class="product_name">Sản phẩm</th>
+															<th class="product-price">Giá</th>
+															<th class="product_quantity">Số lượng</th>
+															<th class="product_total">Tổng</th>
+														</tr>
+													</thead>
+													<tbody th:each="order : ${ordersList}">
+														<tr>
+															<td class="product_remove cancel"><a th:sid="${order.id}"><i
+																		class="fa fa-trash-o"></i></a>
+															</td>
+															<td class="product_thumb"><a href="#"><img
+																		th:src="@{'/uploads/'+${order.product.image1}}"
+																		alt="ảnh bìa"></a>
+															</td>
+															<td class="product_name"><a href="#"
+																	th:text="${order.product.name}"></a>
+															</td>
+															<td class="product-price">
+																<span class="total"
+																	th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															</td>
+															<td class="product_quantity" th:text="${order.quantity}">
+															</td>
+															<td class="product_total">
+																<span class="total"
+																	th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -109,40 +116,49 @@
 						<form action="#">
 							<div class="row">
 								<div class="col-12">
-									<div class="table_desc">
-										<div class="cart_page table-responsive">
-											<table>
-												<thead>
-													<tr>
+									<div th:if="${#lists.isEmpty(orderProccessing)}" class="text-center">
+										<div class="alert alert-info" role="alert">
+											<h4 class="text-warning">Thông báo: Danh sách đang trống.</h4>
+										</div>
+									</div>
+									<div th:unless="${#lists.isEmpty(orderProccessing)}">
+										<div class="table_desc">
+											<div class="cart_page table-responsive">
 
-														<th class="product_thumb">Ảnh</th>
-														<th class="product_name">Sản phẩm</th>
-														<th class="product-price">Giá</th>
-														<th class="product_quantity">Số lượng</th>
-														<th class="product_total">Tổng</th>
-													</tr>
-												</thead>
-												<tbody th:each="order : ${orderProccessing}">
-													<tr>
-														<td class="product_thumb"><a href="#"><img
-																	th:src="@{'/uploads/'+${order.product.image1}}"
-																	alt="ảnh bìa"></a>
-														</td>
-														<td class="product_name"><a href="#"
-																th:text="${order.product.name}"></a>
-														</td>
-														<td class="product-price">
-															<span class="total"
-																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
-														</td>
-														<td class="product_quantity" th:text="${order.quantity}"> </td>
-														<td class="product_total">
-															<span class="total"
-																th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
-														</td>
-													</tr>
-												</tbody>
-											</table>
+												<table>
+													<thead>
+														<tr>
+															<th class="product_thumb">Ảnh</th>
+															<th class="product_name">Sản phẩm</th>
+															<th class="product-price">Giá</th>
+															<th class="product_quantity">Số lượng</th>
+															<th class="product_total">Tổng</th>
+														</tr>
+													</thead>
+													<tbody th:each="order : ${orderProccessing}">
+														<tr>
+															<td class="product_thumb"><a href="#"><img
+																		th:src="@{'/uploads/'+${order.product.image1}}"
+																		alt="ảnh bìa"></a>
+															</td>
+															<td class="product_name"><a href="#"
+																	th:text="${order.product.name}"></a>
+															</td>
+															<td class="product-price">
+																<span class="total"
+																	th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															</td>
+															<td class="product_quantity" th:text="${order.quantity}">
+															</td>
+															<td class="product_total">
+																<span class="total"
+																	th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+
+											</div>
 										</div>
 									</div>
 								</div>
@@ -159,41 +175,49 @@
 						<form action="#">
 							<div class="row">
 								<div class="col-12">
-									<div class="table_desc">
-										<div class="cart_page table-responsive">
-											<table>
-												<thead>
-													<tr>
+									<div th:if="${#lists.isEmpty(orderShipping)}" class="text-center">
+										<div class="alert alert-info" role="alert">
+											<h4 class="text-warning">Thông báo: Danh sách đang trống.</h4>
+										</div>
+									</div>
+									<div th:unless="${#lists.isEmpty(orderShipping)}">
+										<div class="table_desc">
+											<div class="cart_page table-responsive">
+												<table>
+													<thead>
+														<tr>
+															<th class="product_thumb">Ảnh</th>
+															<th class="product_name">Sản phẩm</th>
+															<th class="product-price">Giá</th>
+															<th class="product_quantity">Số lượng</th>
+															<th class="product_total">Tổng</th>
+														</tr>
+													</thead>
+													<tbody th:each="order : ${orderShipping}">
+														<tr>
 
-														<th class="product_thumb">Ảnh</th>
-														<th class="product_name">Sản phẩm</th>
-														<th class="product-price">Giá</th>
-														<th class="product_quantity">Số lượng</th>
-														<th class="product_total">Tổng</th>
-													</tr>
-												</thead>
-												<tbody th:each="order : ${orderShipping}">
-													<tr>
+															<td class="product_thumb"><a href="#"><img
+																		th:src="@{'/uploads/'+${order.product.image1}}"
+																		alt="ảnh bìa"></a>
+															</td>
+															<td class="product_name"><a href="#"
+																	th:text="${order.product.name}"></a>
+															</td>
+															<td class="product-price">
+																<span class="total"
+																	th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															</td>
+															<td class="product_quantity" th:text="${order.quantity}">
+															</td>
+															<td class="product_total">
+																<span class="total"
+																	th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
+															</td>
+														</tr>
+													</tbody>
+												</table>
 
-														<td class="product_thumb"><a href="#"><img
-																	th:src="@{'/uploads/'+${order.product.image1}}"
-																	alt="ảnh bìa"></a>
-														</td>
-														<td class="product_name"><a href="#"
-																th:text="${order.product.name}"></a>
-														</td>
-														<td class="product-price">
-															<span class="total"
-																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
-														</td>
-														<td class="product_quantity" th:text="${order.quantity}"> </td>
-														<td class="product_total">
-															<span class="total"
-																th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
-														</td>
-													</tr>
-												</tbody>
-											</table>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -209,48 +233,54 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-12">
-								<div class="table_desc">
-									<div class="cart_page table-responsive">
-										<table>
-											<thead>
-												<tr>
-													<th class="product_thumb">Ảnh</th>
-													<th class="product_name">Sản phẩm</th>
-													<th class="product-price">Giá</th>
-													<th class="product_quantity">Số lượng</th>
-													<th class="product_remove">Đơn hàng thành công</th>
-												</tr>
-											</thead>
-											<tbody th:each="order : ${orderConfirm}">
-												<form method="post"
-													th:action="@{/update-order/{id}(id=${order.id}, status=${order.status})}">
+								<div th:if="${#lists.isEmpty(orderConfirm)}" class="text-center">
+									<div class="alert alert-info" role="alert">
+										<h4 class="text-warning">Thông báo: Danh sách đang trống.</h4>
+									</div>
+								</div>
+								<div th:unless="${#lists.isEmpty(orderConfirm)}">
+									<div class="table_desc">
+										<div class="cart_page table-responsive">
+											<table>
+												<thead>
 													<tr>
-														<td class="product_thumb"><a href="#"><img
-																	th:src="@{'/uploads/'+${order.product.image1}}"
-																	alt="ảnh bìa"></a>
-														</td>
-														<td class="product_name"><a href="#"
-																th:text="${order.product.name}"></a>
-														</td>
-														<td class="product-price">
-															<span class="total"
-																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
-														</td>
-														<td class="product_quantity" th:text="${order.quantity}"> </td>
-														<td class="product_remove">
-															<button type="submit" class="btn btn-success">Xác
-																nhận</button>
-														</td>
+														<th class="product_thumb">Ảnh</th>
+														<th class="product_name">Sản phẩm</th>
+														<th class="product-price">Giá</th>
+														<th class="product_quantity">Số lượng</th>
+														<th class="product_remove">Đơn hàng thành công</th>
 													</tr>
-												</form>
-											</tbody>
-										</table>
+												</thead>
+												<tbody th:each="order : ${orderConfirm}">
+													<form method="post"
+														th:action="@{/update-order/{id}(id=${order.id}, status=${order.status})}">
+														<tr>
+															<td class="product_thumb"><a href="#"><img
+																		th:src="@{'/uploads/'+${order.product.image1}}"
+																		alt="ảnh bìa"></a>
+															</td>
+															<td class="product_name"><a href="#"
+																	th:text="${order.product.name}"></a>
+															</td>
+															<td class="product-price">
+																<span class="total"
+																	th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															</td>
+															<td class="product_quantity" th:text="${order.quantity}">
+															</td>
+															<td class="product_remove">
+																<button type="submit" class="btn btn-success">Xác
+																	nhận</button>
+															</td>
+														</tr>
+													</form>
+												</tbody>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -275,9 +305,9 @@
 											</thead>
 											<tbody th:each="order : ${orderCancelled}">
 												<form role="form" method="post" th:action="@{/buy-again}">
-													<input type="hidden" name="id" th:value="${order.product.id}" >
-													<input type="hidden" name="quantity" th:value="${order.quantity}" >
-													<input type="hidden" name="idOrderDetail" th:value="${order.id}" >
+													<input type="hidden" name="id" th:value="${order.product.id}">
+													<input type="hidden" name="quantity" th:value="${order.quantity}">
+													<input type="hidden" name="idOrderDetail" th:value="${order.id}">
 													<tr>
 														<td class="product_thumb"><a href="#"><img
 																	th:src="@{'/uploads/'+${order.product.image1}}"

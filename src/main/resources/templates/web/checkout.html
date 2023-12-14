@@ -31,6 +31,7 @@
 			<div class="checkout_form">
 				<div class="row">
 					<div class="col-lg-6 col-md-6">
+						<button class="btn btn-success mb-2" onclick="clearContactForm()">Liên hệ khác</button>
 						<form role="form" method="post" th:action="@{/add-order}">
 							<h3>Thông tin liên hệ</h3>
 							<div class="row">
@@ -59,7 +60,7 @@
 							</div>
 						</form>
 					</div>
-					<div class="col-lg-6 col-md-6">
+					<div class="col-lg-6 col-md-6 mt-5">
 						<form action="#">
 							<h3>Đơn hàng</h3>
 							<div class="order_table table-responsive">
@@ -81,7 +82,7 @@
 										</tr>
 									</tbody>
 									<tfoot>
-										<tr>
+										<!--<tr>
 											<th>Tổng giá sản phẩm</th>
 											<td>
 												<strong>
@@ -90,16 +91,16 @@
 												</strong>
 
 											</td>
-										</tr>
-										<tr>
+										</tr>-->
+										<!--<tr>
 											<th>Phí ship</th>
 											<td><strong>25.000</strong></td>
-										</tr>
+										</tr>-->
 										<tr class="order_total">
 											<th>Tổng giá đơn hàng</th>
 											<td><strong>
 													<span class=""
-														th:text="${#numbers.formatDecimal(totalValue, 0, 'POINT', 0, 'COMMA')}"></span>
+														th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}"></span>
 												</strong></td>
 										</tr>
 									</tfoot>
@@ -116,6 +117,18 @@
 	<!--footer area start-->
 	<footer th:replace="web/fragments/footer :: footer"></footer>
 	<!--footer area end-->
+	
+	<script>
+    function clearContactForm() {
+        // Lấy danh sách các trường input trong form
+        var inputFields = document.querySelectorAll('form input[type="text"], form textarea');
+
+        // Duyệt qua danh sách và xóa giá trị
+        inputFields.forEach(function (field) {
+            field.value = '';
+        });
+    }
+</script>
 </body>
 
 </html>

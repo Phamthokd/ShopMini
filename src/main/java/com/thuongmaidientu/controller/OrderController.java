@@ -109,9 +109,14 @@ public class OrderController {
 	@PostMapping("/cancel-order")
 	private ResponseEntity<String> cancelOrder( @RequestParam("id") Long id,  @AuthenticationPrincipal UserDetails userDetails) {
 	    try {
-	    	OrderDetails orderDetails = orderDetailsService.findById(id);
+	    	OrderDetails orderDetails = orderDetailsService.findById(id);    	
 	    	orderDetails.setStatus("Đã hủy");
+	    	
 	    	if(orderDetailsService.save(orderDetails)!= null) {
+	    		Order order = orderService.findById(orderDetails.getOrder().getId());
+	    		order.setTotalAmount(order.getTotalAmount() - orderDetails.getUnitPrice());
+	    		order.setCommission(order.getCommission() - orderDetails.getUnitPrice() * 0.025);
+	    		orderService.save(order);
 	    		return new ResponseEntity<>("cancelSuccess", HttpStatus.OK);
 	    	}
 	    	return new ResponseEntity<>("cancelFalse", HttpStatus.OK);
@@ -119,12 +124,7 @@ public class OrderController {
 		} catch (Exception e) {
 			 return new ResponseEntity<>("error", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		
-	
-		
-	   
-		
+		   		
 	}
 	
 	

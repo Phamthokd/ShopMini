@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/fragments/head :: head">
+</head>
+
+<body class="sb-nav-fixed">
+	<!-- Thêm các đoạn mã Thymeleaf để include navigation và sidebar -->
+	<div th:replace="admin/fragments/nav :: navVendor"></div>
+	<div id="layoutSidenav">
+		<div th:replace="admin/fragments/sidebar :: sidebarVendor"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Thống kê</h1>
+					<!-- Icon Cards-->
+					<div class="row">
+						<div class="col-xl-3 col-sm-6 mb-3">
+							<div class="card text-white bg-primary o-hidden h-100">
+								<div class="card-body">
+									<div class="card-body-icon">
+										<i class="fas fa-fw fa-comments"></i>
+									</div>
+									<h4 class="mr-5">
+										<div>Thu nhập</div>
+										<div class="current_price"
+											th:text="${#numbers.formatDecimal(totalcomission, 0, 'POINT', 0, 'COMMA')}">
+										</div>
+									</h4>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-xl-3 col-sm-6 mb-3">
+							<div class="card text-white bg-warning o-hidden h-100">
+								<div class="card-body">
+									<div class="card-body-icon">
+										<i class="fas fa-fw fa-shopping-cart"></i>
+
+									</div>
+									<h4 class="mr-5">
+										<div>Đơn hàng</div>
+										<div th:text="${countOrder}"></div>
+									</h4>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-xl-3 col-sm-6 mb-3">
+							<div class="card text-white bg-success o-hidden h-100">
+								<div class="card-body">
+									<div class="card-body-icon">
+										<i class="fas fa-fw fa-list"></i>
+									</div>
+									<h4 class="mr-5">
+										<div>Khách hàng</div>
+										<div th:text="${countCustomer}"></div>
+									</h4>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-xl-3 col-sm-6 mb-3">
+							<div class="card text-white bg-danger o-hidden h-100">
+								<div class="card-body">
+									<div class="card-body-icon">
+										<i class="fas fa-fw fa-life-ring"></i>
+									</div>
+									<h4 class="mr-5">
+										<div>Shop</div>
+										<div th:text="${countShop}"></div>
+									</h4>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fas fa-chart-area"></i>
+							Area Chart Example
+						</div>
+						<div class="card-body">
+							<div class="chartjs-size-monitor">
+								<div class="chartjs-size-monitor-expand">
+									<div class=""></div>
+								</div>
+								<div class="chartjs-size-monitor-shrink">
+									<div class=""></div>
+								</div>
+							</div>
+							<canvas id="myAreaChart" width="1052" height="315" class="chartjs-render-monitor"
+								style="display: block; width: 1052px; height: 315px;"></canvas>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="card mb-3">
+								<div class="card-header">
+									<i class="fas fa-chart-bar"></i>
+									Bar Chart Example
+								</div>
+								<div class="card-body">
+									<div class="chartjs-size-monitor">
+										<div class="chartjs-size-monitor-expand">
+											<div class=""></div>
+										</div>
+										<div class="chartjs-size-monitor-shrink">
+											<div class=""></div>
+										</div>
+									</div>
+									<canvas id="myBarChart" width="677" height="338" class="chartjs-render-monitor"
+										style="display: block; width: 677px; height: 338px;"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="card mb-3">
+								<div class="card-header">
+									<h5>Danh sách top 5 shop bán nhiều đơn hàng nhất</h5>
+								</div>
+								<div class="card-body">
+									<table class="table">
+										<thead class="thead-dark">
+											<tr>
+												<th class="text-center">ID</th>
+												<th class="text-center">Tên sản phẩm</th>
+												<th class="text-center">Số lượng order</th>
+												<th class="text-center">Doanh số</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- Sử dụng th:each để lặp qua danh sách sản phẩm -->
+											<tr th:each="seller : ${topSellers}">
+												<td class="text-center" th:text="${seller[0]}"></td>
+												<td class="text-center" th:text="${seller[1]}"></td>
+												<td class="text-center" th:text="${seller[2]}"></td>
+												<td class="text-center">
+													<div class="current_price"
+														th:text="${#numbers.formatDecimal(seller[3], 0, 'POINT', 0, 'COMMA')}">
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="card mb-3">
+								<div class="card-header">
+									<i class="fas fa-chart-bar"></i>
+									Bar Chart Example
+								</div>
+								<div class="card-body">
+									<div class="chartjs-size-monitor">
+										<div class="chartjs-size-monitor-expand">
+											<div class=""></div>
+										</div>
+										<div class="chartjs-size-monitor-shrink">
+											<div class=""></div>
+										</div>
+									</div>
+									<canvas id="myBarChartLow" width="677" height="338" class="chartjs-render-monitor"
+										style="display: block; width: 677px; height: 338px;"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="card mb-3">
+								<div class="card-header">
+									<h5>Danh sách top 5 đơn hàng có giá trị cao nhất</h5>
+								</div>
+								<div class="card-body">
+									<table>
+										<thead>
+											<tr>
+												<th>Order Date</th>
+												<th>Total Commission</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="commissionByDay : ${totalCommissionByDay}">
+												<td th:text="${commissionByDay[0]}"></td>
+												<td th:text="${commissionByDay[1]}"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<div th:replace="vendor/fragments/script :: script"></div>
+
+	<script th:inline="javascript">
+		/* Trong JS */
+		var ctx = document.getElementById("myBarChart");
+		var productNames = /*[[${productNames}]]*/[];
+		var revenues = /*[[${revenues}]]*/[];
+
+		var myLineChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: productNames,
+				datasets: [{
+					label: "Revenue",
+					backgroundColor: "rgba(2,117,216,1)",
+					borderColor: "rgba(2,117,216,1)",
+					data: revenues,
+				}],
+			},
+			options: {
+				scales: {
+					xAxes: [{
+						time: {
+							unit: 'month'
+						},
+						gridLines: {
+							display: false
+						},
+						ticks: {
+							maxTicksLimit: 6
+						}
+					}],
+					yAxes: [{
+						ticks: {
+							min: 0,
+							max: Math.max(...revenues),
+							maxTicksLimit: 5
+						},
+						gridLines: {
+							display: true
+						}
+					}],
+				},
+				legend: {
+					display: false
+				}
+			}
+		});
+
+		
+
+
+		var ctx = document.getElementById("myAreaChart");
+		var dayOrder = /*[[${dayOrder}]]*/[];	
+		var commission = /*[[${commission}]]*/[];
+		
+		var myLineChart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: dayOrder,
+				datasets: [{
+					label: "Sessions",
+					lineTension: 0.3,
+					backgroundColor: "rgba(2,117,216,0.2)",
+					borderColor: "rgba(2,117,216,1)",
+					pointRadius: 5,
+					pointBackgroundColor: "rgba(2,117,216,1)",
+					pointBorderColor: "rgba(255,255,255,0.8)",
+					pointHoverRadius: 5,
+					pointHoverBackgroundColor: "rgba(2,117,216,1)",
+					pointHitRadius: 50,
+					pointBorderWidth: 2,
+					data: commission,
+				}],
+			},
+			options: {
+				scales: {
+					xAxes: [{
+						time: {
+							unit: 'date'
+						},
+						gridLines: {
+							display: false
+						},
+						ticks: {
+							maxTicksLimit: 7
+						}
+					}],
+					yAxes: [{
+						ticks: {
+							min: 0,
+							max: Math.max(...commission),
+							maxTicksLimit: 5
+						},
+						gridLines: {
+							color: "rgba(0, 0, 0, .125)",
+						}
+					}],
+				},
+				legend: {
+					display: false
+				}
+			}
+		});
+
+
+
+	</script>
+
+</body>
+
+</html>

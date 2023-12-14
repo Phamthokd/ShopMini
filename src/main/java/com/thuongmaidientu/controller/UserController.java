@@ -40,7 +40,7 @@ public class UserController {
 		
 		User user = userService.findByUserName(userDetails.getUsername());
 		
-		List<Order> orders = orderService.findAll();
+		List<Order> orders = orderService.findByUser(user);
 		if(userDetails != null) {
 			cartService.getCart(userDetails, model);
 		}
@@ -85,22 +85,22 @@ public class UserController {
 		
 		User user = userService.findByUserName(userDetails.getUsername());
 		
-	    // Kiểm tra mật khẩu hiện tại có đúng không
+	   
 	    if (!userService.checkCurrentPassword(user, password)) {
 	    	redirectAttributes.addFlashAttribute("message", "Đổi mật thất bại. Mật khẩu hiện tại không chính xác");
 	    	return "redirect:/account#password";
 	        }
 	    
-	    // Kiểm tra xác nhận mật khẩu mới
+	    
 	    if (!passwordNew.equals(confirmPasswordNew)) {
 	    	redirectAttributes.addFlashAttribute("message", "Đổi mật thất bại. Mật khẩu mới không trùng với mật khẩu xác nhận lại");
 	    	return "redirect:/account#password";
 	    }
 	    
-	    // Cập nhật mật khẩu mới
+	  
 	    userService.updatePassword(user, passwordNew);
 
-	 // Thêm thông báo vào RedirectAttributes
+	
         redirectAttributes.addFlashAttribute("message", "Đổi mật khẩu thành công");
         return "redirect:/account#password";
 	}

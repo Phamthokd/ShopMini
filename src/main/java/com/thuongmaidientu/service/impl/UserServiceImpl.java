@@ -3,6 +3,8 @@ package com.thuongmaidientu.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +69,26 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(encodedPassword);
 		
 		userRepository.save(user);
+	}
+
+	@Override
+	public long countByRole(String role) {
+		// TODO Auto-generated method stub
+		return userRepository.countByRole(role);
+	}
+
+	@Override
+	public List<Object[]> findTop5SellersByOrderCount() {
+		Pageable pageable = PageRequest.of(0, 2); 
+	    return userRepository.findTop5SellersByOrderCount(pageable);
+	}
+
+	@Override
+	public User create(User user) {
+		String encodedPassword = passwordEncoder.encode(user.getPassword());		
+		user.setPassword(encodedPassword);
+		user.setRole("CUSTOMER");
+		return userRepository.save(user);
 	}
 
 }

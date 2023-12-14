@@ -26,11 +26,10 @@
                                 <div class="card mb-2" style="width: 100%;">
                                     <div class="card-body" style="background: #83C75D;">
                                         <h5 class="card-title text-center">
-                                            <a href="" class="text-decoration-none text-white">Sản phẩm</a>
+                                            <a href="" class="text-decoration-none text-white">Đơn hàng</a>
                                         </h5>
-
-                                        <h5 class="h1 text-center">
-                                            27
+                                        <h5 class="h1 text-center" th:text="${countOrder}">
+                                            
                                         </h5>
 
                                     </div>
@@ -42,9 +41,35 @@
                                 <div class="card mb-2" style="width: 100%;">
                                     <div class="card-body" style="background: #CC3300;">
                                         <h5 class="card-title text-center">
-                                            <a href="" class="text-decoration-none text-white">Đơn hàng</a>
+                                            <a href="" class="text-decoration-none text-white">Khách hàng</a>
                                         </h5>
-                                        <h5 class="h1 text-center">
+                                        <h5 class="h1 text-center" th:text="${countCustomer}">
+                                            27
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              <div class="col-sm-3">
+                                <div class="card mb-2" style="width: 100%;">
+                                    <div class="card-body" style="background: rgb(0, 255, 64);">
+                                        <h5 class="card-title text-center">
+                                            <a href="" class="text-decoration-none text-white">Shop bán hàng</a>
+                                        </h5>
+                                        <h5 class="h1 text-center" th:text="${countShop}">
+                                            27
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-3">
+                                <div class="card mb-2" style="width: 100%;">
+                                    <div class="card-body" style="background: rgb(255, 255, 0);">
+                                        <h5 class="card-title text-center">
+                                            <a href="" class="text-decoration-none text-white">Sản phẩm bày bán</a>
+                                        </h5>
+                                        <h5 class="h1 text-center" th:text="${countProduct}">
                                             27
                                         </h5>
                                     </div>
@@ -62,7 +87,7 @@
                                     <div class="card-body" style="background: rgb(51,102,204);">
                                         <h5 class="card-title text-center">
                                             <a href="" class="text-decoration-none text-white"><i
-                                                    class="fa-solid fa-box"></i>Thống kê</a>
+                                                    class="fa-solid fa-box"></i>Doanh thu</a>
                                         </h5>
                                         <h5 class="h1 text-center">
                                             27
@@ -75,7 +100,7 @@
                                     <div class="card-body" style="background: #109618;">
                                         <h5 class="card-title text-center">
                                             <a href="" class="text-decoration-none text-white"><i
-                                                    class="fa-solid fa-cart-shopping"></i>Liên hệ quản trị</a>
+                                                    class="fa-solid fa-cart-shopping"></i>Hoa hồng</a>
                                         </h5>
                                         <h5 class="h1 text-center">
                                             27

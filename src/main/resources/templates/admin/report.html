@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="admin/fragments/head :: head">
+</head>
+
+<body class="sb-nav-fixed">
+	<!-- nav -->
+	<div th:replace="admin/fragments/nav :: navVendor"></div>
+	<!-- nav -->
+	<div id="layoutSidenav">
+		<!-- sidebar -->
+		<div th:replace="admin/fragments/sidebar :: sidebarVendor"></div>
+		<!-- sidebar -->
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Report</h1>
+					<div class="breadcrumb mb-4">
+						<table class="table mt-5">
+							<thead class="thead-dark">
+								<tr>
+									
+									<th class="text-center">Sản phẩm</th>
+									<th class="text-center">Shop</th>
+									<th class="text-center">Số lượng report</th>
+									<th class="text-center">Thực hiện</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="reportCount : ${reportCountsByProduct}">
+									
+									<td class="text-center" th:text="${reportCount[0].name}">1</td>
+									<td class="text-center" th:text="${reportCount[0].userProduct.userName}">1</td>
+									<td class="text-center" th:text="${reportCount[1]}">1</td>
+									<td class="text-center">
+										<button th:productId="${reportCount[0].id}" type="button"
+											class="btn btn-success infor-report">Chi tiết</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade " id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Chi tiết</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body" id="detailModalBody">
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div th:replace="admin/fragments/script :: script"></div>
+
+	<script>
+		$(document).ready(function () {
+			$(".infor-report").on('click', function () {
+				const productId = $(this).attr('productId');
+				$.ajax({
+					type: "GET",
+					url: "/admin/infor",
+					data: {
+						productId: productId
+					},
+					success: function (data) {
+						// Đổ dữ liệu vào modal
+						$("#detailModalBody").html(data);
+
+						// Hiển thị modal
+						$("#detailModal").modal("show");
+
+					},
+					error: function (error) {
+						console.error(error);
+					}
+				});
+
+			})
+		})
+
+	</script>
+
+</body>
+
+</html>

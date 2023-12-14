@@ -35,9 +35,21 @@ public interface ProductService {
 			Product product);
 	List<Product> findByUserProduct(User userProduct);
 	List<Product> findByCategory(Category category);
+	List<Product> findByUserProductAndStatus(User userProduct, String status);
 	List<Product> searchProducts(String keyword);
 	Page<Product> getAll(Integer pageNo);
 	Page<Product> searchProducts(String keyword,Integer pageNo);
 	Page<Product> findByCategory(Category category,Integer pageNo);
 	Page<Product> findByUserProduct(User userProduct,Integer pageNo);
+	Long countProduct();
+	List<Product> findAllByOrderByNumberOfViewsDesc();
+	
+	
+	
+	List<Object[]> findTop3ProductsWithRevenueByUser(User user);
+	List<Object[]> findTop3ProductsWithRevenueByUserASC(User user);
+	Long countProduct(User user);
+	
+	
+	List<Object[]> findRevenueAndDatesByUser(User user);
 }

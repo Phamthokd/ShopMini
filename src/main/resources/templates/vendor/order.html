@@ -51,30 +51,32 @@
 											<th class="text-center">Địa chỉ</th>
 											<th class="text-center">Sản phẩm</th>
 											<th class="text-center">Chú ý</th>
-											<th class="text-center">Đơn giá</th>
 											<th class="text-center">Thực hiện</th>
 										</tr>
 									</thead>
-									<tbody th:each="order : ${listOrders}">
+									<tbody th:each="order : ${listOrder}">
 										<form method="post"
-											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											th:action="@{/shop/update-order/{id}(id=${order.id} , status= 'Có đơn hàng')}">
 											<tr>
-												<th class="text-center" th:text="${order.order.id}">1</th>
-												<td class="text-center" th:text="${order.order.customerName}">1</td>
-												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
-												<td class="text-center" th:text="${order.order.customerAddress}"></td>
-												<td class="text-center" th:text="${order.product.name}">1</td>
-												<td class="text-center" th:text="${order.order.note}">1</td>
+												<th class="text-center" th:text="${order.id}">1</th>
+												<td class="text-center" th:text="${order.customerName}">1</td>
+												<td class="text-center" th:text="${order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.customerAddress}"></td>
 												<td class="text-center">
-													<span
-														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
-													X
-													<span th:text="${order.quantity}"></span>
+													<div class="row" th:each="orderDetail : ${order.orderDetails}">
+														<th:block th:if="${orderDetail.product.userProduct != null and orderDetail.product.userProduct.userName == userName}">
+															<!-- Tạo 3 hàng trong 1 ô -->
+															<div>
+																<span th:text="${orderDetail.product.name}"></span>
+																X
+																<span th:text="${orderDetail.quantity}"></span>
+															</div>
+														</th:block>
+													</div>
 												</td>
+												<td class="text-center" th:text="${order.note}">1</td>
 												<td class="text-center">
-													<button type="submit"
-														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
-														class="btn btn-success">Duyệt</button>
+													<button type="submit" class="btn btn-success">Duyệt</button>
 												</td>
 											</tr>
 										</form>
@@ -91,30 +93,32 @@
 											<th class="text-center">Địa chỉ</th>
 											<th class="text-center">Sản phẩm</th>
 											<th class="text-center">Chú ý</th>
-											<th class="text-center">Đơn giá</th>
 											<th class="text-center">Thực hiện</th>
 										</tr>
 									</thead>
 									<tbody th:each="order : ${listProcessing}">
 										<form method="post"
-											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											th:action="@{/shop/update-order/{id}(id=${order.id} , status= 'Chuẩn bị hàng')}">
 											<tr>
 												<th class="text-center" th:text="${order.id}">1</th>
-												<td class="text-center" th:text="${order.order.customerName}">1</td>
-												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
-												<td class="text-center" th:text="${order.order.customerAddress}"></td>
-												<td class="text-center" th:text="${order.product.name}">1</td>
-												<td class="text-center" th:text="${order.order.note}">1</td>
+												<td class="text-center" th:text="${order.customerName}">1</td>
+												<td class="text-center" th:text="${order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.customerAddress}"></td>
 												<td class="text-center">
-													<span
-														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
-													X
-													<span th:text="${order.quantity}"></span>
+													<div class="row" th:each="orderDetail : ${order.orderDetails}">
+														<th:block th:if="${orderDetail.product.userProduct != null and orderDetail.product.userProduct.userName == userName}">
+															<!-- Tạo 3 hàng trong 1 ô -->
+															<div>
+																<span th:text="${orderDetail.product.name}"></span>
+																X
+																<span th:text="${orderDetail.quantity}"></span>
+															</div>
+														</th:block>
+													</div>
 												</td>
+												<td class="text-center" th:text="${order.note}">1</td>
 												<td class="text-center">
-													<button type="submit"
-														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
-														class="btn btn-success">Duyệt</button>
+													<button type="submit" class="btn btn-success">Duyệt</button>
 												</td>
 											</tr>
 										</form>
@@ -131,30 +135,32 @@
 											<th class="text-center">Địa chỉ</th>
 											<th class="text-center">Sản phẩm</th>
 											<th class="text-center">Chú ý</th>
-											<th class="text-center">Đơn giá</th>
 											<th class="text-center">Thực hiện</th>
 										</tr>
 									</thead>
 									<tbody th:each="order : ${listShipping}">
 										<form method="post"
-											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											th:action="@{/shop/update-order/{id}(id=${order.id} , status= 'Đang giao')}">
 											<tr>
 												<th class="text-center" th:text="${order.id}">1</th>
-												<td class="text-center" th:text="${order.order.customerName}">1</td>
-												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
-												<td class="text-center" th:text="${order.order.customerAddress}"></td>
-												<td class="text-center" th:text="${order.product.name}">1</td>
-												<td class="text-center" th:text="${order.order.note}">1</td>
+												<td class="text-center" th:text="${order.customerName}">1</td>
+												<td class="text-center" th:text="${order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.customerAddress}"></td>
 												<td class="text-center">
-													<span
-														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
-													X
-													<span th:text="${order.quantity}"></span>
+													<div class="row" th:each="orderDetail : ${order.orderDetails}">
+														<th:block th:if="${orderDetail.product.userProduct != null and orderDetail.product.userProduct.userName == userName}">
+															<!-- Tạo 3 hàng trong 1 ô -->
+															<div>
+																<span th:text="${orderDetail.product.name}"></span>
+																X
+																<span th:text="${orderDetail.quantity}"></span>
+															</div>
+														</th:block>
+													</div>
 												</td>
+												<td class="text-center" th:text="${order.note}">1</td>
 												<td class="text-center">
-													<button type="submit"
-														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
-														class="btn btn-success">Duyệt</button>
+													<button type="submit" class="btn btn-success">Duyệt</button>
 												</td>
 											</tr>
 										</form>
@@ -171,35 +177,38 @@
 											<th class="text-center">Địa chỉ</th>
 											<th class="text-center">Sản phẩm</th>
 											<th class="text-center">Chú ý</th>
-											<th class="text-center">Đơn giá</th>
 											<th class="text-center">Thực hiện</th>
 										</tr>
 									</thead>
 									<tbody th:each="order : ${listShiped}">
 										<form method="post"
-											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											th:action="@{/shop/update-order/{id}(id=${order.id} , status= 'Chờ xác nhận')}">
 											<tr>
 												<th class="text-center" th:text="${order.id}">1</th>
-												<td class="text-center" th:text="${order.order.customerName}">1</td>
-												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
-												<td class="text-center" th:text="${order.order.customerAddress}"></td>
-												<td class="text-center" th:text="${order.product.name}">1</td>
-												<td class="text-center" th:text="${order.order.note}">1</td>
+												<td class="text-center" th:text="${order.customerName}">1</td>
+												<td class="text-center" th:text="${order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.customerAddress}"></td>
 												<td class="text-center">
-													<span
-														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
-													X
-													<span th:text="${order.quantity}"></span>
+													<div class="row" th:each="orderDetail : ${order.orderDetails}">
+														<th:block th:if="${orderDetail.product.userProduct != null and orderDetail.product.userProduct.userName == userName}">
+															<!-- Tạo 3 hàng trong 1 ô -->
+															<div>
+																<span th:text="${orderDetail.product.name}"></span>
+																X
+																<span th:text="${orderDetail.quantity}"></span>
+															</div>
+														</th:block>
+													</div>
 												</td>
+												<td class="text-center" th:text="${order.note}">1</td>
 												<td class="text-center">
-													<button type="submit"
-														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
-														class="btn btn-success" disabled>Chờ</button>
+													<button type="submit" class="btn btn-success" disabled>Chờ</button>
 												</td>
 											</tr>
 										</form>
 									</tbody>
 								</table>
+
 							</div>
 							<div class="tab-pane fade" id="success">
 								<table class="table">
@@ -211,30 +220,32 @@
 											<th class="text-center">Địa chỉ</th>
 											<th class="text-center">Sản phẩm</th>
 											<th class="text-center">Chú ý</th>
-											<th class="text-center">Đơn giá</th>
 											<th class="text-center">Thực hiện</th>
 										</tr>
 									</thead>
 									<tbody th:each="order : ${listSuccess}">
 										<form method="post"
-											th:action="@{/shop/update-order/{id}(id=${order.id}, status=${order.status})}">
+											th:action="@{/shop/update-order/{id}(id=${order.id} , status= 'Hoàn thành')}">
 											<tr>
 												<th class="text-center" th:text="${order.id}">1</th>
-												<td class="text-center" th:text="${order.order.customerName}">1</td>
-												<td class="text-center" th:text="${order.order.phoneNumber}">1</td>
-												<td class="text-center" th:text="${order.order.customerAddress}"></td>
-												<td class="text-center" th:text="${order.product.name}">1</td>
-												<td class="text-center" th:text="${order.order.note}">1</td>
+												<td class="text-center" th:text="${order.customerName}">1</td>
+												<td class="text-center" th:text="${order.phoneNumber}">1</td>
+												<td class="text-center" th:text="${order.customerAddress}"></td>
 												<td class="text-center">
-													<span
-														th:text="${#numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA')}"></span>
-													X
-													<span th:text="${order.quantity}"></span>
+													<div class="row" th:each="orderDetail : ${order.orderDetails}">
+														<th:block th:if="${orderDetail.product.userProduct != null and orderDetail.product.userProduct.userName == userName}">
+															<!-- Tạo 3 hàng trong 1 ô -->
+															<div>
+																<span th:text="${orderDetail.product.name}"></span>
+																X
+																<span th:text="${orderDetail.quantity}"></span>
+															</div>
+														</th:block>
+													</div>
 												</td>
+												<td class="text-center" th:text="${order.note}">1</td>
 												<td class="text-center">
-													<button type="submit"
-														th:href="@{/shop/update-order/{id}/(id=${order.id}, status=${order.status})}"
-														class="btn btn-success">Xong</button>
+													<button type="submit" class="btn btn-success">Xong</button>
 												</td>
 											</tr>
 										</form>
@@ -248,13 +259,11 @@
 		</div>
 	</div>
 
-	<script th:src="@{/vendor/js/category.js}"></script>
+	
 
 	<div th:replace="vendor/fragments/script :: script"></div>
 
-
-
-	<script th:src="@{/vendor/js/books.js}"></script>
+	
 	<!-- Thêm link đến Bootstrap và jQuery JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

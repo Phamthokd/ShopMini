@@ -102,15 +102,9 @@ public class CartServiceImpl implements CartService {
 	    	totalCart += cart.getTotal();
 	    }
 	        
-	    double totalValue = totalCart + 25000;
-	    
-	    if(listCarts.size()==0) {
-	    	totalValue = 0;
-	    }
-
 	    
 	    model.addAttribute("totalCart", totalCart);	
-	    model.addAttribute("totalValue", totalValue);	
+	   
 		model.addAttribute("listCart", listCarts);
 		model.addAttribute("cartNO", listCarts.size());
 		

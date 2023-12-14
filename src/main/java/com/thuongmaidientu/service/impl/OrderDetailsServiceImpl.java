@@ -54,6 +54,18 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 		
 	}
 
+	@Override
+	public List<OrderDetails> findOrderDetailsByOrderIdAndUserName(Long orderId, String username) {
+		
+		return orderDetailRepository.findOrderDetailsByOrderIdAndUserName(orderId, username);
+	}
+
+	@Override
+	public Double getTotalRevenueByUser(User user) {
+		// TODO Auto-generated method stub
+		 return orderDetailRepository.getTotalRevenueByUser(user);
+	}
+
 	
 
 }

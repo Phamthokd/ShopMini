@@ -20,4 +20,7 @@ public interface OrderDetailsService {
 	
 	boolean delete(Long id);
 	
+	List<OrderDetails> findOrderDetailsByOrderIdAndUserName(Long orderId, String username);
+	
+	Double getTotalRevenueByUser(User user);
 }

@@ -74,13 +74,13 @@
 				</div>
 				<div class="col-lg-7 col-md-7">
 					<div class="product_d_right">
-
 						<div class="productd_title_nav">
 							<h1 th:text="${product.name}"></h1>
 							<div class="product_nav">
 								<ul>
-									<li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-									<li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+									<a data-bs-toggle="modal" data-bs-target="#exampleModal">
+										Tố cáo
+									</a>
 								</ul>
 							</div>
 						</div>
@@ -112,8 +112,7 @@
 								hàng</button>
 						</div>
 						<div class="product_meta">
-							<span>Lượt bán
-							</span>
+							<span>Lượt bán <a th:text="${product.numberOfOrder}"></a></span>
 						</div>
 						<div class="product_meta">
 							<span>Danh mục <a th:href="@{/category/{id}(id=${product.category.id})}"
@@ -121,7 +120,7 @@
 						</div>
 						<div class="post_wrapper">
 							<div class="post_thumb">
-								<a href="blog-details.html"><img th:src="@{/assets/img/blog/comment2.png.jpg}"
+								<a href="blog-details.html"><img th:src="@{'/uploads/'+${product.userProduct.avatar}}"
 										alt=""></a>
 							</div>
 							<div class="post_info">
@@ -180,10 +179,11 @@
 							</div>
 							<div class="tab-pane fade" id="reviews" role="tabpanel">
 								<div class="reviews_wrapper">
-									<h2>1 luợt đánh giá</h2>
-									<div class="reviews_comment_box">
+									<h2>Đánh giá</h2>
+									<div class="reviews_comment_box" th:each="review : ${reviews}">
 										<div class="comment_thmb">
-											<img src="assets/img/blog/comment2.jpg" alt="">
+											<img th:src="@{'/uploads/'+${review.user.avatar}}"
+												style="width: 50px; height: 50px;" alt="avatar">
 										</div>
 										<div class="comment_text">
 											<div class="reviews_meta">
@@ -196,46 +196,40 @@
 														<li><a href="#"><i class="ion-android-star"></i></a></li>
 													</ul>
 												</div>
-												<p><strong>admin </strong>- September 12, 2018</p>
-												<span>roadthemes</span>
+												<p><strong th:text="${review.user.userName}"> </strong> <span
+														th:text="${review.timestamp}"></span></p>
+												<span th:text="${review.review}">roadthemes</span>
 											</div>
 										</div>
 
 									</div>
 									<div class="comment_title">
 										<h2>Thêm đánh giá </h2>
-										<p>Tốt </p>
 									</div>
-									<div class="product_ratting mb-10">
-										<h3>Your rating</h3>
-										<ul>
-											<li><a href="#"><i class="ion-android-star"></i></a></li>
-											<li><a href="#"><i class="ion-android-star"></i></a></li>
-											<li><a href="#"><i class="ion-android-star"></i></a></li>
-											<li><a href="#"><i class="ion-android-star"></i></a></li>
-											<li><a href="#"><i class="ion-android-star"></i></a></li>
-										</ul>
-									</div>
-									<div class="product_review_form">
-										<form action="#">
-											<div class="row">
+									<form role="form" method="post" th:action="@{/add-review}">
+										<div class="product_ratting mb-10">
+											<h3>Your rating</h3>
+											<ul class="rating" id="star-rating">
+												<li><a href="#" th:each="i : ${#numbers.sequence(1, 5)}"
+														th:attr="data-value=${i}"><i class="ion-android-star"></i></a>
+												</li>
+											</ul>
+											<!-- Thêm trường input rating -->
+
+										</div>
+										<div class="product_review_form">
+
+											<div class=" row">
 												<div class="col-12">
-													<label for="review_comment">Your review </label>
+													<label for="review_comment">Đánh giá của bạn</label>
 													<textarea name="comment" id="review_comment"></textarea>
 												</div>
-												<div class="col-lg-6 col-md-6">
-													<label for="author">Tên</label>
-													<input id="author" type="text">
-
-												</div>
-												<div class="col-lg-6 col-md-6">
-													<label for="email">Email </label>
-													<input id="email" type="text">
-												</div>
+												<input type="hidden" th:value="${product.id}" name="idProduct">
 											</div>
 											<button type="submit">Gửi</button>
-										</form>
-									</div>
+
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -301,7 +295,7 @@
 			</div>
 			<div class="row">
 				<div class="product_carousel product_column4 owl-carousel">
-					<div class="col-lg-3" th:each="products : ${listProduct}">
+					<div class="col-lg-3" th:each="products : ${productOfShop}">
 						<article class="single_product">
 							<figure>
 								<div class="product_thumb">
@@ -380,6 +374,50 @@
 
 
 
+	<!-- Modal Report-->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div>
+					<!-- Thêm ô input cho lý do báo cáo -->
+					<textarea class="form-control border-0" id="reasonTextarea" rows="4"
+						placeholder="Nhập lý do báo cáo"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+					<button type="button" class="btn btn-primary" id="add-report" th:idProduct="${product.id}">Gửi</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Modal -->
+	<div id="success_tic" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<a class="close" href="#" data-dismiss="modal">&times;</a>
+				<div class="page-body">
+					<div class="head">
+						<h3 style="margin-top:5px;">Đã gửi report tới admin</h3>
+					</div>
+
+					<h1 style="text-align:center;">
+						<div class="checkmark-circle">
+							<div class="background"></div>
+							<div class="checkmark draw"></div>
+						</div>
+						<h1>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
 	<!-- JS
 	
 	
@@ -402,7 +440,7 @@
 						quantity: quantity
 					},
 					success: function (dt) {
-					
+
 						if (dt === "CartEntryExists") {
 							$('#cartExistsModal').modal('show');
 						} else if (dt === "CartEntryAdded") {
@@ -413,9 +451,33 @@
 					},
 					error: function (dt) {
 						console.error("Error: Không thể kết nối đến server.");
-						
+
 					}
 				});
+			});
+
+			$("#add-report").on('click', function () {
+				var reportContent = $("#reasonTextarea").val();
+				const idProduct = $(this).attr('idProduct');
+				$.ajax({
+					type: "POST",
+					url: "/add-report", 
+					data: {
+						reportContent: reportContent,
+						idProduct : idProduct
+					},
+					success: function (dt) {
+						
+						if (dt === "reportSuccess") {
+							$('#success_tic').modal('show');
+						}
+					},
+					error: function (error) {
+						
+						console.error(error);
+					}
+				});
+				$("#exampleModal").modal("hide");
 			});
 		});
 	</script>

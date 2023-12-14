@@ -83,11 +83,11 @@
 								<h3>Tính tổng</h3>
 								<div class="coupon_inner">
 									<div class="cart_subtotal">
-										<p>Giá sản phẩm</p>
+										<p>Thành tiền</p>
 										<p class="current_price" style="font-size: 18px; margin-right: 30px;"
 											th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}"></p>
 									</div>
-									<div class="cart_subtotal ">
+									<!--<div class="cart_subtotal ">
 										<p>Phí ship</p>
 										<p class="cart_amount ">
 											<span>Nhanh</span> 
@@ -102,7 +102,7 @@
 											<span class="current_price" style="font-size: 18px; margin-right: 30px;"
 											th:text="${#numbers.formatDecimal(totalValue, 0, 'POINT', 0, 'COMMA')}"></span>
 										</p>
-									</div>
+									</div>-->
 									<div class="checkout_btn">
 										<a th:href="@{/checkout}">Tiến hành thanh toán</a>
 									</div>
