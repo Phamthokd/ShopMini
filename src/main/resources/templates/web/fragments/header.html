@@ -94,7 +94,7 @@
 							<ul class="offcanvas_main_menu">
 								<li class="menu-item-has-children active"><a th:href="@{/}">Trang chủ</a>
 								<li class="menu-item-has-children"><a th:href="@{/category}">Gian hàng</a>
-										<ul class="sub-menu">
+									<ul class="sub-menu">
 										<li class="menu-item-has-children"><a href="#">Thời trang</a>
 											<ul class="sub-menu">
 												<li><a href="#">Thời trang nam</a></li>
@@ -288,6 +288,9 @@
 												th:href="@{/account}">Tài khoản</a></li>
 										<li class="menu-item-has-children" sec:authorize="isAnonymous()"><a
 												href="/login">Đăng nhập</a></li>
+										<li class="menu-item-has-children" sec:authorize="hasRole('CUSTOMER')">
+											<a th:href="@{/add-shop}">Đăng ký bán hàng</a>
+										</li>
 										<li class="menu-item-has-children" sec:authorize="hasRole('SHOP')">
 											<a th:href="@{/shop}">Bán hàng</a>
 										</li>
@@ -490,6 +493,9 @@
 													th:href="@{/account}">Tài khoản</a></li>
 											<li class="menu-item-has-children" sec:authorize="isAnonymous()"><a
 													href="/login">Đăng nhập</a></li>
+											<li class="menu-item-has-children" sec:authorize="hasRole('CUSTOMER')">
+												<a th:href="@{/add-shop}">Đăng ký bán hàng</a>
+											</li>
 											<li class="menu-item-has-children" sec:authorize="hasRole('SHOP')">
 												<a th:href="@{/shop}">Bán hàng</a>
 											</li>

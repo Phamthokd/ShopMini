@@ -267,8 +267,10 @@
 										<a href="@{/product-details}" th:text="${products.name}"></a>
 									</h4>
 									<div class="price_box">
-										<span class="old_price" th:text="${products.price}"></span>
-										<span class="current_price" th:text="${products.discount}"></span>
+										<span class="old_price"
+											th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+										<span class="current_price"
+											th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 									</div>
 									<div class="add_to_cart">
 										<a href="#">+ thêm vào giỏ hàng</a>
@@ -310,8 +312,10 @@
 										<a href="@{/product-details}" th:text="${products.name}"></a>
 									</h4>
 									<div class="price_box">
-										<span class="old_price" th:text="${products.price}"></span>
-										<span class="current_price" th:text="${products.discount}"></span>
+										<span class="old_price"
+											th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+										<span class="current_price"
+											th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
 									</div>
 									<div class="add_to_cart">
 										<a th:href="@{/web/cart}">+ thêm vào giỏ hàng</a>
@@ -388,13 +392,14 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-					<button type="button" class="btn btn-primary" id="add-report" th:idProduct="${product.id}">Gửi</button>
+					<button type="button" class="btn btn-primary" id="add-report"
+						th:idProduct="${product.id}">Gửi</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-<!-- Modal -->
+	<!-- Modal -->
 	<div id="success_tic" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
@@ -461,19 +466,19 @@
 				const idProduct = $(this).attr('idProduct');
 				$.ajax({
 					type: "POST",
-					url: "/add-report", 
+					url: "/add-report",
 					data: {
 						reportContent: reportContent,
-						idProduct : idProduct
+						idProduct: idProduct
 					},
 					success: function (dt) {
-						
+
 						if (dt === "reportSuccess") {
 							$('#success_tic').modal('show');
 						}
 					},
 					error: function (error) {
-						
+
 						console.error(error);
 					}
 				});

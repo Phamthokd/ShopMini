@@ -29,6 +29,20 @@
 	<div class="customer_login">
 		<div class="container">
 			<div class="row">
+				<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+					<p th:text="${errorMessage}"></p>
+				</div>
+				<div th:if="${successMessage}" class="alert alert-success" role="alert">
+					<p th:text="${successMessage}"></p>
+				</div>
+				<div th:if="${message}" class="alert alert-success" role="alert">
+					<p th:text="${message}"></p>
+				</div>
+				<div th:if="${param.error}">
+					<div class="alert alert-danger" role="alert">
+					<p>Tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!!!</p>
+				</div>
+				</div>
 				<!--login area start-->
 				<div class="col-lg-6 col-md-6">
 					<div class="account_form">
@@ -59,8 +73,9 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="account_form register">
 						<h2>Đăng ký</h2>
-						<form class="form-horizontal row" role="form" method="post" 
-							th:action="@{/add-account}">
+						<form class="form-horizontal row" role="form" method="post" th:action="@{/add-account}"
+							onsubmit="return validateRegistrationForm()" name="registrationForm">
+
 							<p>
 								<label>Tên người dùng<span>*</span></label>
 								<input type="text" name="userName">
@@ -86,13 +101,34 @@
 	<!-- customer login end -->
 
 	<!--footer area start-->
-	<footer th:replace="web/fragments/footer :: footer"></footer>
+	<footer th:replace=" web/fragments/footer :: footer">
+	</footer>
 	<!--footer area end-->
 
 
 	<!-- JS
 ============================================ -->
+
+
 	<div th:replace="web/fragments/script :: script"></div>
+	<script>
+		function validateRegistrationForm() {
+			// Lấy giá trị từ các trường input
+			var userName = document.forms["registrationForm"]["userName"].value;
+			var password = document.forms["registrationForm"]["password"].value;
+
+			// Kiểm tra xem các trường có được nhập đầy đủ không
+			if (userName === "" || password === "") {
+				alert("Vui lòng nhập đầy đủ thông tin");
+				return false;
+			}
+
+			// Các điều kiện kiểm tra khác có thể được thêm vào ở đây
+
+			return true;
+		}
+	</script>
+
 </body>
 
 </html>

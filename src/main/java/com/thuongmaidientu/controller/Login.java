@@ -14,8 +14,7 @@ import com.thuongmaidientu.service.UserService;
 public class Login {
 	@Autowired
 	private UserService userService;
-	
-	
+		
 	@RequestMapping("/login")
 	public String logon() {
 		return ("/web/login");
@@ -30,12 +29,12 @@ public class Login {
 			user.setPassword(password);
 			
 			if (userService.findByUserName(userName) != null ){
-				redirectAttributes.addFlashAttribute("message", "Tên đăng nhập đã được sử dụng! Vui lòng nhập tên khác");
+				redirectAttributes.addFlashAttribute("errorMessage", "Tên đăng nhập đã được sử dụng! Vui lòng nhập tên khác");
 		    	return "redirect:/login";
 	        }
 			
 			userService.create(user);
-			redirectAttributes.addFlashAttribute("message", "Đăng ký thành công. Vui lòng đăng nhập để tiếp tục");			
+			redirectAttributes.addFlashAttribute("successMessage", "Đăng ký thành công. Vui lòng đăng nhập để tiếp tục");			
 			return "redirect:/login";
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("message", e);	

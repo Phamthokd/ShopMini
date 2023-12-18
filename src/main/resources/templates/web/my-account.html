@@ -42,6 +42,7 @@
 								<li> <a href="#orders" data-bs-toggle="tab" class="nav-link ">Đơn hàng</a></li>
 								<li> <a href="#password" data-bs-toggle="tab" id="changePass" class="nav-link ">Đổi mật
 										khẩu</a></li>
+								
 
 								<li><a th:href="@{/process-logout}" class="nav-link">Đăng xuất</a></li>
 							</ul>
@@ -51,6 +52,7 @@
 						<!-- Tab panes -->
 						<div class="tab-content dashboard_content">
 
+									
 							<div class="tab-pane" id="password">
 								<div th:if="${message}"
 									th:class="${message == 'Đổi mật khẩu thành công'} ? 'alert alert-success' : 'alert alert-danger'"

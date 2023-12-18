@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="web/fragments/head :: head"></head>
+
+<body>
+
+	<!--header area start-->
+	<div th:replace="web/fragments/header :: header2"></div>
+	<!--header area end-->
+
+	<!--breadcrumbs area start-->
+	<div class="breadcrumbs_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="breadcrumb_content">
+						<ul>
+							<li><a href="#">Trang chủ</a></li>
+							<li>Đăng ký bán bán hàng</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--breadcrumbs area end-->
+	<section class="main_content_area">
+		<div class="container">
+			<div class="account_dashboard">
+				<div class="row">
+					<div class="container">
+						<h3>Cung cấp thông tin</h3>
+						<hr>
+						<form class="form-horizontal row" role="form" method="post" enctype="multipart/form-data"
+							th:action="@{/add-shop}" onsubmit="return validateRegistrationForm()" name="registrationForm">
+
+							<!-- left column -->
+							<div class="col-md-3">
+								<div class="text-center">
+									<img src="#" class="avatar img-circle" alt="avatar">
+									<h6>Avatar</h6>
+									<input type="file" class="form-control" name="avatar">
+								</div>
+							</div>
+
+							<!-- edit form column -->
+							<div class="col-md-9 personal-info">
+								<h4>Thông tin shop</h4>
+								<input type="hidden" class="form-control mt-1">
+
+								<div class=" form-group mb-2">
+									<label class="col-lg-3 control-label">Tên shop</label>
+									<div class="col-lg-8">
+										<input class="form-control" type="text" name="name">
+									</div>
+								</div>
+
+								<div class="form-group mb-2">
+									<label class="col-lg-3 control-label">Địa chỉ shop</label>
+									<div class="col-lg-8">
+										<input class="form-control" type="text" name="address">
+									</div>
+								</div>
+
+								<div class="form-group mb-2">
+									<label class="col-lg-3 control-label">Email liên hệ</label>
+									<div class="col-lg-8">
+										<input class="form-control" type="email" name="email" </div>
+									</div>
+
+									<div class="form-group mb-2">
+										<label class="col-lg-3 control-label">Số điện thoại liên hệ</label>
+										<div class="col-lg-8">
+											<input class="form-control" type="text" name="phone">
+										</div>
+									</div>
+									<label for="checked">
+										<input id="checked" type="checkbox">
+										Đồng ý <a>chính sách và điều khoản</a>
+									</label>
+									<div class="form-group">
+										<label class="col-md-3 control-label"></label>
+										<div class="col-md-8">
+											<button type="submit" class="btn btn-success ">Xong</button>
+										</div>
+									</div>
+								</div>
+								<div class="mt-4">
+									<i style="color: red;">Chú ý: Khi đăng ký thành công, bạn sẽ phải đăng nhập để tiếp
+										tục bán hàng trên hệ
+										thống.</i>
+								</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--footer area start-->
+	<footer th:replace="web/fragments/footer :: footer"></footer>
+	<!--footer area end-->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+
+		function validateRegistrationForm() {
+			var name = document.forms["registrationForm"]["name"].value;
+			var address = document.forms["registrationForm"]["address"].value;
+			var email = document.forms["registrationForm"]["email"].value;  // Sửa lỗi ở đây
+			var phone = document.forms["registrationForm"]["phone"].value;
+			var checkbox = document.getElementById("checked");
+
+			if (name === "" || address === "" || email === "" || phone === "") {
+				alert("Vui lòng điền đầy đủ thông tin.");
+				return false;
+			}
+
+			if (!checkbox.checked) {
+				alert("Vui lòng đồng ý với chính sách và điều khoản.");
+				return false;
+			}
+
+			return true;
+		}
+
+		/*]]>*/
+	</script>
+
+</body>
+
+</html>
