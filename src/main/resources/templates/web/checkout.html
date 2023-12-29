@@ -76,8 +76,11 @@
 											<td th:text="${cart.product.name} + ' x ' + ${cart.quantity}"> Handbag
 												fringilla </td>
 											<td>
-												<span class=""
-													th:text="${#numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+												<span 
+													
+													th:text="${#strings.concat( #numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"
+													></span>
+													
 											</td>
 										</tr>
 									</tbody>
@@ -99,8 +102,10 @@
 										<tr class="order_total">
 											<th>Tổng giá đơn hàng</th>
 											<td><strong>
-													<span class=""
-														th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}"></span>
+													<span 
+														
+														th:text="${#strings.concat( #numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA'),'₫')}"
+														></span>
 												</strong></td>
 										</tr>
 									</tfoot>

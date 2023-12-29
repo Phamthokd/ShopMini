@@ -91,4 +91,10 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 
+	@Override
+	public List<Object[]> infoShop() {
+		// TODO Auto-generated method stub
+		return userRepository.infoShop();
+	}
+
 }

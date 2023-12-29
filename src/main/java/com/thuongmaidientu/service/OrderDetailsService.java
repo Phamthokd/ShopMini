@@ -2,11 +2,8 @@ package com.thuongmaidientu.service;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
-
 import com.thuongmaidientu.model.Order;
 import com.thuongmaidientu.model.OrderDetails;
-import com.thuongmaidientu.model.Product;
 import com.thuongmaidientu.model.User;
 
 public interface OrderDetailsService {
@@ -23,4 +20,9 @@ public interface OrderDetailsService {
 	List<OrderDetails> findOrderDetailsByOrderIdAndUserName(Long orderId, String username);
 	
 	Double getTotalRevenueByUser(User user);
+	
+	List<OrderDetails> findByOrder(Order order);
+	
+	List<OrderDetails> findOrderDetailsByuserName(String username);
+	
 }

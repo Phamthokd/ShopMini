@@ -87,14 +87,14 @@
 																	th:text="${order.product.name}"></a>
 															</td>
 															<td class="product-price">
-																<span class="total"
-																	th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+																<span
+																	th:text="${#strings.concat( #numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 															</td>
 															<td class="product_quantity" th:text="${order.quantity}">
 															</td>
 															<td class="product_total">
 																<span class="total"
-																	th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
+																	th:text="${#strings.concat( #numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 															</td>
 														</tr>
 													</tbody>
@@ -145,14 +145,14 @@
 																	th:text="${order.product.name}"></a>
 															</td>
 															<td class="product-price">
-																<span class="total"
-																	th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+																<span
+																	th:text="${#strings.concat( #numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 															</td>
 															<td class="product_quantity" th:text="${order.quantity}">
 															</td>
 															<td class="product_total">
 																<span class="total"
-																	th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
+																	th:text="${#strings.concat( #numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 															</td>
 														</tr>
 													</tbody>
@@ -204,14 +204,14 @@
 																	th:text="${order.product.name}"></a>
 															</td>
 															<td class="product-price">
-																<span class="total"
-																	th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+																<span
+																	th:text="${#strings.concat( #numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 															</td>
 															<td class="product_quantity" th:text="${order.quantity}">
 															</td>
 															<td class="product_total">
 																<span class="total"
-																	th:text="${#numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA')}"></span>
+																	th:text="${#strings.concat( #numbers.formatDecimal(order.product.discount * order.quantity, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 															</td>
 														</tr>
 													</tbody>
@@ -252,28 +252,31 @@
 													</tr>
 												</thead>
 												<tbody th:each="order : ${orderConfirm}">
-													<form method="post"
-														th:action="@{/update-order/{id}(id=${order.id}, status=${order.status})}">
-														<tr>
-															<td class="product_thumb"><a href="#"><img
-																		th:src="@{'/uploads/'+${order.product.image1}}"
-																		alt="ảnh bìa"></a>
-															</td>
-															<td class="product_name"><a href="#"
-																	th:text="${order.product.name}"></a>
-															</td>
-															<td class="product-price">
-																<span class="total"
-																	th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
-															</td>
-															<td class="product_quantity" th:text="${order.quantity}">
-															</td>
-															<td class="product_remove">
-																<button type="submit" class="btn btn-success">Xác
-																	nhận</button>
-															</td>
-														</tr>
-													</form>
+													<!--<form method="post"
+														th:action="@{/update-order/{id}(id=${order.id}, status=${order.status})}">-->
+													<tr>
+														<td class="product_thumb"><a href="#"><img
+																	th:src="@{'/uploads/'+${order.product.image1}}"
+																	alt="ảnh bìa"></a>
+														</td>
+														<td class="product_name"><a href="#"
+																th:text="${order.product.name}"></a>
+														</td>
+														<td class="product-price">
+															<span
+																th:text="${#strings.concat( #numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+														</td>
+														<td class="product_quantity" th:text="${order.quantity}">
+														</td>
+														<td class="product_remove">
+															<button type="button" class="btn btn-success add-review"
+																th:idOrderDetails="${order.id}">Xác
+																nhận</button>
+														</td>
+													</tr>
+													<input type="hidden" class="productIdInput"
+														th:value="${order.product.id}" />
+													<!--</form>-->
 												</tbody>
 											</table>
 										</div>
@@ -317,8 +320,8 @@
 																th:text="${order.product.name}"></a>
 														</td>
 														<td class="product-price">
-															<span class="total"
-																th:text="${#numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															<span
+																th:text="${#strings.concat( #numbers.formatDecimal(order.product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 														</td>
 														<td class="product_quantity" th:text="${order.quantity}"> </td>
 														<td class="product_remove">
@@ -340,34 +343,10 @@
 		</div>
 	</div>
 
-	<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#success_tic">Open Modal</button>-->
 
-	<!-- Modal -->
-	<div id="success_tic" class="modal fade" role="dialog">
-		<div class="modal-dialog">
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<a class="close" href="#" data-dismiss="modal">&times;</a>
-				<div class="page-body">
-					<div class="head">
-						<h3 style="margin-top:5px;">Xác nhận đơn hàng thành công</h3>
-					</div>
 
-					<h1 style="text-align:center;">
-						<div class="checkmark-circle">
-							<div class="background"></div>
-							<div class="checkmark draw"></div>
-						</div>
-						<h1>
 
-				</div>
-			</div>
-		</div>
-
-	</div>
-
-	<!-- Modal cho trường hợp bản ghi đã tồn tại -->
 	<div class="modal" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel"
 		aria-hidden="true">
 		<!-- Nội dung modal -->
@@ -386,6 +365,50 @@
 
 		</div>
 	</div>
+
+	<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+		tabindex="-1">
+		<div class="modal-dialog">
+			<form>
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalToggleLabel">Đánh giá về sản phẩm</h5>
+						<a href="order" class="btn-close btn-tab-success"></a>
+					</div>
+					<div class="modal-body">
+						<textarea class="form-control border-0" id="reasonTextarea" rows="4"></textarea>
+					</div>
+					<div class="modal-footer">
+						<a href="order" class="btn btn-primary btn-send-review btn-tab-success">Gửi</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div id="success_tic" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<a class="close" href="#" data-bs-dismiss="modal" aria-label="Close">&times;</a>
+				<div class="page-body">
+					<div class="head">
+						<h3 style="margin-top:5px;">Xác nhận đơn hàng thành công</h3>
+					</div>
+
+					<h1 style="text-align:center;">
+						<div class="checkmark-circle">
+							<div class="background"></div>
+							<div class="checkmark draw"></div>
+						</div>
+						<h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<footer th:replace="web/fragments/footer :: footer"></footer>
 
@@ -417,35 +440,113 @@
 				});
 			})
 
+			$(".add-review").on('click', function () {
+				const idOrderDetails = $(this).attr('idOrderDetails');
+				$.ajax({
+					type: "POST",
+					url: "/update-order",
+					data: {
+						idOrderDetails: idOrderDetails
+					},
+					success: function (dt) {
+						if (dt === "Success") {
+							// Hiển thị modal success_tic
+							$('#success_tic').modal('show');
+
+							// Bắt sự kiện khi modal success_tic được đóng hoặc màn hình ngoài modal được nhấp
+							$('#success_tic').on('hidden.bs.modal', function () {
+								// Hiển thị modal exampleModalToggle khi modal success_tic được đóng
+								$('#exampleModalToggle').modal('show');
+
+								// Hủy bỏ sự kiện khi modal success_tic được đóng để tránh xung đột
+								$('#success_tic').off('hidden.bs.modal');
 
 
-			// Lấy giá trị của messageOrder từ model
-			var messageOrder = /*[[${messageOrder}]]*/ '';
-			// Nếu messageOrder không rỗng
-			if (messageOrder.trim() !== '') {
-
-				var ordered = document.getElementById('ordered');
-				ordered.classList.remove('show', 'active');
-
-				var success = document.getElementById('success');
-				success.classList.add('show', 'active');
-
-				var orderedTab = document.getElementById('ordered-tab');
-				orderedTab.classList.remove('active');
-
-				var successTab = document.getElementById('success-tab');
-				successTab.classList.add('active');
-				$('#success_tic').modal('show');
-			} else {
-				console.log("o");
-			}
+							});
+						}
+					},
+					error: function () {
+						console.error(error);
+					}
+				});
+			});
 
 
-		}
-		);
+			// Bắt sự kiện khi người dùng nhập vào textarea
+			$("#reasonTextarea").on('input', function () {
+				// Kiểm tra xem nội dung của textarea có chứa ký tự nào khác dấu cách không
+				const hasNonSpaceCharacter = $(this).val().trim() !== '';
+
+				// Chọn nút "Gửi" và điều chỉnh trạng thái hiển thị dựa trên việc có ký tự hay không
+				const sendButton = $('.modal-footer a');
+				sendButton.toggleClass('d-none', !hasNonSpaceCharacter);
+			});
+
+			// Bắt sự kiện khi modal được mở
+			$('#exampleModalToggle').on('show.bs.modal', function () {
+				// Ẩn nút "Gửi" khi modal được mở
+				$('.modal-footer a').addClass('d-none');
+
+				// Xóa nội dung của textarea khi modal được mở
+				$('#reasonTextarea').val('');
+			});
+
+			// Bắt sự kiện khi modal được đóng
+			$('#exampleModalToggle').on('hidden.bs.modal', function () {
+				// Ẩn nút "Gửi" khi modal được đóng
+				$('.modal-footer a').addClass('d-none');
+			});
+			
+			$(".btn-tab-success").on('click', function (event) {
+				// Ngăn chặn hành động mặc định của liên kết
+				event.preventDefault();
+
+				// Lấy href của liên kết
+				var href = $(this).attr("href");
+
+				// Thêm tham số vào URL để xác định rằng trang nên mở tab "success"
+				var newHref = href + "?tab=success";
+
+				// Tải lại trang với URL đã cập nhật
+				window.location.href = newHref;
+			});
+
+			// Kiểm tra nếu URL có chứa tham số "tab=success" thì chuyển đến tab "success"
+			$(document).ready(function () {
+				var urlParams = new URLSearchParams(window.location.search);
+				if (urlParams.get('tab') === 'success') {
+					// Chuyển đến tab "success"
+					$('#success-tab').tab('show');
+				}
+			});
+			$(".btn-send-review").on('click', function () {
+
+				var reviewContent = $("#reasonTextarea").val();
+				var productId = $(".productIdInput").val();
+
+				<!--console.log(productId);-->
+				$.ajax({
+					type: "POST",
+					url: "/order-review",
+					data: {
+						reviewContent: reviewContent,
+						productId: productId 
+					},
+					success: function (response) {
+						// Xử lý kết quả từ server nếu cần
+						console.log(response);
+					},
+					error: function (error) {
+						console.error(error);
+					}
+				});
+			});
+		});
 	</script>
 
-</body>
 
 
 </body>
+
+
+</html>

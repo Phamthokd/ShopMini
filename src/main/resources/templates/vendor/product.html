@@ -37,7 +37,8 @@
 									<th class="text-center" th:text="${product.id}"></th>
 									<td class="text-center" th:text="${product.name}"></td>	
 									<td class="text-center">
-										<span th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+										<span th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+										
 									</td>	
 									
 									<td class="text-center">

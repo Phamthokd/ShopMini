@@ -139,9 +139,9 @@
 												<td class="text-center" th:text="${seller[2]}"></td>
 												<td class="text-center">
 													<div class="current_price"
-														th:text="${#numbers.formatDecimal(seller[3], 0, 'POINT', 0, 'COMMA')}">
+														th:text="${#strings.concat( #numbers.formatDecimal(seller[3], 0, 'POINT', 0, 'COMMA'),'₫')}">
 													</div>
-												</td>
+													
 											</tr>
 										</tbody>
 									</table>
@@ -149,51 +149,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="card mb-3">
-								<div class="card-header">
-									<i class="fas fa-chart-bar"></i>
-									Bar Chart Example
-								</div>
-								<div class="card-body">
-									<div class="chartjs-size-monitor">
-										<div class="chartjs-size-monitor-expand">
-											<div class=""></div>
-										</div>
-										<div class="chartjs-size-monitor-shrink">
-											<div class=""></div>
-										</div>
-									</div>
-									<canvas id="myBarChartLow" width="677" height="338" class="chartjs-render-monitor"
-										style="display: block; width: 677px; height: 338px;"></canvas>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="card mb-3">
-								<div class="card-header">
-									<h5>Danh sách top 5 đơn hàng có giá trị cao nhất</h5>
-								</div>
-								<div class="card-body">
-									<table>
-										<thead>
-											<tr>
-												<th>Order Date</th>
-												<th>Total Commission</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr th:each="commissionByDay : ${totalCommissionByDay}">
-												<td th:text="${commissionByDay[0]}"></td>
-												<td th:text="${commissionByDay[1]}"></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 
 				</div>
 			</main>

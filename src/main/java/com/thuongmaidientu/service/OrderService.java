@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.thuongmaidientu.model.Cart;
 import com.thuongmaidientu.model.Order;
-import com.thuongmaidientu.model.OrderDetails;
 import com.thuongmaidientu.model.User;
 
 public interface OrderService {

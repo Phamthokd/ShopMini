@@ -14,33 +14,41 @@
 		<!-- sidebar -->
 		<div id="layoutSidenav_content">
 			<main>
-				<div class="container-fluid px-4">			
-					<h1 class="mt-4">Thông tin các Shop</h1>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Quản lý Shop</h1>
 					<div class="breadcrumb mb-4">
 						<table class="table mt-5">
 							<thead class="thead-dark">
 								<tr>
 									<th class="text-center">ID</th>
-									<th class="text-center">Tên</th>		
-									<th class="text-center">Địa chỉ</th>
-									<th class="text-center">Email</th>
-									<th class="text-center">Số điện thoại</th>	
-									<th class="text-center">Trạng thái</th>							
-									<th class="text-center">Thao tác</th>													
+									<th class="text-center">Tên</th>
+									<th class="text-center">Tiền phí</th>								
+									<th class="text-center">Trạng thái</th>								
+									<th class="text-center">Thanh toán</th>
+									
+									<th class="text-center">Thao tác</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="shop : ${shop}">
-									<th class="text-center" th:text="${shop.id}" ></th>
-									<td class="text-center" th:text="${shop.userName}"></td>									
-									<td class="text-center" th:text="${shop.address}"></td>	
-									<td class="text-center" th:text="${shop.email}"></td>	
-									<td class="text-center" th:text="${shop.phone}"></td>
-									<td class="text-center" th:text="${shop.status}"></td>
+								<tr th:each="shop : ${infoShop}">
+									<td class="text-center" th:text="${shop[0]}"></td>
+									<td class="text-center" th:text="${shop[1]}"></td>
 									<td class="text-center">
-										<a href="" class="btn btn-success">Khóa</a>
-										<a th:href="@{/admin/delete-shop/{id}(id=${shop.id})}" onclick="return confirm('Bạn có chắc chắn không?')" class="btn btn-danger">Xóa</a>
-									 </td>															
+										  <span th:text="${#strings.concat( #numbers.formatDecimal(shop[3], 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+									</td>
+									
+									<td class="text-center" th:text="${shop[4]}"></td>
+									
+									<td class="text-center">Chưa thanh toán</td>
+									
+									<td class="text-center">
+										<a class="btn btn-info info-shop" th:shopId="${shop[0]}">Chi tiết</a>
+										<a href="" class="btn btn-warning">Khóa</a>
+										<a th:href="@{/admin/delete-shop/{id}(id=${shop[0]})}"
+											onclick="return confirm('Bạn có chắc chắn không?')"
+											class="btn btn-danger">Xóa</a>
+										<a  class="btn btn-success view-order-shop" th:shopId="${shop[0]}">Xem</a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -50,11 +58,80 @@
 		</div>
 	</div>
 
-	<script th:src="@{/vendor/js/category.js}"></script>
+	<!-- Modal -->
+	<div class="modal fade " id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Chi tiết</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body" id="detailModalBody">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<div th:replace="admin/fragments/script :: script"></div>
+	<script>
+		$(document).ready(function () {
+			$(".info-shop").on('click', function () {
 
-	<script th:src="@{/vendor/js/books.js}"></script>
+				const shopId = $(this).attr('shopId');
+				console.log(shopId)
+				$.ajax({
+					type: "GET",
+					url: "/admin/info-shop",
+					data: {
+						shopId: shopId
+					},
+					success: function (data) {
+						$("#detailModalBody").html(data);
+
+						// Hiển thị modal
+						$("#detailModal").modal("show");
+
+					},
+					error: function (error) {
+						console.log(error);
+					}
+				});
+
+			})
+			
+			$(".view-order-shop").on('click', function () {
+
+				const shopId = $(this).attr('shopId');
+				console.log(shopId)
+				$.ajax({
+					type: "GET",
+					url: "/admin/view-order-shop",
+					data: {
+						shopId: shopId
+					},
+					success: function (data) {
+						$("#detailModalBody").html(data);
+
+						// Hiển thị modal
+						$("#detailModal").modal("show");
+
+					},
+					error: function (error) {
+						console.log(error);
+					}
+				});
+
+			})
+		})
+
+	</script>
+
 </body>
 
 </html>

@@ -66,6 +66,18 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 		 return orderDetailRepository.getTotalRevenueByUser(user);
 	}
 
+	@Override
+	public List<OrderDetails> findByOrder(Order order) {
+		// TODO Auto-generated method stub
+		return orderDetailRepository.findByOrder(order);
+	}
+
+	@Override
+	public List<OrderDetails> findOrderDetailsByuserName(String username) {
+		// TODO Auto-generated method stub
+		return orderDetailRepository.findOrderDetailsByuserName(username);
+	}
+
 	
 
 }

@@ -59,7 +59,7 @@
 								<h3>
 									<a href="#" th:text="${category.name}"></a>
 								</h3>
-								
+
 							</div>
 						</div>
 					</div>
@@ -98,9 +98,9 @@
 
 									<div class="price_box">
 										<span class="old_price"
-											th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+											th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 										<span class="current_price"
-											th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+											th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 									</div>
 									<div class="add_to_cart">
 										<a id="addToCartLink" href="#" data-product-id="${product.id}">+
@@ -166,9 +166,9 @@
 													</h4>
 													<div class="price_box">
 														<span class="old_price"
-															th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 														<span class="current_price"
-															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a id="addToCartLink" href="#" data-product-id="${product.id}">+
@@ -194,9 +194,9 @@
 													</h4>
 													<div class="price_box">
 														<span class="old_price"
-															th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 														<span class="current_price"
-															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a id="addToCartLink" href="#" data-product-id="${product.id}">+
@@ -232,9 +232,9 @@
 													</h4>
 													<div class="price_box">
 														<span class="old_price"
-															th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 														<span class="current_price"
-															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a id="addToCartLink" href="#" data-product-id="${product.id}">+
@@ -260,9 +260,9 @@
 													</h4>
 													<div class="price_box">
 														<span class="old_price"
-															th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 														<span class="current_price"
-															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a id="addToCartLink" href="#" data-product-id="${product.id}">+
@@ -299,9 +299,9 @@
 													</h4>
 													<div class="price_box">
 														<span class="old_price"
-															th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 														<span class="current_price"
-															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a id="addToCartLink" href="#" data-product-id="${product.id}">+
@@ -328,9 +328,9 @@
 													</h4>
 													<div class="price_box">
 														<span class="old_price"
-															th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 														<span class="current_price"
-															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a id="addToCartLink" href="#" data-product-id="${product.id}">+
@@ -367,9 +367,9 @@
 													</h4>
 													<div class="price_box">
 														<span class="old_price"
-															th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 														<span class="current_price"
-															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a id="addToCartLink" href="#" data-product-id="${product.id}">+
@@ -396,9 +396,9 @@
 													</h4>
 													<div class="price_box">
 														<span class="old_price"
-															th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 														<span class="current_price"
-															th:text="${#numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+															th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 													</div>
 													<div class="add_to_cart">
 														<a id="addToCartLink" href="#" data-product-id="${product.id}">+

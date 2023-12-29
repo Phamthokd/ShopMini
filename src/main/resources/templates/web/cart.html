@@ -46,22 +46,28 @@
 									</thead>
 									<tbody th:each="cart : ${listCart}">
 										<tr>
-											<td class="product_remove"><a th:href="@{/delete-cart/{id}(id=${cart.id})}" onclick="return confirm('Bạn có chắc chắn không?')"><i class="fa fa-trash-o"></i></a>
+											<td class="product_remove"><a th:href="@{/delete-cart/{id}(id=${cart.id})}"
+													onclick="return confirm('Bạn có chắc chắn không?')"><i
+														class="fa fa-trash-o"></i></a>
 											</td>
 											<td class="product_thumb"><a href="#"><img
-														th:src="@{'/uploads/'+${cart.product.image1}}" alt="ảnh bìa"></a>
+														th:src="@{'/uploads/'+${cart.product.image1}}"
+														alt="ảnh bìa"></a>
 											</td>
 											<td class="product_name"><a href="#" th:text="${cart.product.name}"></a>
 											</td>
 											<td class="product-price">
-												<span class="old_price"
-													th:text="${#numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA')}"></span>
+												<span
+													th:text="${#strings.concat( #numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 											</td>
+
 											<td class="product_quantity"><label>Quantity</label> <input min="1"
 													max="100" th:value="${cart.quantity}" type="number"></td>
 											<td class="product_total">
 												<span class="total"
-													th:text="${#numbers.formatDecimal(cart.total, 0, 'POINT', 0, 'COMMA')}"></span>
+													
+													th:text="${#strings.concat( #numbers.formatDecimal(cart.total, 0, 'POINT', 0, 'COMMA'),'₫')}"
+													></span>
 											</td>
 										</tr>
 									</tbody>
@@ -85,7 +91,9 @@
 									<div class="cart_subtotal">
 										<p>Thành tiền</p>
 										<p class="current_price" style="font-size: 18px; margin-right: 30px;"
-											th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}"></p>
+											
+											th:text="${#strings.concat( #numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA'),'₫')}"
+											></p>
 									</div>
 									<!--<div class="cart_subtotal ">
 										<p>Phí ship</p>

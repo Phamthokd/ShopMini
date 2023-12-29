@@ -1,0 +1,23 @@
+<table class="table">
+	<thead class="thead-dark">
+		<tr>		
+			<th class="text-center">Sản phẩm</th>
+			<th class="text-center">Số lượng</th>
+			<th class="text-center">Đơn giá</th>
+			<th class="text-center">Shop</th>
+			<th class="text-center">trạng thái</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="order : ${ListOrderDetails}">
+			<td class="text-center" th:text="${order.product.name}"></td>
+			<td class="text-center" th:text="${order.quantity}"></td>
+			<td class="text-center">
+				 <span th:text="${#strings.concat( #numbers.formatDecimal(order.unitPrice, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+			</td>
+			<td class="text-center" th:text="${order.product.userProduct.userName}"></td>
+			<td class="text-center" th:text="${order.status}"></td>	
+		</tr>
+	</tbody>
+</table>

@@ -1,5 +1,6 @@
 package com.thuongmaidientu.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,13 @@ import com.thuongmaidientu.model.Cart;
 import com.thuongmaidientu.model.Order;
 import com.thuongmaidientu.model.OrderDetails;
 import com.thuongmaidientu.model.Product;
+import com.thuongmaidientu.model.Review;
 import com.thuongmaidientu.model.User;
 import com.thuongmaidientu.service.CartService;
 import com.thuongmaidientu.service.OrderDetailsService;
 import com.thuongmaidientu.service.OrderService;
 import com.thuongmaidientu.service.ProductService;
+import com.thuongmaidientu.service.ReviewService;
 import com.thuongmaidientu.service.UserService;
 
 @Controller
@@ -44,6 +47,8 @@ public class OrderController {
 	
 	@Autowired 
 	private ProductService productService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	@GetMapping("/checkout")
 	public String checkoutIndex(Model model,@AuthenticationPrincipal UserDetails userDetails) {
@@ -87,27 +92,33 @@ public class OrderController {
 		return "web/order";
 	}
 	
-	@PostMapping("/update-order/{id}")
-	public String updateOrder(@PathVariable Long id, @RequestParam String status,
-			RedirectAttributes redirectAttributes) {
+	/*
+	 * @PostMapping("/update-order/{id}") public String updateOrder(@PathVariable
+	 * Long id, @RequestParam String status, RedirectAttributes redirectAttributes)
+	 * { OrderDetails orderDetails = orderDetailsService.findById(id);
+	 * 
+	 * if ("Chờ xác nhận".equals(status)) { orderDetails.setStatus("Hoàn thành");
+	 * redirectAttributes.addFlashAttribute("messageOrder",
+	 * "Cảm ơn bạn đã tin tưởng website."); } orderDetails =
+	 * orderDetailsService.save(orderDetails);
+	 * 
+	 * if (orderDetails == null) {
+	 * redirectAttributes.addFlashAttribute("messageOrder", "Cập nhật thất bại");
+	 * return "redirect:/order"; }
+	 * 
+	 * return "redirect:/order"; }
+	 */	
+	
+	@PostMapping("/update-order")
+	public ResponseEntity<String> updateOrder(@RequestParam("idOrderDetails") Long id){
 		OrderDetails orderDetails = orderDetailsService.findById(id);
-
-		if ("Chờ xác nhận".equals(status)) {
-			orderDetails.setStatus("Hoàn thành");
-			redirectAttributes.addFlashAttribute("messageOrder", "Cảm ơn bạn đã tin tưởng website.");
-		} 		
-		orderDetails = orderDetailsService.save(orderDetails);
-
-		if (orderDetails == null) {
-			redirectAttributes.addFlashAttribute("messageOrder", "Cập nhật thất bại");
-			return "redirect:/order";
-		}
-
-		return "redirect:/order";
+		orderDetails.setStatus("Hoàn thành");
+		orderDetailsService.save(orderDetails);
+		return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
 	
 	@PostMapping("/cancel-order")
-	private ResponseEntity<String> cancelOrder( @RequestParam("id") Long id,  @AuthenticationPrincipal UserDetails userDetails) {
+	public ResponseEntity<String> cancelOrder( @RequestParam("id") Long id,  @AuthenticationPrincipal UserDetails userDetails) {
 	    try {
 	    	OrderDetails orderDetails = orderDetailsService.findById(id);    	
 	    	orderDetails.setStatus("Đã hủy");
@@ -127,5 +138,24 @@ public class OrderController {
 		   		
 	}
 	
-	
+	@PostMapping("/order-review")
+	public ResponseEntity<String> processReview(@AuthenticationPrincipal UserDetails userDetails,
+			@RequestParam("productId") Long productId, @RequestParam("reviewContent") String reviewContent) {
+	    try {
+	    	Review review = new Review();	
+			User userComment = userService.findByUserName(userDetails.getUsername());	
+			Product productReview = productService.findById(productId);
+			review.setProduct(productReview);
+			review.setUser(userComment);
+			review.setReview(reviewContent);
+			Date timestamp = new Date();
+			review.setTimestamp(timestamp);		
+			reviewService.create(review);
+			
+	    	return new ResponseEntity<>("success", HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>("error", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
 }

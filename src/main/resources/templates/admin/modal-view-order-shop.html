@@ -1,0 +1,23 @@
+<table class="table">
+	<thead class="thead-dark">
+		<tr>		
+			<th class="text-center">Đơn hàng</th>	
+			<th class="text-center">Sản phẩm</th>
+			<th class="text-center">Số lượng</th>
+			<th class="text-center">Đơn giá</th>
+			<th class="text-center">Trạng thái</th>
+			<th class="text-center">Ngày đặt hàng</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="order : ${ListOrder}">
+			<td class="text-center" th:text="${order.order.id}">1</td>	
+			<td class="text-center" th:text="${order.product.name}">1</td>	
+			<td class="text-center" th:text="${order.quantity}">1</td>	
+			<td class="text-center" th:text="${order.unitPrice}">1</td>	
+			<td class="text-center" th:text="${order.status}">1</td>	
+			<td class="text-center" th:text="${order.order.createdDate}">1</td>			
+		</tr>
+	</tbody>
+</table>

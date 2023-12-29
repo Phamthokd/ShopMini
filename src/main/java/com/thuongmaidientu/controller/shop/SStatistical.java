@@ -38,7 +38,7 @@ public class SStatistical {
 		
 		List<Object[]> top3ProductsWithRevenue = productService.findTop3ProductsWithRevenueByUser(user);
 		List<Object[]> top3ProductsWithRevenueASC = productService.findTop3ProductsWithRevenueByUserASC(user);
-		 List<Object[]> totalRevenueByDayForSeller = orderService.calculateTotalRevenueByDayForSeller(user);
+		List<Object[]> totalRevenueByDayForSeller = orderService.calculateTotalRevenueByDayForSeller(user);
 		
 		Double totalRevenue = orderDetailsService.getTotalRevenueByUser(user);		
 		Double totalCommission = totalRevenue * 0.025;

@@ -152,9 +152,7 @@
 							</div>
 						</div>
 						<div class="col-lg-4">
-							<div class="logo">
-								<a th:href="@{/}"><img th:src="@{/assets/img/logo/logo.png}" alt="logo"></a>
-							</div>
+							
 						</div>
 						<div class="col-lg-4">
 							<div class="mini_cart_wrapper3">
@@ -164,8 +162,8 @@
 										<span class="cart_itemtext">Giỏ hàng:</span>
 										<span class="cart_itemtotal">
 											<span
-												th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}">
-											</span>
+												th:text="${#strings.concat( #numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+										</span>
 										</span>
 										<span class="item_count" th:text="${cartNO}"></span>
 									</a>
@@ -185,7 +183,9 @@
 													<a href="#" th:text="${cart.product.name}"></a>
 													<p>
 														<span th:text="${cart.quantity} + ' X '"></span> <span
-															th:text="${#numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA')}">
+															th:text="${#strings.concat( #numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}">
+														</span>
+														<span></span>
 														</span>
 													</p>
 												</div>
@@ -198,8 +198,10 @@
 										<div class="mini_cart_table">
 											<div class="cart_table_border">
 												<div class="cart_total mt-10">
-													<span>Tổng:</span> <span class="total"
-														th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}"></span>
+													<span>Tổng:</span>
+													<span
+														th:text="${#strings.concat( #numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+													</span>
 												</div>
 											</div>
 										</div>
@@ -292,7 +294,7 @@
 											<a th:href="@{/add-shop}">Đăng ký bán hàng</a>
 										</li>
 										<li class="menu-item-has-children" sec:authorize="hasRole('SHOP')">
-											<a th:href="@{/shop}">Bán hàng</a>
+											<a th:href="@{/shop/product}">Bán hàng</a>
 										</li>
 										<li class="menu-item-has-children" sec:authorize="hasRole('ADMIN')">
 											<a th:href="@{/admin}">Quản trị</a>
@@ -450,9 +452,7 @@
 				<div class="container">
 					<div class="row align-items-center">
 						<div class="col-lg-1">
-							<div class="logo">
-								<a th:href="@{/}"><img th:src="@{/assets/img/logo/logo.png}" alt="logo"></a>
-							</div>
+							
 
 						</div>
 						<div class="col-lg-11">
@@ -493,11 +493,11 @@
 													th:href="@{/account}">Tài khoản</a></li>
 											<li class="menu-item-has-children" sec:authorize="isAnonymous()"><a
 													href="/login">Đăng nhập</a></li>
-											<li class="menu-item-has-children" sec:authorize="hasRole('CUSTOMER')">
+											<!--<li class="menu-item-has-children" sec:authorize="hasRole('CUSTOMER')">
 												<a th:href="@{/add-shop}">Đăng ký bán hàng</a>
-											</li>
+											</li>-->
 											<li class="menu-item-has-children" sec:authorize="hasRole('SHOP')">
-												<a th:href="@{/shop}">Bán hàng</a>
+												<a th:href="@{/shop/product}">Bán hàng</a>
 											</li>
 											<li class="menu-item-has-children" sec:authorize="hasRole('ADMIN')">
 												<a th:href="@{/admin}">Quản trị</a>
@@ -524,8 +524,8 @@
 											<span class="cart_itemtext">Giỏ hàng:</span>
 											<span class="cart_itemtotal">
 												<span
-													th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}">
-												</span>
+													th:text="${#strings.concat( #numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+											</span>
 											</span>
 											<span class="item_count" th:text="${cartNO}"></span>
 										</a>
@@ -547,8 +547,11 @@
 														<a href="#" th:text="${cart.product.name}"></a>
 														<p>
 															<span th:text="${cart.quantity} + ' X '"></span> <span
-																th:text="${#numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA')}">
+																
+																th:text="${#strings.concat( #numbers.formatDecimal(cart.product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"
+																>
 															</span>
+															
 														</p>
 													</div>
 													<div class="cart_remove">
@@ -560,8 +563,9 @@
 											<div class="mini_cart_table">
 												<div class="cart_table_border">
 													<div class="cart_total mt-10">
-														<span>Tổng:</span> <span class="total"
-															th:text="${#numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA')}"></span>
+														<span>Tổng:</span> <span
+															th:text="${#strings.concat( #numbers.formatDecimal(totalCart, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+														</span>
 													</div>
 												</div>
 											</div>

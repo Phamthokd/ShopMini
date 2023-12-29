@@ -24,5 +24,7 @@ public interface UserService {
 	List<Object[]> findTop5SellersByOrderCount() ;
 	
 	User create(User user);
+	
+	List<Object[]> infoShop() ;
 	 
 }
