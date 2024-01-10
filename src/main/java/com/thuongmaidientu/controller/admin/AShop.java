@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.thuongmaidientu.model.OrderDetails;
-import com.thuongmaidientu.model.Product;
-import com.thuongmaidientu.model.Report;
 import com.thuongmaidientu.model.User;
 import com.thuongmaidientu.service.OrderDetailsService;
 import com.thuongmaidientu.service.UserService;
@@ -28,7 +26,7 @@ public class AShop {
 	
 	@GetMapping("/seller")
 	public String shopHome(Model model) {
-		List<User> shop = userService.findByRole("SHOP");
+		
 		List<Object[]> infoShop = userService.infoShop();
 		model.addAttribute("infoShop", infoShop);
 		return "admin/shop";

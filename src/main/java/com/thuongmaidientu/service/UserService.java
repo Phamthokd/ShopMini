@@ -25,6 +25,6 @@ public interface UserService {
 	
 	User create(User user);
 	
-	List<Object[]> infoShop() ;
+	List<Object[]> infoShop();
 	 
 }

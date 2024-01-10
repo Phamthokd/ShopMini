@@ -33,7 +33,8 @@ public class AOrder {
 		return "admin/order";
 	}
 	
-	@GetMapping("/viewOrder")
+
+	@RequestMapping("/viewOrder")
 	public String aViewOrder(Model model, @RequestParam("orderId") Long orderId) {
 		Order order = orderService.findById(orderId);		
 		List<OrderDetails> orderDetails = orderDetailsService.findByOrder(order);

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="vendor/fragments/head :: head">
+</head>
+
+<body class="sb-nav-fixed">
+	<!-- nav -->
+	<div th:replace="admin/fragments/nav :: navVendor"></div>
+	<!-- nav -->
+	<div id="layoutSidenav">
+		<!-- sidebar -->
+		<div th:replace="admin/fragments/sidebar :: sidebarVendor"></div>
+		<!-- sidebar -->
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">Tính phí hoa hồng</h1>
+					<div class="breadcrumb mb-4">
+						<a th:href="@{/admin/settlement}" class="btn btn-success">
+							Quyết toán
+						</a>
+
+						<table class="table mt-3">
+							<thead class="thead-dark">
+								<tr>
+
+									<th class="text-center">Shop</th>
+									<th class="text-center">Tiền phí</th>
+									<th class="text-center">Tháng</th>
+									<th class="text-center">Trạng thái</th>
+									<th class="text-center">Xác nhận đã thanh toán</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="commission : ${listCommission}">
+
+									<td class="text-center" th:text="${commission.user.userName}"></td>
+									<td class="text-center">
+										<span
+											th:text="${#strings.concat( #numbers.formatDecimal(commission.totalCommission, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+									</td>
+									<td class="text-center" th:text="${commission.month}"></td>
+									<td class="text-center" th:text="${commission.status}"></td>
+									<td class="text-center">
+										<a th:if="${commission.status == 'Thanh toán'}"
+											th:href="@{/admin/commission-success/{id}(id=${commission.id})}"
+											class="btn btn-info info-shop">Xác nhận</a>
+										<a th:unless="${commission.status == 'Thanh toán'}" class="btn btn-info info-shop"
+											style="pointer-events: none; opacity: 0.5;">Chờ thanh toán</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
+
+	<div th:replace="admin/fragments/script :: script"></div>
+</body>
+
+</html>

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.thuongmaidientu.model.Order;
 import com.thuongmaidientu.model.OrderDetails;
-import com.thuongmaidientu.model.Product;
 import com.thuongmaidientu.model.User;
 import com.thuongmaidientu.repository.OrderDetailRepository;
 import com.thuongmaidientu.service.OrderDetailsService;
