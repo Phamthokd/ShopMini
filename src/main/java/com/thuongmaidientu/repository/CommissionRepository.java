@@ -23,5 +23,10 @@ public interface CommissionRepository extends JpaRepository<Commission, Long> {
 	
 	List<Commission> findByUserAndStatus(User user, String status);
 	
+	List<Commission> findByMonth(Integer month);
+	
+	List<Commission> findByMonthAndUser(Integer month, User user);
+	
+
 	
 }

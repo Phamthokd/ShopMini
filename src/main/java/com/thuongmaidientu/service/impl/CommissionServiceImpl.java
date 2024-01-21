@@ -76,7 +76,25 @@ public class CommissionServiceImpl implements CommissionService {
 		// TODO Auto-generated method stub
 		return commissionRepository.findById(id).get();
 	}
+
+
+
+	@Override
+	public List<Commission> findByMonth(Integer month) {	
+		return commissionRepository.findByMonth(month);
+	}
+
+
+
+	@Override
+	public List<Commission> findByMonthAndUser(Integer month, User user) {
+		// TODO Auto-generated method stub
+		return commissionRepository.findByMonthAndUser(month, user);
+	}
 	
+
+
+
 	
 
 }

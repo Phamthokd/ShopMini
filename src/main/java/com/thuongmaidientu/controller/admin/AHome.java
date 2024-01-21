@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.thuongmaidientu.model.Product;
 import com.thuongmaidientu.service.OrderService;
 import com.thuongmaidientu.service.ProductService;
 import com.thuongmaidientu.service.UserService;

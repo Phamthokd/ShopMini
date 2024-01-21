@@ -55,4 +55,11 @@ public class ACommission {
 		}
 		
 	}
+	
+	@RequestMapping("/commission-of-month/{month}")
+	public String commissionOfMonth(@PathVariable("month") Integer month, Model model) {
+	    List<Commission> listCommission = commissionService.findByMonth(month);
+	    model.addAttribute("listCommission", listCommission);
+	    return "admin/commission";
+	}
 }

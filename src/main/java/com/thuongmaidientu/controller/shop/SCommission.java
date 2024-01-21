@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thuongmaidientu.model.Commission;
+import com.thuongmaidientu.model.User;
 import com.thuongmaidientu.service.CommissionService;
 import com.thuongmaidientu.service.UserService;
 
@@ -40,5 +41,13 @@ public class SCommission {
 			
 		
 		return "redirect:/shop/commission";
+	}
+	
+	@RequestMapping("/commission-of-month/{month}")
+	public String commissionOfMonth(@PathVariable("month") Integer month, Model model,@AuthenticationPrincipal UserDetails userDetails) {
+		User user = userService.findByUserName(userDetails.getUsername());
+	    List<Commission> listCommission = commissionService.findByMonthAndUser(month, user);
+	    model.addAttribute("listCommission", listCommission);
+	    return "vendor/commission";
 	}
 }

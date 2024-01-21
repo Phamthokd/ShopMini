@@ -78,7 +78,7 @@ public class SercurityConfig {
                 if (savedRequest != null) {
                     return savedRequest.getRedirectUrl();
                 } else {
-                    // Nếu không có yêu cầu trước đó, bạn có thể xác định URL mục tiêu theo logic của bạn.
+                   
                     return "/";
                 }
             }

@@ -10,5 +10,7 @@ public interface CommissionService {
 	Commission update(Commission commission);
 	List<Commission> findByStatusOrStatus();
 	List<Commission> findByUserAndStatus(User user, String status);
-	Commission findById(Long id);
+	Commission findById(Long id);	
+	List<Commission> findByMonth(Integer month);
+	List<Commission> findByMonthAndUser(Integer month, User user);
 }

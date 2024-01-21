@@ -15,12 +15,46 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Tính phí hoa hồng</h1>
-					<div class="breadcrumb mb-4">				
+					<h1 class="mt-4">Thanh toán phí dịch vụ</h1>
+					<div class="breadcrumb mb-4">
+						<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+							<div class="btn-group" role="group">
+								<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Xem theo tháng
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=1)}">Tháng 1</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=2)}">Tháng 2</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=3)}">Tháng 3</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=4)}">Tháng 4</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=5)}">Tháng 5</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=6)}">Tháng 6</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=7)}">Tháng 7</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=8)}">Tháng 8</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=9)}">Tháng 9</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=10)}">Tháng 10</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=11)}">Tháng 11</a></li>
+									<li><a class="dropdown-item"
+											th:href="@{/shop/commission-of-month/{month}(month=12)}">Tháng 12</a></li>
+								</ul>
+							</div>
+						</div>
 						<table class="table mt-3">
 							<thead class="thead-dark">
 								<tr>
-									
+
 									<th class="text-center">Shop</th>
 									<th class="text-center">Tiền phí</th>
 									<th class="text-center">Tháng</th>
@@ -30,15 +64,21 @@
 							</thead>
 							<tbody>
 								<tr th:each="commission : ${listCommission}">
-									
+
 									<td class="text-center" th:text="${commission.user.userName}"></td>
 									<td class="text-center">
-										<span th:text="${#strings.concat( #numbers.formatDecimal(commission.totalCommission, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+										<span
+											th:text="${#strings.concat( #numbers.formatDecimal(commission.totalCommission, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 									</td>
 									<td class="text-center" th:text="${commission.month}"></td>
 									<td class="text-center" th:text="${commission.status}"></td>
 									<td class="text-center">
-										<a th:href="@{/shop/settlement/{id}(id=${commission.id})}" class="btn btn-info info-shop">Thanh toán</a>
+										<a th:if="${commission.status == 'Chờ thanh toán'}"
+											th:href="@{/shop/settlement/{id}(id=${commission.id})}"
+											class="btn btn-info info-shop">Xác nhận</a>
+										<a th:unless="${commission.status == 'Chờ thanh toán'}"
+											class="btn btn-info info-shop"
+											style="pointer-events: none; opacity: 0.5;">Đã thanh toán</a>
 									</td>
 								</tr>
 							</tbody>
@@ -47,9 +87,10 @@
 				</div>
 			</main>
 		</div>
-		
+
 	</div>
-	
+
 	<div th:replace="vendor/fragments/script :: script"></div>
 </body>
+
 </html>
