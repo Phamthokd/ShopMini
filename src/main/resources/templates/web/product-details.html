@@ -268,7 +268,7 @@
 									</h4>
 									<div class="price_box">
 										<span class="old_price"
-											 th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+											th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 										<span class="current_price"
 											th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 									</div>
@@ -313,7 +313,7 @@
 									</h4>
 									<div class="price_box">
 										<span class="old_price"
-											 th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
+											th:text="${#strings.concat( #numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 										<span class="current_price"
 											th:text="${#strings.concat( #numbers.formatDecimal(product.discount, 0, 'POINT', 0, 'COMMA'),'₫')}"></span>
 									</div>
@@ -484,6 +484,8 @@
 				});
 				$("#exampleModal").modal("hide");
 			});
+
+			
 		});
 	</script>
 

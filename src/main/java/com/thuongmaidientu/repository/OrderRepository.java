@@ -10,7 +10,7 @@ import com.thuongmaidientu.model.User;
 import com.thuongmaidientu.model.OrderDetails;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-	List<Order> findByUserAndStatus(User user, String status);
+	
 
 	@Query("SELECT o FROM Order o " + "JOIN o.orderDetails od " + "JOIN od.product p " + "JOIN p.userProduct u "
 			+ "WHERE u.userName = :username")

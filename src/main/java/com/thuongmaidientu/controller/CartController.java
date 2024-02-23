@@ -71,43 +71,62 @@ public class CartController {
 		}
 
 	}
-	
-	@PostMapping("/buy-again")
-	public String buyAgain(
-	        @RequestParam("quantity") int quantity,
-	        @RequestParam("id") Long id,
-	        @RequestParam("idOrderDetail") Long idOrderDetail,
-	        @AuthenticationPrincipal UserDetails userDetails) {
-	    try {
-	        User user = userService.findByUserName(userDetails.getUsername());
-	        Product product = productService.findById(id);
 
-	        // Kiểm tra và cập nhật giỏ hàng nếu sản phẩm đã có trong giỏ hàng
-	        Cart cartCheck = cartService.findByProductAndUserAndStatus(product, user, "Giỏ hàng");
-	        if (cartCheck != null && "Giỏ hàng".equals(cartCheck.getStatus())) {
-	            cartCheck.setQuantity(cartCheck.getQuantity() + quantity);
-	            cartCheck.setTotal(cartCheck.getProduct().getDiscount() * cartCheck.getQuantity());
-	            
-	            cartService.update(cartCheck);
-	        } else {
-	            
-	            Cart cart = cartService.processAddCart(id, quantity, user, new Cart());
-	            cartService.create(cart);
-	        }
+	@PostMapping("/update-cart")
+	public String updateCart(@RequestParam("quantities") int[] quantities, @RequestParam("cartId") Long[] cartIds) {
+		if (quantities.length != cartIds.length) {
+			// Xử lý lỗi, số lượng không khớp
+			return "redirect:/cart";
+		}
 
-	       
-	        Order order = orderDetailsService.findById(idOrderDetail).getOrder();
-	        if (orderDetailsService.delete(idOrderDetail)) {            
-	            if (!order.getOrderDetails().isEmpty() ) {	 
-	            	orderService.delete(order);
-	            	return "redirect:/cart";
-	            }
-	        }
-	        return "redirect:/order";
-	    } catch (Exception e) {
-	        return "redirect:/cartError";
-	    }
+		for (int i = 0; i < quantities.length; i++) {
+			Long cartId = cartIds[i];
+			int quantity = quantities[i];
+
+			Cart cart = cartService.findById(cartId);
+			if (cart != null) {
+				cart.setQuantity(quantity);
+				cart.setTotal(quantity * cart.getProduct().getDiscount());
+				cartService.update(cart);
+			}
+		}
+
+		return "redirect:/cart";
 	}
+
+	@PostMapping("/buy-again")
+	public String buyAgain(@RequestParam("quantity") int quantity, @RequestParam("id") Long id,
+			@RequestParam("idOrderDetail") Long idOrderDetail, @AuthenticationPrincipal UserDetails userDetails) {
+		try {
+			User user = userService.findByUserName(userDetails.getUsername());
+			Product product = productService.findById(id);
+
+			// Kiểm tra và cập nhật giỏ hàng nếu sản phẩm đã có trong giỏ hàng
+			Cart cartCheck = cartService.findByProductAndUserAndStatus(product, user, "Giỏ hàng");
+			if (cartCheck != null && "Giỏ hàng".equals(cartCheck.getStatus())) {
+				cartCheck.setQuantity(cartCheck.getQuantity() + quantity);
+				cartCheck.setTotal(cartCheck.getProduct().getDiscount() * cartCheck.getQuantity());
+
+				cartService.update(cartCheck);
+			} else {
+
+				Cart cart = cartService.processAddCart(id, quantity, user, new Cart());
+				cartService.create(cart);
+			}
+
+			Order order = orderDetailsService.findById(idOrderDetail).getOrder();
+			if (orderDetailsService.delete(idOrderDetail)) {
+				if (!order.getOrderDetails().isEmpty()) {
+					orderService.delete(order);
+					return "redirect:/cart";
+				}
+			}
+			return "redirect:/order";
+		} catch (Exception e) {
+			return "redirect:/cartError";
+		}
+	}
+
 	@GetMapping("/delete-cart/{id}")
 	public String deleteCart(@PathVariable("id") Long id) {
 		if (this.cartService.delete(id)) {
